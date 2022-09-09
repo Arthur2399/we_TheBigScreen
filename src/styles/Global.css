@@ -1,0 +1,11 @@
+body{
+    font-family:'Quicksand', sans-serif;
+    margin: 0;
+}
+::-webkit-scrollbar{
+    width: 9px;
+}
+::-webkit-scrollbar-thumb{
+    background-color: var(--hospital-yellow); 
+    border-radius: 15px;
+}

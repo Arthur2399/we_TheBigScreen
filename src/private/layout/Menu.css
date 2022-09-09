@@ -1,0 +1,97 @@
+@import '../../styles/_vars.css';
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 24px;
+    border-bottom: 1px solid var(--very-light-pink)
+}
+
+.menu {
+    display: none;
+}
+
+.nav-logo {
+    width: 180px;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+
+}
+
+.navbar-left {
+    display: flex;
+}
+
+.navbar-left ul {
+    margin-left: 12px;
+}
+
+.navbar-left ul,
+.navbar-right ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    height: 60px;
+}
+
+.navbar-left ul li a,
+.navbar-right ul li a {
+    text-decoration: none;
+    color: var(--very-light-pink);
+    border: 1px solid var(--white);
+    padding: 8px;
+    border-radius: 8px;
+}
+
+.navbar-left ul li a:hover,
+.navbar-right ul li a {
+    border: 1px solid var(--hospital-red);
+    color: var(--hospital-red);
+}
+
+.navBar-email {
+    color: var(--very-light-pink);
+    font-size: var(--sm);
+    margin-right: 12PX;
+    cursor: pointer;
+}
+
+.navBar-user {
+    position: relative;
+    cursor: pointer;
+}
+
+.navBar-user img {
+    width: 25px;
+}
+
+.navBar-user div {
+    width: 16px;
+    height: 16px;
+    background-color: var(--hospital-red);
+    border-radius: 50%;
+    font-size: var(--sm);
+    font-weight: bold;
+    position: absolute;
+    top: -6px;
+    right: -3px;
+    display: flex;
+    justify-content: center;
+}
+
+@media (max-width: 640px) {
+    .menu {
+        display: block;
+    }
+
+    .navbar-left ul {
+        display: none;
+    }
+
+    .navBar-email {
+        display: none;
+    }
+}
