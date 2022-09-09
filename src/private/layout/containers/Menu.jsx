@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Options } from './components/Options';
+import { Options } from '../components/Options';
 import './Menu.css';
 
 export const Menu = () => {

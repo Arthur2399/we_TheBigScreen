@@ -1,0 +1,214 @@
+@import '../../../styles/_vars.css';
+
+h2 {
+    font-size: 16px;
+    margin-left: 12px;
+}
+
+.Accredits {
+    align-items: center;
+    display: flex;
+    height: 550px;
+    justify-content: center;
+    width: 100%;
+}
+
+.Accredits-container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 550px;
+    padding: 0;
+    width: 100%;
+}
+
+.Accredits-title {
+    margin-bottom: 20px;
+    padding: 0;
+    font-size: var(--lg);
+}
+
+.Accredits-desing-container {
+    align-items: center;
+    display: flex;
+    height: 520px;
+    justify-content: space-evenly;
+}
+
+.Accredits-view-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--very-light-pink);
+    border-radius: 20px;
+    height: 500px;
+    width: 1100px;
+}
+
+.Accredits-movies {
+    background-color: var(--white);
+    border-radius: 20px;
+    margin: 15px;
+    height: 450px;
+    width: 350px;
+}
+
+.movies-scroll-container {
+    display: block;
+    width: 350px;
+    height: 412px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.information-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 450px;
+    margin: 15px 15px 15px 0px;
+    padding: 0;
+}
+
+.qr-escanner {
+    background-color: var(--white);
+    height: 180px;
+    width: 350px;
+    margin-top: 0px;
+    border-radius: 20px;
+
+}
+
+.qr-escanner-info {
+    text-align: center;
+    margin-left: 10px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 145px;
+}
+
+.qr-escanner-info img {
+    width: 80px;
+}
+
+.qr-escanner-info h2 {
+    font-size: 15px;
+    margin: 0;
+    margin-bottom: 5px;
+}
+
+.qr-escanner-info p {
+    font-size: 12px;
+    width: 150px;
+    margin: 0;
+}
+
+.qr-escanner-info button {
+    background-color: var(--hospital-red);
+    border-radius: 8px;
+    border: none;
+    color: var(--white);
+    width: 130px;
+    cursor: pointer;
+    font-size: var(--sm);
+    font-weight: bold;
+    height: 30px;
+    margin-top: 10px;
+}
+
+.user-profile {
+    background-color: var(--white);
+    height: 255px;
+    width: 350px;
+    border-radius: 20px;
+}
+
+.user-profile-info {
+    height: 220px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.user-profile-info-photo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.user-profile-info-photo img {
+
+    width: 110px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.user-profile-info-points {
+    text-align: center;
+}
+
+.user-profile-info-points h1 {
+    margin: 8px 0 0 0;
+    font-size: 24px;
+}
+
+.user-profile-info-points span {
+    margin-bottom: 20px;
+}
+
+.accredit-points {
+    background-color: var(--white);
+    border-radius: 20px;
+    margin: 15px 15px 15px 0;
+    height: 450px;
+    width: 350px;
+}
+
+.accredit-points-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 92%;
+}
+
+.accredit-grid {
+    margin-top: 10px;
+    margin-left: 15px;
+    gap: 18px;
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+.accredit-grid span:nth-child(2n+1) {
+    font-weight: bold;
+    text-align: end;
+    margin-right: 6px;
+}
+
+.accredit-points-total-button {
+    background-color: var(--hospital-red);
+    border-radius: 8px;
+    border: none;
+    color: var(--white);
+    width: 230px;
+    cursor: pointer;
+    font-size: var(--sm);
+    font-weight: bold;
+    height: 35px;
+    margin-top: 10px;
+}
+
+.combobox-container {
+    border: none;
+    background-color: var(--hospital-yellow);
+    border-radius: 5px;
+    height: 26px;
+    font-family: 'Quicksand', sans-serif;
+    text-align: center;
+}
+
+.combobox-container option {
+    background-color: var(--white);
+}
