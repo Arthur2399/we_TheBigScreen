@@ -1,0 +1,39 @@
+@import '../../../../styles/_vars.css';
+
+.qr-escanner-info {
+    text-align: center;
+    margin-left: 10px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 103px;
+}
+
+.qr-escanner-info img {
+    width: 80px;
+}
+
+.qr-escanner-info h2 {
+    font-size: 15px;
+    margin: 0;
+    margin-bottom: 5px;
+}
+
+.qr-escanner-info p {
+    font-size: 12px;
+    width: 150px;
+    margin: 0;
+}
+
+.qr-escanner-info button {
+    background-color: var(--hospital-red);
+    border-radius: 8px;
+    border: none;
+    color: var(--white);
+    width: 130px;
+    cursor: pointer;
+    font-size: var(--sm);
+    font-weight: bold;
+    height: 30px;
+    margin-top: 10px;
+}

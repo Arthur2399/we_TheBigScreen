@@ -79,82 +79,11 @@ h2 {
 
 }
 
-.qr-escanner-info {
-    text-align: center;
-    margin-left: 10px;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    height: 145px;
-}
-
-.qr-escanner-info img {
-    width: 80px;
-}
-
-.qr-escanner-info h2 {
-    font-size: 15px;
-    margin: 0;
-    margin-bottom: 5px;
-}
-
-.qr-escanner-info p {
-    font-size: 12px;
-    width: 150px;
-    margin: 0;
-}
-
-.qr-escanner-info button {
-    background-color: var(--hospital-red);
-    border-radius: 8px;
-    border: none;
-    color: var(--white);
-    width: 130px;
-    cursor: pointer;
-    font-size: var(--sm);
-    font-weight: bold;
-    height: 30px;
-    margin-top: 10px;
-}
-
 .user-profile {
     background-color: var(--white);
     height: 255px;
     width: 350px;
     border-radius: 20px;
-}
-
-.user-profile-info {
-    height: 220px;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-}
-
-.user-profile-info-photo {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.user-profile-info-photo img {
-
-    width: 110px;
-    border-radius: 10px;
-    object-fit: cover;
-}
-
-.user-profile-info-points {
-    text-align: center;
-}
-
-.user-profile-info-points h1 {
-    margin: 8px 0 0 0;
-    font-size: 24px;
-}
-
-.user-profile-info-points span {
-    margin-bottom: 20px;
 }
 
 .accredit-points {
@@ -165,50 +94,3 @@ h2 {
     width: 350px;
 }
 
-.accredit-points-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-    height: 92%;
-}
-
-.accredit-grid {
-    margin-top: 10px;
-    margin-left: 15px;
-    gap: 18px;
-    display: grid;
-    grid-template-columns: auto auto;
-}
-
-.accredit-grid span:nth-child(2n+1) {
-    font-weight: bold;
-    text-align: end;
-    margin-right: 6px;
-}
-
-.accredit-points-total-button {
-    background-color: var(--hospital-red);
-    border-radius: 8px;
-    border: none;
-    color: var(--white);
-    width: 230px;
-    cursor: pointer;
-    font-size: var(--sm);
-    font-weight: bold;
-    height: 35px;
-    margin-top: 10px;
-}
-
-.combobox-container {
-    border: none;
-    background-color: var(--hospital-yellow);
-    border-radius: 5px;
-    height: 26px;
-    font-family: 'Quicksand', sans-serif;
-    text-align: center;
-}
-
-.combobox-container option {
-    background-color: var(--white);
-}

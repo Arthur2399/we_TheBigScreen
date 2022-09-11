@@ -1,0 +1,50 @@
+@import '../../../../styles/_vars.css';
+
+.accredit-points-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 92%;
+}
+
+.accredit-grid {
+    margin-top: 10px;
+    margin-left: 15px;
+    gap: 18px;
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+.accredit-grid span:nth-child(2n+1) {
+    font-weight: bold;
+    text-align: end;
+    margin-right: 6px;
+}
+
+.accredit-points-total-button {
+    background-color: var(--hospital-red);
+    border-radius: 8px;
+    border: none;
+    color: var(--white);
+    width: 230px;
+    cursor: pointer;
+    font-size: var(--sm);
+    font-weight: bold;
+    height: 35px;
+    margin-top: 10px;
+}
+
+.combobox-container {
+    border: none;
+    background-color: var(--hospital-yellow);
+    border-radius: 5px;
+    height: 26px;
+    font-family: 'Quicksand', sans-serif;
+    text-align: center;
+}
+
+.combobox-container option {
+    background-color: var(--white);
+}
+
