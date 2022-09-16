@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useGetBillboard } from '../../../../hooks/useGetBillboard';
+import { useGetBillboard } from '../../../hooks/useGetBillboard';
 import './BillboardCards.css';
 
 export const BillboardCards = () => {

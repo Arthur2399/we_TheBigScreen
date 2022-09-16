@@ -1,4 +1,4 @@
-import { API_REST } from '../../../../helper/routes';
+import { API_REST } from '../../../helper/routes';
 import './BillboardCard.css';
 
 export const BillboardCard = ({bill}) => {
