@@ -14,7 +14,7 @@ export const Accredit = () => {
                         <div className="Accredits-movies">
                             <h2>Cartelera</h2>
                             <div className="movies-scroll-container">
-                                {/* <BillboardCards />  */}
+                                <BillboardCards /> 
                             </div>
                         </div>
                         <div className="information-container">

@@ -1,13 +1,10 @@
-import { API_REST } from '../../../helper/routes';
 import './BillboardCard.css';
 
-export const BillboardCard = ({bill}) => {
-    
-    const dir = API_REST;
+export const BillboardCard = () => {
     return (
         <div className="Billboard-cards">
-            <img src={dir + bill.photo_movie} alt="movie" />
-            <p>{bill.name_movie}</p>
+            <img src="https://cdn.hobbyconsolas.com/sites/navi.axelspringer.es/public/styles/1200/public/media/image/2018/03/crown-portada.jpg?itok=janghxRi" alt="movie" />
+            <p>The Crown</p>
         </div>
     )
 }
