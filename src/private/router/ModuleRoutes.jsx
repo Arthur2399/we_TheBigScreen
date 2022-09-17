@@ -1,12 +1,12 @@
 import { Navigate, Route, Routes } from "react-router-dom"
 import { Accredit } from "../accredit/pages/Accredit"
-import { Layout } from "../layout/Layout"
+import { Menu } from "../navbar/page/Menu"
 import { ChangePassword } from "../password/page/ChangePassword"
 
 export const ModuleRoutes = () => {
   return (
     <>
-      <Layout />
+      <Menu />
       <Routes>
         <Route path="accredit" element={<Accredit />} />
         <Route path="password-change" element={<ChangePassword />} />

@@ -37,7 +37,6 @@ nav {
     height: 60px;
 }
 
-.navbar-left ul li a,
 .navbar-right ul li a {
     text-decoration: none;
     color: var(--very-light-pink);
@@ -46,10 +45,22 @@ nav {
     border-radius: 8px;
 }
 
+.nav-item {
+    text-decoration: none;
+    color: var(--very-light-pink);
+    border: 1px solid var(--white);
+    padding: 8px;
+    border-radius: 8px;
+}
+
+.active {
+    border: 1px solid var(--hospital-red) !important;
+    color: var(--hospital-red);
+}
+
 .navbar-left ul li a:hover,
 .navbar-right ul li a {
-    border: 1px solid var(--hospital-red);
-    color: var(--hospital-red);
+    border: 1px solid var(--very-light-pink);
 }
 
 .navBar-email {

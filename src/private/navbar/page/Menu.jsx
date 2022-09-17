@@ -17,22 +17,34 @@ export const Menu = () => {
                 <a href="/" className="nav-logo"><img src={logo} alt=" logo" /></a>
                 <ul>
                     <li>
-                        <NavLink to ="employes">Empleados</NavLink>
+                        <NavLink to ="employes" 
+                        className={({isActive}) => `nav-item  ${ isActive ? 'active':'' }` }
+                        >Empleados</NavLink>
                     </li>
                     <li>
-                        <NavLink to ="movies">Películas</NavLink>
+                        <NavLink to ="movies"
+                        className={({isActive}) => `nav-item  ${ isActive ? 'active':'' }` }
+                        >Películas</NavLink>
                     </li>
                     <li>
-                        <NavLink to ="survey">Encuestas</NavLink>
+                        <NavLink to ="survey"
+                        className={({isActive}) => `nav-item  ${ isActive ? 'active':'' }` }
+                        >Encuestas</NavLink>
                     </li>
                     <li>
-                        <NavLink to ="awards">Premios</NavLink>
+                        <NavLink to ="awards"
+                        className={({isActive}) => `nav-item  ${ isActive ? 'active':'' }` }
+                        >Premios</NavLink>
                     </li>
                     <li>
-                        <NavLink to="accredit">Créditos</NavLink>
+                        <NavLink to="accredit"
+                        className={({isActive}) => `nav-item  ${ isActive ? 'active':'' }` }
+                        >Créditos</NavLink>
                     </li>
                     <li>
-                        <NavLink to="exchange">Canjear</NavLink>
+                        <NavLink to="exchange"
+                        className={({isActive}) => `nav-item  ${ isActive ? 'active':'' }` }
+                        >Canjear</NavLink>
                     </li>
                 </ul>
             </div>

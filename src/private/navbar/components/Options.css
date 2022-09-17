@@ -20,6 +20,7 @@
 
 .desktop-menu ul li {
     text-align: end;
+    border: none!important;
 }
 
 .desktop-menu ul li:nth-child(1),
@@ -46,4 +47,5 @@
     text-decoration: none;
     display: inline-block;
     margin-bottom: 15px;
+    border: none!important;
 }
