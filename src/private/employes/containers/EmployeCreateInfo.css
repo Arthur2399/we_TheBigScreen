@@ -1,0 +1,41 @@
+@import '../../../styles/_vars.css';
+
+.employ-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 220px;
+}
+
+.employ-container img {
+    width: 80px;
+}
+
+.employ-create-text {
+    text-align: center;
+    margin-left: 10px;
+}
+
+.employ-create-text h2 {
+    font-size: 15px;
+    margin: 0;
+}
+
+.employ-create-text p {
+    font-size: 12px;
+    width: 150px;
+    margin: 0;
+}
+
+.employ-create-button {
+    background-color: var(--hospital-red);
+    border-radius: 8px;
+    border: none;
+    color: var(--white);
+    width: 130px;
+    cursor: pointer;
+    font-size: var(--sm);
+    font-weight: bold;
+    height: 30px;
+    margin-top: 10px;
+}

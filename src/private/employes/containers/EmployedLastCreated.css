@@ -1,0 +1,39 @@
+@import '../../../styles/_vars.css';
+
+.employ-last-create-info {
+    display: flex;
+}
+
+.employ-last-create-info img {
+    width: 75px;
+    height: 100px;
+    margin-left: 15px;
+    margin-top: 0px;
+    border-radius: 10px;
+    margin-top: 5px;
+    object-fit: cover;
+}
+
+.employ-last-create-info-text {
+    display: flex;
+    flex-direction: column;
+    margin-left: 15px;
+    margin-top: 12px;
+}
+
+.employ-last-create-grid {
+    margin-top: 10px;
+    margin-left: 15px;
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+.employ-last-create-grid span {
+    font-size: var(--sm);
+}
+
+.employ-last-create-grid span:nth-child(2n+1) {
+    font-weight: bold;
+    text-align: end;
+    margin-right: 6px;
+}

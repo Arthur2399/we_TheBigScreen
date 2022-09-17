@@ -1,0 +1,96 @@
+@import '../../../styles/_vars.css';
+
+.Employe-Create {
+    background: var(--very-light-pink);
+    margin-top: 5px;
+    height: 90%;
+    width: 95%;
+    border-radius: 15px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.Employe-Create-Container {
+    height: 92%;
+    width: 30%;
+    border-radius: 15px;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    text-align: start;
+}
+
+.Employe-Create-inputs {
+    align-self: center;
+    border: none;
+    border-radius: 15px;
+    width: 90%;
+    height: 30px;
+    background: var(--text-input-fiel);
+}
+
+.Employe-Create-comboBox {
+    align-self: center;
+    border: none;
+    border-radius: 15px;
+    width: 90%;
+    height: 30px;
+    background: var(--text-input-fiel);
+}
+
+.Employe-Create-label {
+    margin-left: 18px;
+}
+
+.Employe-Create-UploadPhoto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 18px;
+    padding-bottom: 5%;
+    padding-top: 5%;
+}
+
+.Employe-Create-UploadPhoto div {
+    margin-top: 20px;
+    width: 60%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.Employe-Create-UploadPhoto-button {
+    border: none;
+    border-radius: 15px;
+    color: white;
+    padding: 8px;
+    cursor: pointer;
+    width: auto;
+    background: var(--hospital-red);
+}
+
+.Employe-Create-UploadPhoto span {
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.Employe-Create-Sent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 50%;
+}
+
+.Employe-Create-Sent img {
+    width: 120px !important;
+    margin-bottom: 10px !important;
+}
+
+.button-sent {
+    margin-top: 20px;
+    font-weight: bolder;
+    padding: 10px;
+}

@@ -1,0 +1,31 @@
+@import '../../../styles/_vars.css';
+
+.employ-cards {
+    width: 90px;
+    margin-bottom: 10px;
+}
+
+.employ-cards img {
+    height: 100px;
+    width: 65px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.employ-cards p {
+    width: 62px;
+    font-size: 10px;
+    margin: 2px 0 0px 0;
+    white-space: nowrap;
+    text-align: center;
+    font-weight: bold;
+}
+
+.employ-cards p:last-child {
+    width: 62px;
+    font-size: 8px;
+    margin: 2px 0 5px 0;
+    text-overflow: " [..]";
+    white-space: nowrap;
+    text-align: center;
+}
