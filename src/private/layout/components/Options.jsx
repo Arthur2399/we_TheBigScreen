@@ -1,16 +1,26 @@
+import { NavLink, useNavigate } from 'react-router-dom';
 import './Options.css';
 export const Options = () => {
+
+    const navigate = useNavigate();
+
+    const onLogout = () => {
+        navigate('/login', {
+            replace: true
+        });
+    }
+
     return (
         <div className="desktop-menu">
             <ul>
                 <li>
-                    <a href="/">Mi perfil</a>
+                    <NavLink to="/">Mi perfil</NavLink>
                 </li>
                 <li>
-                    <a href="/">Cambiar contraseña</a>
+                    <NavLink to="/password-change">Cambiar contraseña</NavLink>
                 </li>
                 <li>
-                    <a href="/" className="">Cerrar Sesion</a>
+                    <button  className="logout-button" onClick={onLogout}>Cerrar Sesion</button>
                 </li>
             </ul>
         </div>

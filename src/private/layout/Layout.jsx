@@ -1,10 +1,9 @@
 import { Menu } from "./containers/Menu"
 
-export const Layout = ({ children}) => {
+export const Layout = () => {
   return (
     <>
         <Menu/>
-        {children}
     </>
   )
 }

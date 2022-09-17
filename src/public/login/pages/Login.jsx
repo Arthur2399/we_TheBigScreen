@@ -1,7 +1,17 @@
+import { useNavigate } from 'react-router-dom';
 import logo from '../../../assets/logos/tbs_logo.svg'
 import'./Login.css';
 
+
 export const Login = () => {
+
+    const navigate = useNavigate();
+    const onLogin =() =>{
+       navigate('/',{
+        repalce:true  
+      });
+    }
+
   return (
     <div className="Login">
     <div className="Login-form-container">
@@ -11,8 +21,12 @@ export const Login = () => {
             <input type="text" name="email" placeholder="ejemplo@email.com" className="input input-email" />
             <label htmlFor="password" className="label">Contraseña</label>
             <input type="password" name="password" placeholder="*********" className="input input-password" />
-            <button  className="primary-button login-button">Ingresar</button>
-            <a href="/">Olvidé mi contraseña</a>
+            <button  
+              className="primary-button login-button"
+              onClick={onLogin}
+            >Ingresar
+            </button>
+            <a href="/password-recovery">Olvidé mi contraseña</a>
         </form>
     </div>
 </div>

@@ -1,5 +1,8 @@
+import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
 import { Options } from '../components/Options';
+import logo from'../../../assets/logos/tbs_logo.svg';
+import user from '../../../assets/icons/user.svg'
 import './Menu.css';
 
 export const Menu = () => {
@@ -11,25 +14,25 @@ export const Menu = () => {
     return (
         <nav>
             <div className="navbar-left">
-                <a href="/" className="nav-logo"><img src='' alt=" logo" /></a>
+                <a href="/" className="nav-logo"><img src={logo} alt=" logo" /></a>
                 <ul>
                     <li>
-                        <a href="employes">Empleados</a>
+                        <NavLink to ="employes">Empleados</NavLink>
                     </li>
                     <li>
-                        <a href="movies">Películas</a>
+                        <NavLink to ="movies">Películas</NavLink>
                     </li>
                     <li>
-                        <a href="survey">Encuestas</a>
+                        <NavLink to ="survey">Encuestas</NavLink>
                     </li>
                     <li>
-                        <a href="awards">Premios</a>
+                        <NavLink to ="awards">Premios</NavLink>
                     </li>
                     <li>
-                        <a href="accredit">Créditos</a>
+                        <NavLink to="accredit">Créditos</NavLink>
                     </li>
                     <li>
-                        <a href="exchange">Canjear</a>
+                        <NavLink to="exchange">Canjear</NavLink>
                     </li>
                 </ul>
             </div>
@@ -39,7 +42,7 @@ export const Menu = () => {
                         Arthur Chavez
                     </li>
                     <li className="navBar-user" onClick={handleToggle}>
-                        <img src='' alt="User" />
+                        <img src={user} alt="User" />
                     </li>
                 </ul>
             </div>
