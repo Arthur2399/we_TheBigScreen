@@ -1,0 +1,159 @@
+@import '../../../styles/_vars.css';
+
+.Movies-Create {
+    background: var(--very-light-pink);
+    margin-top: 5px;
+    height: 90%;
+    width: 95%;
+    border-radius: 15px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.Movies-Create-Container {
+    height: 92%;
+    width: 30%;
+    border-radius: 15px;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    text-align: start;
+}
+
+.Movies-Create-inputs {
+    align-self: center;
+    border: none;
+    border-radius: 15px;
+    width: 90%;
+    height: 30px;
+    background: var(--text-input-fiel);
+}
+
+.Movies-Create-inputs-TextArea {
+    align-self: center;
+    border: none;
+    border-radius: 15px;
+    width: 90%;
+    background: var(--text-input-fiel);
+}
+
+.Movies-Create-label {
+    margin-left: 18px;
+}
+
+.Movies-Create-UploadPhoto {
+    display: flex;
+    margin-left: 18px;
+}
+
+.Movies-Create-UploadPhoto button {
+    margin-right: 15px;
+    border: none;
+    border-radius: 15px;
+    color: white;
+    padding: 5px;
+    cursor: pointer;
+    width: 65px;
+    background: var(--hospital-red);
+}
+
+.Movies-Create-UploadPhoto span {
+    font-size: 10px;
+    margin-top: 5px;
+}
+
+.Movies-Create-Summary {
+    align-self: center;
+    overflow: hidden;
+    border: none;
+    border-radius: 15px;
+    height: 25%;
+    width: 90%;
+    background: var(--text-input-fiel);
+    display: grid;
+    grid-template-columns: auto auto auto;
+
+}
+
+.Movies-Create-combo-link {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.Movies-Create-comboBox {
+    align-self: center;
+    margin-left: 10px;
+    border: none;
+    border-radius: 15px;
+    width: 84%;
+    height: 30px;
+    background: var(--text-input-fiel);
+}
+
+.Movies-Create-combo-link button {
+    background: none;
+    border: none;
+    margin: 0;
+    cursor: pointer;
+}
+
+.Movies-Create-combo-link img {
+    width: 20px;
+    padding: 0;
+
+}
+
+
+.Empoye-Create-delete {
+    margin-left: 10px;
+    margin-top: 10px;
+    width: 100px;
+    height: 30px;
+}
+
+.Empoye-Create-delete span {
+    font-size: 12px;
+}
+
+.Empoye-Create-delete button {
+    border: none;
+    background: none;
+    font-weight: bolder;
+    font-family: 'Quicksand', sans-serif;
+    color: var(--hospital-red);
+    cursor: pointer;
+}
+
+.Movies-Create-Sent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 50%;
+}
+
+
+.Movies-Create-Sent span {
+    width: 80%;
+}
+
+.Movies-Create-Sent img {
+    width: 70px !important;
+    margin-bottom: 10px !important;
+}
+
+.Movies-button-sent {
+    margin-top: 20px;
+    font-weight: bolder;
+    padding: 14px;
+    border: none;
+    border-radius: 15px;
+    color: white;
+    padding: 8px;
+    cursor: pointer;
+    width: auto;
+    background: var(--hospital-red);
+}

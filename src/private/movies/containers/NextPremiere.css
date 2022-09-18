@@ -1,0 +1,39 @@
+@import '../../../styles/_vars.css';
+
+.next-premiere-info {
+    display: flex;
+}
+
+.next-premiere img {
+    width: 80px;
+    margin-left: 15px;
+    margin-top: 0px;
+    border-radius: 10px;
+    margin-top: 5px;
+}
+
+.next-premiere-info-text h1 {
+    display: flex;
+    width: 230px;
+    flex-direction: column;
+    text-align: center;
+    margin-left: 15px;
+    margin-top: 12px;
+}
+
+.next-premiere-grid {
+    margin-top: 10px;
+    margin-left: 15px;
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+.next-premiere-grid span {
+    font-size: var(--sm);
+}
+
+.next-premiere-grid span:nth-child(2n+1) {
+    font-weight: bold;
+    text-align: end;
+    margin-right: 6px;
+}

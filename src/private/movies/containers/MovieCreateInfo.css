@@ -1,0 +1,43 @@
+@import '../../../styles/_vars.css';
+
+.Movies-premiere-container {
+    display: flex;
+    align-items: center;
+    height: 220px;
+}
+
+.Movies-premiere-container img {
+    width: 110px;
+}
+
+.Movies-premiere-create-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-left: 10px;
+}
+
+.Movies-premiere-create-text h2 {
+    font-size: 15px;
+    margin: 0;
+}
+
+.Movies-premiere-create-text p {
+    font-size: 12px;
+    width: 150px;
+    margin: 0;
+}
+
+.Movies-premiere-create-button {
+    background-color: var(--hospital-red);
+    border-radius: 8px;
+    border: none;
+    color: var(--white);
+    width: 130px;
+    cursor: pointer;
+    font-size: var(--sm) !important;
+    font-weight: bold;
+    height: 30px;
+    margin-top: 10px;
+}
