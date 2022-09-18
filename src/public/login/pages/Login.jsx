@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from '../../../assets/logos/tbs_logo.svg'
 import'./Login.css';
 
@@ -26,7 +26,7 @@ export const Login = () => {
               onClick={onLogin}
             >Ingresar
             </button>
-            <a href="/password-recovery">Olvidé mi contraseña</a>
+            <Link to="/password-recovery">Olvidé mi contraseña</Link>
         </form>
     </div>
 </div>
