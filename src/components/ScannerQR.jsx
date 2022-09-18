@@ -1,5 +1,5 @@
 import './ScannerQR.css'
-import qr from '../../../assets/logos/qr.svg'
+import qr from '../assets/logos/qr.svg'
 
 export const ScannerQR = () => {
     return (

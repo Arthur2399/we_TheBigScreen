@@ -1,0 +1,23 @@
+@import '../../../styles/_vars.css';
+
+.exchange-cards {
+    width: 90px;
+}
+
+.exchange-cards img {
+    height: 100px;
+    width: 65px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.exchange-cards p {
+    width: 62px;
+    font-size: 10px;
+    margin: 2px 0 5px 0;
+    text-overflow: " [..]";
+    overflow: hidden;
+    white-space: nowrap;
+    text-align: center;
+    font-weight: bold;
+}

@@ -1,0 +1,73 @@
+@import '../../../styles/_vars.css';
+
+.exchange-points-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 92%;
+}
+
+.exchange-points-table {
+    text-align: center;
+    width: 290px;
+    align-self: center;
+    margin-top: 35px;
+    border-radius: 15px;
+    overflow: hidden;
+    font-size: var(--sm);
+}
+
+.exchange-points-table thead {
+    background-color: var(--hospital-yellow);
+    border: var(--hospital-yellow) 1px solid;
+}
+
+.exchange-points-table-button {
+    width: 15px;
+    height: 15px;
+    background-color: var(--hospital-red);
+    border: none;
+    border-radius: 3px;
+    padding: 2px;
+}
+
+.exchange-points-table-button:nth-child(1) {
+    background-image: url(../../../assets/icons/less.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 8px;
+
+}
+
+.exchange-points-table-button:nth-child(2) {
+    background-image: url(../../../assets/icons/plus.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 8px;
+
+}
+
+.exchange-points-table-button:nth-child(3) {
+    background-image: url(../../../assets/icons/trash.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 8px;
+}
+
+.exchange-points-total span:nth-child(2) {
+    font-weight: bold;
+}
+
+.exchange-points-total-button {
+    background-color: var(--hospital-red);
+    border-radius: 8px;
+    border: none;
+    color: var(--white);
+    width: 230px;
+    cursor: pointer;
+    font-size: var(--sm);
+    font-weight: bold;
+    height: 35px;
+    margin-top: 10px;
+}

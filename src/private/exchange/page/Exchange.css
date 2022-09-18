@@ -1,0 +1,96 @@
+@import '../../../styles/_vars.css';
+
+h2 {
+    font-size: 16px;
+    margin-left: 12px;
+    margin-bottom: 5px;
+}
+
+.Exchange{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 550px;
+}
+.Exchange-container{
+    padding: 0;
+    height: 550px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.title-exchange {
+    margin-bottom: 12px !important;
+    padding: 0;
+    font-size: var(--lg) !important;
+} 
+.Exchange-desing-container{
+    height: 520px;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.Exchange-desing-container h1{
+    font-size: var(--md);
+    margin-left: 12px;
+    margin-top: 12px;
+    margin-bottom: 0px;
+}
+.view-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--very-light-pink);
+    border-radius: 20px;
+    height: 500px;
+    width: 1100px;
+}
+.awards{
+    background-color: var(--white);
+    border-radius: 20px;
+    margin: 15px;
+    height: 450px;
+    width: 350px;
+}
+
+.awards-scroll-container {
+    display: block;
+    width: 350px;
+    height: 412px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.information-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 450px;
+    margin: 15px 15px 15px 0px;
+    padding: 0;
+}
+.qr-escanner{
+    background-color: var(--white);
+    height: 180px;
+    width: 350px;
+    margin-top: 0px;
+    border-radius: 20px;
+    
+}
+
+.user-profile{
+    background-color: var(--white);
+    height: 255px;
+    width: 350px;
+    border-radius: 20px;
+}
+
+.exchange-points{
+    background-color: var(--white);
+    border-radius: 20px;
+    margin: 15px 15px 15px 0;
+    height: 450px;
+    width: 350px;
+}
