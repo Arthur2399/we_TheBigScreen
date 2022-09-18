@@ -19,6 +19,7 @@ export const AccreditsPoints = () => {
                 <span>Sala:</span>
                 <span>Número 6</span>
                 <span>Película:</span>
+                <span>The Crown</span>
                 <span>Sede:</span>
                 <span>CCI</span>
             </div>
