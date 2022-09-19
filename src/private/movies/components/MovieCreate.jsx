@@ -56,7 +56,7 @@ export const MovieCreate = () => {
                         <option value="value2">Adam Sandler</option>
                     </select>
 
-                    <button onClick={openModal}><img src={link} alt="link" /></button>
+                    <button   onClick={openModal}><img src={link} alt="link" className='actor-link'/></button>
                     <Modal isOpen={isOpenModal} closeModal={closeModal} title="Crear nuevo actor" x={"19%"} y={"310px"}>
                         <ActorCreate />
                     </Modal>

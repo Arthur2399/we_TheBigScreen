@@ -82,10 +82,12 @@
     align-items: center;
     text-align: center;
     height: 50%;
+    width: 95%  ;
+    align-self: center;
 }
 
 .Awards-Create-Sent img {
-    width: 120px !important;
+    width: 85px !important;
     margin-bottom: 10px !important;
 }
 
