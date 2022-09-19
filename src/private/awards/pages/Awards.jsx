@@ -20,7 +20,6 @@ export const Awards = () => {
                         <div className="Awards-all-container">
                             <div className="Awards-create">
                                 <h2>Nuevo premio</h2>
-                                {/**FALTA MODAL DE CREACION */}
                                 <AwardsManager />
                             </div>
                             <div className="Award-top">

@@ -1,5 +1,5 @@
 import { EmployesCard } from '../components/EmployesCard';
-import './Employes.css';
+import './EmployesCards.css';
 
 export const EmployesCards = () => {
     return (
