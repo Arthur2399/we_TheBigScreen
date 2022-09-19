@@ -1,0 +1,44 @@
+@import '../../../styles/_vars.css';
+
+.awards-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 220px;
+}
+
+.awards-container img {
+    width: 80px;
+}
+
+.awards-create-text {
+    text-align: center;
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.awards-create-text h2 {
+    font-size: 15px;
+    margin: 0;
+}
+
+.awards-create-text p {
+    font-size: 12px;
+    width: 150px;
+    margin: 0;
+}
+
+.awards-create-button {
+    background-color: var(--hospital-red);
+    border-radius: 8px;
+    border: none;
+    color: var(--white);
+    width: 130px;
+    cursor: pointer;
+    font-size: var(--sm);
+    font-weight: bold;
+    height: 30px;
+    margin-top: 10px;
+}

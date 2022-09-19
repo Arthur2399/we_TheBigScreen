@@ -1,0 +1,37 @@
+@import '../../../styles/_vars.css';
+
+.award-top-info {
+    display: flex;
+}
+
+.award-top-info img {
+    width: 70px;
+    margin-left: 15px;
+    margin-top: 0px;
+    border-radius: 10px;
+    margin-top: 5px;
+}
+
+.award-top-info-text {
+    display: flex;
+    flex-direction: column;
+    margin-left: 15px;
+    margin-top: 12px;
+}
+
+.award-top-grid {
+    margin-top: 10px;
+    margin-left: 15px;
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+.award-top-grid span {
+    font-size: var(--sm);
+}
+
+.award-top-grid span:nth-child(2n+1) {
+    font-weight: bold;
+    text-align: end;
+    margin-right: 6px;
+}

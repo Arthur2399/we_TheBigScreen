@@ -1,5 +1,6 @@
 import { Navigate, Route, Routes } from "react-router-dom"
 import { Accredit } from "../accredit/pages/Accredit"
+import { Awards } from "../awards/pages/Awards"
 import { Employes } from "../employes/pages/Employes"
 import { Exchange } from "../exchange/page/Exchange"
 import { Movies } from "../movies/page/Movies"
@@ -17,6 +18,7 @@ export const ModuleRoutes = () => {
         <Route path="exchange" element={<Exchange />} />
         <Route path="movies" element={<Movies />} />
         <Route path="survey" element={<Surveys />} />
+        <Route path="awards" element={<Awards />} />
         <Route path="password-change" element={<ChangePassword />} />
         <Route path="/" element={<Navigate to="accredit" />} />
       </Routes>

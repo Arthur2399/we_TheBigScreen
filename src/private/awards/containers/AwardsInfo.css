@@ -1,0 +1,36 @@
+@import '../../../styles/_vars.css';
+
+.Awards-info-container {
+    height: 400px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
+.Awards-info-container img {
+    width: 140px;
+    margin-bottom: 10px;
+}
+
+.Awards-info-container h1 {
+    font-size: var(--lg) !important;
+    margin: 8px 0 0 0;
+}
+
+.arrow-text {
+    display: flex;
+}
+
+.arrow-text img {
+    width: 35px;
+    margin-right: 5px;
+}
+
+@media (max-width: 1160px) {
+    .Awards-info-container {
+        display: none;
+    }
+}
