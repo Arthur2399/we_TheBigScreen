@@ -1,8 +1,8 @@
 import { Modal } from '../../../components/Modal';
 import { useModal } from '../../../hooks/useModal';
+import { MovieCreate } from '../components/MovieCreate';
 import movie from '../../../assets/logos/movie.svg';
 import './MovieCreateInfo.css';
-import { MovieCreate } from '../components/MovieCreate';
 
 export const MovieCreateInfo = () => {
     const [isOpenModal,openModal,closeModal] = useModal(false);

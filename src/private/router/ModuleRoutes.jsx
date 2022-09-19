@@ -5,6 +5,7 @@ import { Exchange } from "../exchange/page/Exchange"
 import { Movies } from "../movies/page/Movies"
 import { Menu } from "../navbar/page/Menu"
 import { ChangePassword } from "../password/page/ChangePassword"
+import { Surveys } from "../survey/pages/Surveys"
 
 export const ModuleRoutes = () => {
   return (
@@ -15,6 +16,7 @@ export const ModuleRoutes = () => {
         <Route path="employes" element={<Employes />} />
         <Route path="exchange" element={<Exchange />} />
         <Route path="movies" element={<Movies />} />
+        <Route path="survey" element={<Surveys />} />
         <Route path="password-change" element={<ChangePassword />} />
         <Route path="/" element={<Navigate to="accredit" />} />
       </Routes>

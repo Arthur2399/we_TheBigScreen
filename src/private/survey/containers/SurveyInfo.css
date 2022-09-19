@@ -1,0 +1,36 @@
+@import '../../../styles/_vars.css';
+
+.Survey-info-container {
+    height: 400px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
+.Survey-info-container img {
+    width: 120px;
+    margin-bottom: 10px;
+}
+
+.Survey-info-container h1 {
+    font-size: var(--lg) !important;
+    margin: 8px 0 0 0;
+}
+
+.arrow-text {
+    display: flex;
+}
+
+.arrow-text img {
+    width: 35px;
+    margin-right: 5px;
+}
+
+@media (max-width: 1160px) {
+    .Survey-info-container {
+        display: none;
+    }
+}

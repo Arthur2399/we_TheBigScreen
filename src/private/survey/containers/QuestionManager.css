@@ -1,0 +1,41 @@
+@import '../../../styles/_vars.css';
+
+.manage-questions-info {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.manage-questions-info img {
+    width: 100px;
+}
+
+ .manage-questions-options {
+    text-align: center;
+    margin-left: 10px;
+    margin-top: 15px;
+}
+
+.manage-questions-options h2 {
+    font-size: 15px;
+    margin: 0;
+}
+
+.manage-questions-options p {
+    font-size: 12px;
+    width: 170px;
+    margin: 0;
+}
+
+.survey-create-button {
+    background-color: var(--hospital-red);
+    border-radius: 8px;
+    border: none;
+    color: var(--white);
+    width: 70px;
+    cursor: pointer;
+    font-size: var(--sm);
+    font-weight: bold;
+    height: 30px;
+    margin-top: 10px;
+    margin-right: 5px;
+} 
