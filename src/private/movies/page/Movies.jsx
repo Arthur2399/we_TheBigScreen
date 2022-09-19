@@ -1,3 +1,4 @@
+import { MovieCards } from '../containers/MovieCards';
 import { MovieCreateInfo } from '../containers/MovieCreateInfo';
 import { MoviesInfo } from '../containers/MoviesInfo';
 import { NextPremiere } from '../containers/NextPremiere';
@@ -13,7 +14,7 @@ export const Movies = () => {
                         <div className="Movies-billboard">
                             <h2>En la pantalla grande</h2>
                             <div className="Movies-billboard-scroll">
-                                {/* <MovieCards /> */}
+                                <MovieCards />
                             </div>
                         </div>
                         <div className="Movies-all-container">
