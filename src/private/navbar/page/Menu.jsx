@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
 import { Options } from '../components/Options';
-import logo from'../../../assets/logos/tbs_logo.svg';
+import logo from '../../../assets/logos/tbs_logo.svg';
 import user from '../../../assets/icons/user.svg'
 import './Menu.css';
 
@@ -17,33 +17,38 @@ export const Menu = () => {
                 <a href="/" className="nav-logo"><img src={logo} alt=" logo" /></a>
                 <ul>
                     <li>
-                        <NavLink to ="employes" 
-                        className={({isActive}) => `nav-item  ${ isActive ? 'active':'' }` }
+                        <NavLink to="reports"
+                            className={({ isActive }) => `nav-item  ${isActive ? 'active' : ''}`}
+                        >Reportes</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="employes"
+                            className={({ isActive }) => `nav-item  ${isActive ? 'active' : ''}`}
                         >Empleados</NavLink>
                     </li>
                     <li>
-                        <NavLink to ="movies"
-                        className={({isActive}) => `nav-item  ${ isActive ? 'active':'' }` }
+                        <NavLink to="movies"
+                            className={({ isActive }) => `nav-item  ${isActive ? 'active' : ''}`}
                         >Películas</NavLink>
                     </li>
                     <li>
-                        <NavLink to ="survey"
-                        className={({isActive}) => `nav-item  ${ isActive ? 'active':'' }` }
+                        <NavLink to="survey"
+                            className={({ isActive }) => `nav-item  ${isActive ? 'active' : ''}`}
                         >Encuestas</NavLink>
                     </li>
                     <li>
-                        <NavLink to ="awards"
-                        className={({isActive}) => `nav-item  ${ isActive ? 'active':'' }` }
+                        <NavLink to="awards"
+                            className={({ isActive }) => `nav-item  ${isActive ? 'active' : ''}`}
                         >Premios</NavLink>
                     </li>
                     <li>
                         <NavLink to="accredit"
-                        className={({isActive}) => `nav-item  ${ isActive ? 'active':'' }` }
+                            className={({ isActive }) => `nav-item  ${isActive ? 'active' : ''}`}
                         >Créditos</NavLink>
                     </li>
                     <li>
                         <NavLink to="exchange"
-                        className={({isActive}) => `nav-item  ${ isActive ? 'active':'' }` }
+                            className={({ isActive }) => `nav-item  ${isActive ? 'active' : ''}`}
                         >Canjear</NavLink>
                     </li>
                 </ul>
@@ -58,7 +63,7 @@ export const Menu = () => {
                     </li>
                 </ul>
             </div>
-            {toggle &&<Options/>}
+            {toggle && <Options />}
         </nav>
     )
 }

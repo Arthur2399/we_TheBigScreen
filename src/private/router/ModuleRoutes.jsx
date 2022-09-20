@@ -8,6 +8,7 @@ import { Menu } from "../navbar/page/Menu"
 import { Movies } from "../movies/page/Movies"
 import { Surveys } from "../survey/pages/Surveys"
 import { Branch } from "../branch/pages/Branch"
+import { Reports } from "../reports/pages/Reports"
 
 export const ModuleRoutes = () => {
   return (
@@ -17,6 +18,7 @@ export const ModuleRoutes = () => {
         <Route path="accredit" element={<Accredit />} />
         <Route path="/" element={<Branch />} />
         <Route path="employes" element={<Employes />} />
+        <Route path="reports" element={<Reports />} />
         <Route path="exchange" element={<Exchange />} />
         <Route path="movies" element={<Movies />} />
         <Route path="survey" element={<Surveys />} />

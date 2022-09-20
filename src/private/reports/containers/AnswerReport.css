@@ -1,0 +1,10 @@
+@import'../../../styles/_vars.css';
+
+.Report-container{
+    height: 150px;
+    margin-left: 20px;
+    width: 280px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

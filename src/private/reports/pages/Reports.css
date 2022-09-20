@@ -1,0 +1,101 @@
+@import '../../../styles/_vars.css';
+
+h2 {
+    font-size: 16px;
+    margin-left: 12px;
+    margin-bottom: 5px;
+}
+
+.Reports {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 550px;
+}
+
+.Reports-container {
+    padding: 0;
+    height: 550px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Reports-main-title {
+    padding: 0;
+    text-align: center;
+    margin-bottom: 12px !important;
+    font-size: 20px !important;
+}
+
+.Reports-desing-container {
+    height: 520px;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.Reports-desing-container h1 {
+    font-size: var(--md);
+    margin-left: 12px;
+    margin-top: 12px;
+    margin-bottom: 0px;
+}
+
+.Reports-views-container {
+    display: flex;
+    align-items: center;
+    background-color: var(--very-light-pink);
+    border-radius: 20px;
+    height: 520px;
+}
+
+.Reports-publish-questions {
+    background-color: var(--white);
+    border-radius: 20px;
+    margin: 15px;
+    height: 94%;
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+}
+
+.Reports-all-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 94%;
+    margin: 15px 15px 15px 0px;
+    padding: 0;
+}
+
+.Reports-filter{
+    background-color: var(--white);
+    height: 25%;
+    width: 350px;
+    border-radius: 20px;
+}
+
+.Reports-questions {
+    background-color: var(--white);
+    height: 30%;
+    width: 350px;
+    border-radius: 20px;
+}
+
+.Reports-answers-report {
+    background-color: var(--white);
+    height: 40%;
+    width: 350px;
+    border-radius: 20px;
+}
+
+.manage-questions-info-text {
+    display: flex;
+    flex-direction: column;
+    margin-left: 15px;
+    margin-top: 12px;
+}
