@@ -1,0 +1,16 @@
+@import '../../../styles/_vars.css';
+
+.top-container-table {
+    text-align: center;
+    width: 250px;
+    align-self: center;
+    margin-top: 30px;
+    border-radius: 15px;
+    overflow: hidden;
+    font-size: var(--sm);
+}
+
+.top-container-table thead {
+    background-color: var(--hospital-yellow);
+    border: var(--hospital-yellow) 1px solid;
+}

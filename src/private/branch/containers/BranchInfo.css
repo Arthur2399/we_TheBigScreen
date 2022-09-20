@@ -1,0 +1,37 @@
+@import '../../../styles/_vars.css';
+
+.Home-info-container {
+    height: 400px;
+    width: 300px;
+    margin-right: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
+.Home-info-container img {
+    width: 120px;
+    margin-bottom: 10px;
+}
+
+.Home-info-container h1 {
+    font-size: var(--lg) !important;
+    margin: 8px 0 0 0;
+}
+
+.Home-arrow-text {
+    display: flex;
+}
+
+.Home-arrow-text img {
+    width: 35px;
+    margin-right: 5px;
+}
+
+@media (max-width: 1160px) {
+    .Home-info-container {
+        display: none;
+    }
+}
