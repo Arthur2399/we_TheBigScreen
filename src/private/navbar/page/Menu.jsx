@@ -14,7 +14,7 @@ export const Menu = () => {
     return (
         <nav>
             <div className="navbar-left">
-                <a href="/" className="nav-logo"><img src={logo} alt=" logo" /></a>
+                <NavLink to="/" className="nav-logo"><img src={logo} alt=" logo" /></NavLink>
                 <ul>
                     <li>
                         <NavLink to="reports"

@@ -1,6 +1,7 @@
 import { AnswerReport } from '../containers/AnswerReport';
 import { Filters } from '../containers/Filters';
 import { Questions } from '../containers/Questions';
+import { ReportsInfo } from '../containers/ReportsInfo';
 import './Reports.css';
 
 export const Reports = () => {
@@ -12,7 +13,7 @@ export const Reports = () => {
                     <div className="Reports-views-container">
                         <div className="Reports-publish-questions">
                             <h2>Resultado Global</h2>
-                            <h2>Resultafo en CCI</h2>
+                            <h2>Resultado en CCI</h2>
                         </div>
                         <div className="Reports-all-container">
                             <div className="Reports-filter">
@@ -29,7 +30,7 @@ export const Reports = () => {
                             </div>
                         </div>
                     </div>
-                    {/* <ReportsInfo /> */}
+                    <ReportsInfo />
                 </div>
             </div>
         </section>
