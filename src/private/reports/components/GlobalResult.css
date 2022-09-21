@@ -1,0 +1,6 @@
+@import '../../../styles/_vars.css';
+
+.Global-result{
+    width: 93%;
+    margin-left: 10px;
+}
