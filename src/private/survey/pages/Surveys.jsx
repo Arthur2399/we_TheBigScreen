@@ -1,7 +1,4 @@
-import { QuestionManager } from '../containers/QuestionManager';
-import { QuestionPublish } from '../containers/QuestionPublish';
-import { SurveyInfo } from '../containers/SurveyInfo';
-import { SurveyReports } from '../containers/SurveyReports';
+import { QuestionManager, QuestionPublish, SurveyInfo,SurveyReports } from '../containers/index';
 import './Surveys.css';
 
 export const Surveys = () => {

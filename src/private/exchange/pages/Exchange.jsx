@@ -1,7 +1,5 @@
-import { ClientProfile } from '../../../components/ClientProfile';
-import { ScannerQR } from '../../../components/ScannerQR';
-import { ExchangeCards } from '../containers/ExchangeCards';
-import { ExchangeTable } from '../containers/ExchangeTable';
+import { ClientProfile, ScannerQR } from '../../../components/index';
+import { ExchangeCards, ExchangeTable } from '../containers/index';
 import './Exchange.css';
 
 export const Exchange = () => {

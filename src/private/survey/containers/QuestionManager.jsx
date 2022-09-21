@@ -1,7 +1,7 @@
+import { Modal } from '../../../components/index';
+import { useModal } from '../../../hooks/index';
+import { SurveyForm } from '../components/index';
 import surveyControl from '../../../assets/logos/survey-control.svg';
-import { Modal } from '../../../components/Modal';
-import { useModal } from '../../../hooks/useModal';
-import { SurveyForm } from '../components/SurveyForm';
 import './QuestionManager.css';
 
 export const QuestionManager = () => {

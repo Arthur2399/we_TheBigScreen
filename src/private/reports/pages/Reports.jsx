@@ -1,9 +1,5 @@
-import { AnswerReport } from '../containers/AnswerReport';
-import { Filters } from '../containers/Filters';
-import { GlobalResult } from '../components/GlobalResult';
-import { Questions } from '../containers/Questions';
-import { ReportsInfo } from '../containers/ReportsInfo';
-import { BranchResult } from '../components/BranchResult';
+import { BranchResult, GlobalResult } from '../components/index';
+import { AnswerReport, Filters, Questions, ReportsInfo } from '../containers/index';
 import './Reports.css';
 
 export const Reports = () => {

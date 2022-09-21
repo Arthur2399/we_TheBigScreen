@@ -1,4 +1,4 @@
-import { ExchangeCard } from '../components/ExchangeCard';
+import { ExchangeCard } from '../components/index';
 import './ExchangeCards.css';
 
 export const ExchangeCards = () => {

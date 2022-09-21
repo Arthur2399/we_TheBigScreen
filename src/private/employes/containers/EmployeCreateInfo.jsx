@@ -1,6 +1,6 @@
-import { EmployeForm } from '../components/EmployeForm';
-import { Modal } from '../../../components/Modal';
-import { useModal } from '../../../hooks/useModal';
+import { EmployeForm } from '../components/index';
+import { Modal } from '../../../components/index';
+import { useModal } from '../../../hooks/index';
 import employe from '../../../assets/logos/employe.svg';
 import './EmployeCreateInfo.css';
 

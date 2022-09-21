@@ -1,14 +1,14 @@
-import { Navigate, Route, Routes } from "react-router-dom"
-import { Accredit } from "../accredit/pages/Accredit"
-import { Awards } from "../awards/pages/Awards"
-import { ChangePassword } from "../password/page/ChangePassword"
-import { Employes } from "../employes/pages/Employes"
-import { Exchange } from "../exchange/page/Exchange"
-import { Menu } from "../navbar/page/Menu"
-import { Movies } from "../movies/page/Movies"
-import { Surveys } from "../survey/pages/Surveys"
-import { Branch } from "../branch/pages/Branch"
-import { Reports } from "../reports/pages/Reports"
+import { Navigate, Route, Routes } from 'react-router-dom';
+import { Accredit } from '../accredit/index';
+import { Awards } from '../awards/index';
+import { Branch } from '../branch/index';
+import { ChangePassword } from '../password/index';
+import { Employes } from '../employes/index';
+import { Exchange } from '../exchange/index';
+import { Menu } from '../navbar/containers/index';
+import { Movies } from '../movies/index';
+import { Reports } from '../reports/index';
+import { Surveys } from '../survey/index';
 
 export const ModuleRoutes = () => {
   return (

@@ -1,6 +1,6 @@
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, BarElement, Title, Tooltip, Legend, Filler, } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
-import { useGlobalResult } from '../hooks/useGlobalResult';
+import { useGlobalResult } from '../hooks/index';
 import './GlobalResult.css';
 
 ChartJS.register(

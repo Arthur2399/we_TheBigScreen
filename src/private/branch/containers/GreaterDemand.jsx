@@ -1,5 +1,5 @@
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Filler, } from 'chart.js';
-import { useReportsBranch } from '../hooks/useReportsBranch';
+import { useReportsBranch } from '../hooks/index';
 import { Line } from 'react-chartjs-2';
 import './GreaterDemand.css';
 
@@ -14,7 +14,7 @@ ChartJS.register(
     Filler,
 );
 
-const GreaterDemand = () => {
+export const GreaterDemand = () => {
     const { data, options } = useReportsBranch();
     return (
         <div className="GreaterDemand-report-container">
@@ -22,5 +22,3 @@ const GreaterDemand = () => {
         </div>
     )
 }
-
-export default GreaterDemand

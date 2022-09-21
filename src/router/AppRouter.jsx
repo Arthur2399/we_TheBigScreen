@@ -1,8 +1,6 @@
-import { Route, Routes, Navigate } from 'react-router-dom';
+import { Route, Routes} from 'react-router-dom';
 import { ModuleRoutes } from '../private/router/ModuleRoutes';
-import { Login } from '../public/login/pages/Login';
-import { MessagePasswordRecovery } from '../public/login/pages/MessagePasswordRecovery';
-import { PasswordRecovery } from '../public/login/pages/PasswordRecovery';
+import { Login, MessagePasswordRecovery, PasswordRecovery } from '../public/index';
 
 export const AppRouter = () => {
     return (

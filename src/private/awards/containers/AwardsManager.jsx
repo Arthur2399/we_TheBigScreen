@@ -1,7 +1,7 @@
+import { Modal } from '../../../components/index';
+import { useModal } from '../../../hooks/index';
+import { AwardsForm } from '../components/index';
 import gift from '../../../assets/logos/gift.svg';
-import { Modal } from '../../../components/Modal';
-import { useModal } from '../../../hooks/useModal';
-import { AwardsForm } from '../components/AwardsForm';
 import './AwardsManager.css';
 
 export const AwardsManager = () => {

@@ -1,7 +1,4 @@
-import { BestFilm } from '../containers/BestFilm';
-import { BranchInfo } from '../containers/BranchInfo';
-import GreaterDemand from '../containers/GreaterDemand';
-import { TopHeadquarters } from '../containers/TopHeadquarters';
+import { BestFilm, TopHeadquarters, GreaterDemand, BranchInfo } from '../containers/index';
 import './Branch.css';
 
 export const Branch = () => {
@@ -20,7 +17,7 @@ export const Branch = () => {
                         <div className="Branch-all-container">
                             <div className="Branch-greater-demand">
                                 <h2>Mes con mayor demanda</h2>
-                                <GreaterDemand />
+                                <GreaterDemand/>
                             </div>
                             <div className="Branch-best-film">
                                 <h2>Mejor película</h2>

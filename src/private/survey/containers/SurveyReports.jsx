@@ -1,6 +1,6 @@
 import './SurveyReports';
 import { Pie } from 'react-chartjs-2'
-import { useReport } from '../hooks/useReport';
+import { useReport } from '../hooks/index';
 import { Chart as ChartJs, Tooltip, Title, ArcElement, Legend } from 'chart.js'
 
 ChartJs.register(
