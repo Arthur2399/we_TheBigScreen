@@ -2,7 +2,7 @@ import './BestFilm.css';
 
 export const BestFilm = () => {
     return (
-        <div className="best-film-info">
+        <div className="best-film-info animate__animated animate__fadeIn">
             <img src='https://upload.wikimedia.org/wikipedia/pt/1/19/Day.jpg' alt="movie" />
             <div className="best-film-info-text">
                 <h1>Dia de la indepencia </h1>

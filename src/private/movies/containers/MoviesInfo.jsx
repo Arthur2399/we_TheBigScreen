@@ -5,7 +5,7 @@ import './MoviesInfo.css';
 export const MoviesInfo = () => {
     return (
         <div className="Movies-info-container">
-            <img src={tickets} alt="popcorn" />
+            <img src={tickets} alt="popcorn" className='animate__animated animate__bounce'/>
             <h1>The Big Screen</h1>
             <div className="Movies-arrow-text">
                 <img src={arrow} alt="arrow" />

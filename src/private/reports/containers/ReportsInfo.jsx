@@ -5,7 +5,7 @@ import'./ReportsInfo.css';
 export const ReportsInfo = () => {
   return (
     <div className="Awards-info-container">
-    <img src={reports} alt="reports" />
+    <img src={reports} alt="reports" className='animate__animated animate__bounce'/>
     <h1>The Big Screen</h1>
     <div className="arrow-text">
         <img src={arrow} alt="arrow" />

@@ -5,7 +5,7 @@ import './SurveyInfo.css';
 export const SurveyInfo = () => {
     return (
         <div className="Survey-info-container">
-            <img src={surveymain} alt="survey" />
+            <img src={surveymain} alt="survey" className='animate__animated animate__bounce'/>
             <h1>The Big Screen</h1>
             <div className="arrow-text">
                 <img src={arrow} alt="arrow" />
