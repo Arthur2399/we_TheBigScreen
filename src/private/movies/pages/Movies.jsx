@@ -1,4 +1,4 @@
-import { MovieCards, MovieCreateInfo, MoviesInfo, NextPremiere } from '../containers/index';
+import { MovieCards, MovieCreateInfo, MoviesInfo, NextPremiere } from '../containers';
 import './Movies.css';
 
 export const Movies = () => {

@@ -1,4 +1,4 @@
-import { FormChangePassword } from '../components/index'
+import { FormChangePassword } from '../components'
 
 export const ChangePassword = () => {
   return (

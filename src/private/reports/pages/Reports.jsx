@@ -1,5 +1,5 @@
-import { BranchResult, GlobalResult } from '../components/index';
-import { AnswerReport, Filters, Questions, ReportsInfo } from '../containers/index';
+import { BranchResult, GlobalResult } from '../components';
+import { AnswerReport, Filters, Questions, ReportsInfo } from '../containers';
 import './Reports.css';
 
 export const Reports = () => {

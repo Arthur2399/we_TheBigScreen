@@ -1,4 +1,4 @@
-import { BillboardCard } from '../components/index';
+import { BillboardCard } from '../components';
 import './BillboardCards.css';
 
 export const BillboardCards = () => {

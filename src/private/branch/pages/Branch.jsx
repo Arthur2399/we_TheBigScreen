@@ -1,4 +1,4 @@
-import { BestFilm, TopHeadquarters, GreaterDemand, BranchInfo } from '../containers/index';
+import { BestFilm, TopHeadquarters, GreaterDemand, BranchInfo } from '../containers';
 import './Branch.css';
 
 export const Branch = () => {

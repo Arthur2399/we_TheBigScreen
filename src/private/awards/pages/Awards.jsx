@@ -1,4 +1,4 @@
-import { AwardsBest, AwardsManager, AwardsCards, AwardsInfo } from '../containers/index';
+import { AwardsBest, AwardsManager, AwardsCards, AwardsInfo } from '../containers';
 import './Awards.css';
 
 export const Awards = () => {

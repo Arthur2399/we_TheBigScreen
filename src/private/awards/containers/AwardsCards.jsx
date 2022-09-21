@@ -1,4 +1,4 @@
-import { AwardsCard } from '../components/index';
+import { AwardsCard } from '../components';
 import './AwardsCards.css';
 
 export const AwardsCards = () => {

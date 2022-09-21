@@ -1,6 +1,6 @@
-import { Modal } from '../../../components/index';
-import { useModal } from '../../../hooks/index';
-import { MovieCreate } from '../components/index';
+import { Modal } from '../../../components';
+import { useModal } from '../../../hooks';
+import { MovieCreate } from '../components';
 import movie from '../../../assets/logos/movie.svg';
 import './MovieCreateInfo.css';
 

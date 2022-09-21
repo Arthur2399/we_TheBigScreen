@@ -1,6 +1,6 @@
-import { Modal } from '../../../components/index';
-import { useModal } from '../../../hooks/index';
-import { SurveyForm } from '../components/index';
+import { Modal } from '../../../components';
+import { useModal } from '../../../hooks';
+import { SurveyForm } from '../components';
 import surveyControl from '../../../assets/logos/survey-control.svg';
 import './QuestionManager.css';
 

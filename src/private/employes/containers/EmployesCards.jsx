@@ -1,4 +1,4 @@
-import { EmployesCard } from '../components/index';
+import { EmployesCard } from '../components';
 import './EmployesCards.css';
 
 export const EmployesCards = () => {

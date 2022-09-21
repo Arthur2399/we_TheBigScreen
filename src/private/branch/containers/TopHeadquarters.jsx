@@ -1,4 +1,4 @@
-import { TopHeadquartersData } from '../components/index';
+import { TopHeadquartersData } from '../components';
 import './TopHeadquarters.css';
 
 export const TopHeadquarters = () => {

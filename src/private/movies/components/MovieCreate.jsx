@@ -1,9 +1,9 @@
+import { Modal } from '../../../components';
+import { useModal } from '../../../hooks';
+import { ActorCreate } from './ActorCreate';
 import movieTag from '../../../assets/logos/Movie-tag.svg';
 import link from '../../../assets/icons/link.png';
-import { Modal } from '../../../components/Modal';
-import { useModal } from '../../../hooks/useModal';
 import './MovieCreate.css';
-import { ActorCreate } from './ActorCreate';
 
 export const MovieCreate = () => {
     const [isOpenModal, openModal, closeModal] = useModal(false);

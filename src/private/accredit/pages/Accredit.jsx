@@ -1,5 +1,5 @@
-import { AccreditsPoints, BillboardCards } from '../containers/index';
-import { ClientProfile,ScannerQR } from '../../../components/index';
+import { AccreditsPoints, BillboardCards } from '../containers';
+import { ClientProfile,ScannerQR } from '../../../components';
 import './Accredit.css';
 
 export const Accredit = () => {

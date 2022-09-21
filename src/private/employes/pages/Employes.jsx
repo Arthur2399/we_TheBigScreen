@@ -1,4 +1,4 @@
-import { EmployeCreateInfo, EmployesCards, EmployedLastCreated, EmployesInfo } from '../containers/index';
+import { EmployeCreateInfo, EmployesCards, EmployedLastCreated, EmployesInfo } from '../containers';
 import './Employes.css';
 
 export const Employes = () => {
