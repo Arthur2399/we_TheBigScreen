@@ -7,5 +7,5 @@ export * from './movies';
 export * from './navbar';
 export * from './password';
 export * from './reports';
-export * from './router';
+export * from './routes';
 export * from './survey';

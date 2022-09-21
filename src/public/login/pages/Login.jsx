@@ -1,5 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
-import logo from '../../../assets/logos/tbs_logo.svg'
+import logo from '/assets/logos/tbs_logo.svg'
 import'./Login.css';
 
 

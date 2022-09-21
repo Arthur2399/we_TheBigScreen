@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import password from '../../../assets/icons/padlock.png';
+import password from '/assets/icons/padlock.png';
 import { API_WHATSAPP } from '../../../helper/routes';
 
 import './PasswordRecovery.css';

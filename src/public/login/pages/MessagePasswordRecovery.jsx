@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
-import email from '../../../assets/icons/email.svg';
-import logo from '../../../assets/logos/tbs_logo.svg'
+import email from '/assets/icons/email.svg';
+import logo from '/assets/logos/tbs_logo.svg'
 import { API_WHATSAPP } from '../../../helper/routes';
 
 import './MessagePasswordRecovery.css';

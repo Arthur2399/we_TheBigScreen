@@ -1,8 +1,8 @@
 import { Modal } from '../../../components';
 import { useModal } from '../../../hooks';
 import { ActorCreate } from './ActorCreate';
-import movieTag from '../../../assets/logos/Movie-tag.svg';
-import link from '../../../assets/icons/link.png';
+import movieTag from '/assets/logos/Movie-tag.svg';
+import link from '/assets/icons/link.png';
 import './MovieCreate.css';
 
 export const MovieCreate = () => {

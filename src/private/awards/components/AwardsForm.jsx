@@ -1,5 +1,5 @@
-import information from '../../../assets/logos/information.svg';
-import gift from '../../../assets/logos/gift.svg'
+import information from '/assets/logos/information.svg';
+import gift from '/assets/logos/gift.svg'
 import './AwardsForm.css';
 
 export const AwardsForm = () => {

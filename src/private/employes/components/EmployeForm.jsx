@@ -1,5 +1,5 @@
-import employePhoto from '../../../assets/logos/employes_photo.svg';
-import employeCreate from '../../../assets/logos/employes_create.svg';
+import employePhoto from '/assets/logos/employes_photo.svg';
+import employeCreate from '/assets/logos/employes_create.svg';
 import './EmployeForm.css';
 
 

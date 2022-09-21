@@ -1,4 +1,4 @@
-import mobile from '../../../assets/logos/mobile.svg';
+import mobile from '/assets/logos/mobile.svg';
 import './QuestionPublish.css';
 
 export const QuestionPublish = () => {

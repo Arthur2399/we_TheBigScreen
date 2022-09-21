@@ -1,5 +1,5 @@
-import contrat from '../../../assets/logos/contrat.svg';
-import arrow from '../../../assets/icons/left-arrow.svg';
+import contrat from '/assets/logos/contrat.svg';
+import arrow from '/assets/icons/left-arrow.svg';
 import './EmployesInfo.css';
 
 export const EmployesInfo = () => {

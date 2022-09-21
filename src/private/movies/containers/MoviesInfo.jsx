@@ -1,5 +1,5 @@
-import tickets from '../../../assets/logos/ticket.svg';
-import arrow from '../../../assets/icons/left-arrow.svg';
+import tickets from '/assets/logos/ticket.svg';
+import arrow from '/assets/icons/left-arrow.svg';
 import './MoviesInfo.css';
 
 export const MoviesInfo = () => {

@@ -1,5 +1,5 @@
-import  canguil from '../../../assets/logos/popcorn.svg';
-import arrow from '../../../assets/icons/left-arrow.svg';
+import  canguil from '/assets/logos/popcorn.svg';
+import arrow from '/assets/icons/left-arrow.svg';
 import './BranchInfo.css';
 
 export const BranchInfo = () => {

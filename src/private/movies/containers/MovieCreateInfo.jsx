@@ -1,7 +1,7 @@
 import { Modal } from '../../../components';
 import { useModal } from '../../../hooks';
 import { MovieCreate } from '../components';
-import movie from '../../../assets/logos/movie.svg';
+import movie from '/assets/logos/movie.svg';
 import './MovieCreateInfo.css';
 
 export const MovieCreateInfo = () => {

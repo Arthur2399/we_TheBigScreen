@@ -33,7 +33,7 @@
 }
 
 .exchange-points-table-button:nth-child(1) {
-    background-image: url(../../../assets/icons/less.svg);
+    background-image: url(/assets/icons/less.svg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: 8px;
@@ -41,7 +41,7 @@
 }
 
 .exchange-points-table-button:nth-child(2) {
-    background-image: url(../../../assets/icons/plus.svg);
+    background-image: url(/assets/icons/plus.svg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: 8px;
@@ -49,7 +49,7 @@
 }
 
 .exchange-points-table-button:nth-child(3) {
-    background-image: url(../../../assets/icons/trash.svg);
+    background-image: url(/assets/icons/trash.svg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: 8px;

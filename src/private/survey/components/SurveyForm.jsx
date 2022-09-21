@@ -1,4 +1,4 @@
-import movieTag from '../../../assets/logos/Movie-tag.svg';
+import movieTag from '/assets/logos/Movie-tag.svg';
 import './SurveyForm.css';
 
 export const SurveyForm = () => {

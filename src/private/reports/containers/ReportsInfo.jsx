@@ -1,5 +1,5 @@
-import reports from '../../../assets/logos/reports.svg';
-import arrow from '../../../assets/icons/left-arrow.svg';
+import reports from '/assets/logos/reports.svg';
+import arrow from '/assets/icons/left-arrow.svg';
 import'./ReportsInfo.css';
 
 export const ReportsInfo = () => {

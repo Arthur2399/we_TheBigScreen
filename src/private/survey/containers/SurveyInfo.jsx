@@ -1,5 +1,5 @@
-import surveymain from '../../../assets/logos/survey-main.svg';
-import arrow from '../../../assets/icons/left-arrow.svg';
+import surveymain from '/assets/logos/survey-main.svg';
+import arrow from '/assets/icons/left-arrow.svg';
 import './SurveyInfo.css';
 
 export const SurveyInfo = () => {

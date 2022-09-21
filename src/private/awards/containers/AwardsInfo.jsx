@@ -1,5 +1,5 @@
-import award from '../../../assets/logos/award.svg';
-import arrow from '../../../assets/icons/left-arrow.svg';
+import award from '/assets/logos/award.svg';
+import arrow from '/assets/icons/left-arrow.svg';
 import './AwardsInfo.css';
 
 export const AwardsInfo = () => {

@@ -1,8 +1,8 @@
 import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
 import { Options } from '../components';
-import logo from '../../../assets/logos/tbs_logo.svg';
-import user from '../../../assets/icons/user.svg'
+import logo from '/assets/logos/tbs_logo.svg';
+import user from '/assets/icons/user.svg'
 import './Menu.css';
 
 export const Menu = () => {
