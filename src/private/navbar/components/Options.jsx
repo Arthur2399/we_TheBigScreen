@@ -5,6 +5,7 @@ export const Options = () => {
     const navigate = useNavigate();
 
     const onLogout = () => {
+        sessionStorage.removeItem('jwt');
         navigate('/login', {
             replace: true
         });

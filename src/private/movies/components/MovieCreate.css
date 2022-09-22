@@ -1,5 +1,9 @@
 @import '../../../styles/_vars.css';
 
+.form-movie{
+    display: flex;
+    flex-direction: row;
+}
 .Movies-Create {
     background: var(--very-light-pink);
     margin-top: 5px;
