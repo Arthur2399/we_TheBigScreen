@@ -16,12 +16,9 @@ export const MovieCards = () => {
 
   return (
     <div className="cards-container ">
-
       {cardsMovies.map((movie)=>(
         <MovieCard key={movie.id} {...movie}/>
-      ))
-
-      }
+      ))  }
   </div>
   )
 }

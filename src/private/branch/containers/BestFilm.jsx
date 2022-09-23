@@ -1,16 +1,29 @@
+import { useEffect, useState } from 'react';
+import { API_IMAGE } from '../../../helper/routes';
+import { useGetMoviesBest } from '../hooks/useGetBestMovie';
 import './BestFilm.css';
 
 export const BestFilm = () => {
+
+    const [bestMovie, setBestMovie] = useState([])
+    useEffect(() => {
+        async function fetchData() {
+            const respMovB = await useGetMoviesBest();
+            setBestMovie(respMovB)
+        }
+        fetchData();
+    }, [])
+
     return (
         <div className="best-film-info animate__animated animate__fadeIn">
-            <img src='https://upload.wikimedia.org/wikipedia/pt/1/19/Day.jpg' alt="movie" />
+            <img src={`${API_IMAGE}${BestFilm.photo_movie}`} alt="movie" />
             <div className="best-film-info-text">
-                <h1>Dia de la indepencia </h1>
+                <h1>{BestFilm.photo_movie}</h1>
                 <div className="best-film-grid">
                     <span>Calificacion:</span>
-                    <span> 5 estellas</span>
+                    <span> {BestFilm.stars} estellas</span>
                     <span>Vistas:</span>
-                    <span>3250 vistas</span>
+                    <span>{BestFilm.views} vistas</span>
                 </div>
             </div>
         </div>

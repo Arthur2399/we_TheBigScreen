@@ -1,11 +1,11 @@
 import './TopHeadquartersData.css';
 
-export const TopHeadquartersData = () => {
+export const TopHeadquartersData = ({name_branch,stars}) => {
     return (
         <tbody>
             <tr>
-                <td>CCI</td>
-                <td>100 pts.</td>
+                <td>{name_branch}</td>
+                <td>{stars} pts.</td>
             </tr>
         </tbody>
     )

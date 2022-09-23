@@ -5,12 +5,15 @@ export const API_LOGIN               = `http://${API_REST}/user/api/token/`;
 export const API_MENU                = `http://${API_REST}/menu/menu`;
 export const API_CHANGE_PASS         = `http://${API_REST}/user/changepassword`;
 
+export const API_BRANCHS             = `http://${API_REST}/branch/list`;
+
 export const API_EMPLOYED            = `http://${API_REST}/user/employee`;
 export const API_EMPLOYED_LIST       = `http://${API_REST}/user/liste`;
 export const API_EMPLOYED_LAST       = `http://${API_REST}/user/lastemployee`;
 
 export const API_MOVIES_LIST         = `http://${API_REST}/movies/movies/list`;
 export const API_MOVIES_PREMIERE     = `http://${API_REST}/movies/movies/nextPremiere`;
+export const API_MOVIES_BEST         = `http://${API_REST}/movies/movies/best`;
 
 
 
