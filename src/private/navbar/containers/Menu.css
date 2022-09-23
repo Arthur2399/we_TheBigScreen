@@ -77,7 +77,11 @@ nav {
 }
 
 .navBar-user img {
-    width: 25px;
+    object-fit: cover;
+    border-radius: 35px;
+    width: 35px;
+    height: 35px;
+    border: 3px solid var(--very-light-pink);
 }
 
 .navBar-user div {

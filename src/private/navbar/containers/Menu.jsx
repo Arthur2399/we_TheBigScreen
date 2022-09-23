@@ -5,6 +5,7 @@ import { Options } from '../components';
 import logo from '/assets/logos/tbs_logo.svg';
 import user from '/assets/icons/user.svg'
 import './Menu.css';
+import { API_IMAGE } from '../../../helper/routes';
 
 export const Menu = () => {
     const [userData, setUserData] = useState({});
@@ -25,6 +26,7 @@ export const Menu = () => {
         fetchData();
     }, [])
 
+    
 
     return (
         <nav>
@@ -49,7 +51,7 @@ export const Menu = () => {
                         {`${userData.first_name} ${userData.last_name}`}
                     </li>
                     <li className="navBar-user" onClick={handleToggle}>
-                        <img src={user} alt="User" />
+                        <img src={`${API_IMAGE}${userData.image}`} alt="User" />
                     </li>
                 </ul>
             </div>
