@@ -10,8 +10,8 @@ import { API_IMAGE } from '../../../helper/routes';
 export const Menu = () => {
     const [userData, setUserData] = useState({});
     const [menuData, setMenuData] = useState([]);
-
     const [toggle, setToggle] = useState(false);
+
     const handleToggle = () => {
         setToggle(!toggle);
     }

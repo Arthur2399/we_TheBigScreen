@@ -1,0 +1,26 @@
+@import '../../../styles/_vars.css';
+
+.profile{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.profile img:nth-child(1){
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 100px;
+}
+.qr{
+    border-radius: 0px !important;
+}
+.rol{
+    margin-top: -18px;
+    margin-bottom: 30px;
+}
+.mail{
+    margin-top: -13px;
+    margin-bottom: 30px;
+}
