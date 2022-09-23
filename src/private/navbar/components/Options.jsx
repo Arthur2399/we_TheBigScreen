@@ -1,11 +1,14 @@
+import { useContext } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../../public/auth/context/AuthContext';
 import './Options.css';
 export const Options = () => {
 
+    const { logout } = useContext( AuthContext );
     const navigate = useNavigate();
 
     const onLogout = () => {
-        sessionStorage.removeItem('jwt');
+        logout();
         navigate('/login', {
             replace: true
         });

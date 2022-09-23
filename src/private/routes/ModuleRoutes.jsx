@@ -16,7 +16,7 @@ export const ModuleRoutes = () => {
       <Menu />
       <Routes>
         <Route path="accredit" element={<Accredit />} />
-        <Route path="/" element={<Branch />} />
+        <Route path="home" element={<Branch />} />
         <Route path="employes" element={<Employes />} />
         <Route path="reports" element={<Reports />} />
         <Route path="exchange" element={<Exchange />} />
@@ -24,7 +24,7 @@ export const ModuleRoutes = () => {
         <Route path="survey" element={<Surveys />} />
         <Route path="awards" element={<Awards />} />
         <Route path="password-change" element={<ChangePassword />} />
-        <Route path="/*" element={<Navigate to="/"/>} />
+        <Route path="/*" element={<Navigate to="home"/>} />
       </Routes>
     </>
   )

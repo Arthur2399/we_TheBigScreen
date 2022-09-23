@@ -1,9 +1,7 @@
+import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import { useState } from 'react';
+import { useGetUser, useGetMenu } from '../hooks';
 import { Options } from '../components';
-import { useEffect } from 'react';
-import { useGetUser } from '../hooks/useGetEmployed';
-import { useGetMenu } from '../hooks/useGetMenu';
 import logo from '/assets/logos/tbs_logo.svg';
 import user from '/assets/icons/user.svg'
 import './Menu.css';
@@ -18,31 +16,31 @@ export const Menu = () => {
     }
 
     useEffect(() => {
-         async function fetchData(){
-            const respMenu = await useGetMenu(); 
+        async function fetchData() {
+            const respMenu = await useGetMenu();
             const resp = await useGetUser();
             setUserData(resp[0]);
             setMenuData(respMenu);
-         }  
+        }
         fetchData();
-    },[])
-    
+    }, [])
+
 
     return (
         <nav>
             <div className="navbar-left">
-                <NavLink to="/" className="nav-logo"><img src={logo} alt=" logo" /></NavLink>
+                <NavLink to="home" className="nav-logo"><img src={logo} alt=" logo" /></NavLink>
                 <ul>
                     {
-                        menuData.map((opt)=>
-                            (<li key={opt.id} >
-                                <NavLink to={opt.path}
-                                    className={({ isActive }) => `nav-item  ${isActive ? 'active' : ''}`}
-                                >{opt.menu}</NavLink>
-                            </li>
+                        menuData.map((opt) =>
+                        (<li key={opt.id} >
+                            <NavLink to={opt.path}
+                                className={({ isActive }) => `nav-item  ${isActive ? 'active' : ''}`}
+                            >{opt.menu}</NavLink>
+                        </li>
                         ))
                     }
-                   
+
                 </ul>
             </div>
             <div className="navbar-right">
