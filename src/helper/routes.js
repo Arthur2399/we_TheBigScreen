@@ -3,6 +3,7 @@ export const API_IMAGE       = 'http://127.0.0.1:8087'
 
 export const API_LOGIN               = `http://${API_REST}/user/api/token/`;
 export const API_MENU                = `http://${API_REST}/menu/menu`;
+export const API_CHANGE_PASS         = `http://${API_REST}/user/changepassword`;
 
 export const API_EMPLOYED            = `http://${API_REST}/user/employee`;
 export const API_EMPLOYED_LIST       = `http://${API_REST}/user/liste`;
