@@ -16,13 +16,14 @@ const Profile = () => {
     }, [])
 
 
-
+const mes ='todos'
     return (
         <div className='profile'>
             <img src={`${API_IMAGE}${userData.image}`} alt="profile" />
             <h1>{`${userData.first_name} ${userData.last_name}`}</h1>
             <span className='mail'>{userData.email}</span>
-            <h2 className='rol'>{userData.rol}</h2>
+            <span className='branch'><b>Sucursal:</b> {userData.branch_user==null?'Todos':userData.branch_user}</span>
+            <span className='rol'><b>Rol: </b>{userData.rol}</span>
             <div>
                 <img src={`${API_IMAGE}${userData.qrprofile}`} alt="" className='qr'/>
           

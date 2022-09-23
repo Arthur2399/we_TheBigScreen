@@ -1,17 +1,30 @@
 import mobile from '/assets/logos/mobile.svg';
 import './QuestionPublish.css';
+import { useGetQuestions } from '../hooks/useGetQuestions';
+import { useEffect, useState } from 'react';
 
 export const QuestionPublish = () => {
+
+  const [questions, setQuestions] = useState([])
+
+  useEffect(() => {
+      async function fetchData() {
+          const respQue = await useGetQuestions();
+          setQuestions(respQue)
+      }
+      fetchData();
+  }, [])
+
   return (
     <div className="publish-question-phone">
-    <h1 className="title-phone">¿Cómo te fue?</h1>
+    <h1 className="title-phone">{questions.name}</h1>
     <img src={mobile} alt="mobile" />
     <div>
-        <span>¿Cómo estuvo la atención de los empleados?</span>
-        <span>¿Cómo estuvo la preparación de los alimentos?</span>
-        <span>¿Cómo estuvo el aseo de la sala de cine?</span>
-        <span>¿Cómo calificarías a la película?</span>
-        <span>¿Porqué le das esa calificación?</span>
+          <span>{questions.question1}</span>
+          <span>{questions.question2}</span>
+          <span>{questions.question3}</span>
+          <span>{questions.question4}</span>
+          <span>{questions.question5}</span>
     </div>
 </div>
   )
