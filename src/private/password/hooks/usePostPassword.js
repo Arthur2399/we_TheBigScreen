@@ -7,7 +7,7 @@ export const usePostPassword = async (passwordData) =>{
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: 'Bearer '+bearer.sessiontoken
+          Authorization: 'Bearer '+bearer.sessiontoken,
         },
         body: passwordData,
       };
