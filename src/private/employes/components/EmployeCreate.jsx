@@ -118,6 +118,7 @@ export const EmployeCreate = () => {
                         className='Employe-Create-UploadPhoto-button'
                         type='file'
                         name='fotoUpload'
+                        required={true}
                         accept="image/png, .jpeg, .jpg, image/gif"
                         onChange={(e) => handleFileUpload(e.target.files[0])}
                     />

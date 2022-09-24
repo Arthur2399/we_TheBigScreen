@@ -1,9 +1,5 @@
 @import '../../../styles/_vars.css';
 
-.form-movie{
-    display: flex;
-    flex-direction: row;
-}
 .Movies-Create {
     background: var(--very-light-pink);
     margin-top: 5px;
@@ -56,20 +52,8 @@
     margin-left: 18px;
 }
 
-.Movies-Create-UploadPhoto button {
-    margin-right: 15px;
-    border: none;
-    border-radius: 15px;
-    color: white;
-    padding: 5px;
-    cursor: pointer;
-    width: 65px;
-    background: var(--hospital-red);
-}
-
-.Movies-Create-UploadPhoto span {
-    font-size: 10px;
-    margin-top: 5px;
+.Movie-button-portada{
+    margin-left: 20px;
 }
 
 .Movies-Create-Summary {
@@ -96,7 +80,7 @@
     border: none;
     border-radius: 15px;
     width: 84%;
-    height: 30px;
+    height: auto;
     background: var(--text-input-fiel);
 }
 

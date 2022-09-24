@@ -3,16 +3,22 @@ import {API_EMPLOYED_UPDATE} from "../../../helper/routes";
 
 export const usePutEmploye= async ( updateData,id) => {
     const bearer = JSON.parse(localStorage.getItem('jwt'));
-    const response = await fetch(API_EMPLOYED_UPDATE+id, {
-        method: "PUT",
+    const options = {
+        method: 'PUT',
         headers: {
-            "Content-type": "application/json; charset=UTF-8",
-            "Authorization": 'Bearer '+ bearer.sessiontoken,
+           'Content-Type': 'application/json',
+           Authorization: 'Bearer '+ bearer.sessiontoken,
         },
         body: updateData
-    });
-    const data = await response.json();
-    return data;
+    };
+    const response = await fetch(`${API_EMPLOYED_UPDATE}${id}`, options)
+    console.log(response.status)
+    if(response.status ==400){
+        const bad= await response.json(); 
+        alert(JSON.stringify(bad));
+    }else{
+      window.location.reload(true);
+    }
 }
 
 export const useGetEmploye= async (id=1) => {

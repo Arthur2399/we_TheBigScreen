@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useGetRol } from '../hooks/useGetRol';
 import { useGetBranchs } from '../hooks/useGetBranchs';
 import { useEffect } from 'react';
-import { useGetEmploye } from '../hooks/usePutEmploye';
+import { useGetEmploye, usePutEmploye } from '../hooks/usePutEmploye';
 
 import employePhoto from '/assets/logos/employes_photo.svg';
 import employeUpdate from '/assets/logos/employes_create.svg';
@@ -21,11 +21,13 @@ export const EmployeUpdate = ({ employeId }) => {
     const [lastName, setLastName] = useState('')
     const [userName, setUserName] = useState('')
     const [email, setEmail] = useState('')
-    const [branchID, setBranchID] = useState('')
-    const [rolID, setRolId] = useState('')
     const [ci, setCi] = useState('')
     const [birth, setBirth] = useState('')
     const [image, setImage] = useState('')
+    const [imageChange, setImageChange] = useState(false)
+    
+    const [branchID, setBranchID] = useState('')
+    const [rolID, setRolId] = useState('')
 
 
     const [postImage, setPostImage] = useState('');
@@ -36,12 +38,15 @@ export const EmployeUpdate = ({ employeId }) => {
         reader.onload = function () {
             const base64 = reader.result
             setPostImage(base64);
+            setImage(base64);
+            setImageChange(true);
         }
     };
-    console.log('PostImage:'+postImage)
+
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+
         const userData = {
             first_name: firstName,
             last_name: lastName,
@@ -52,9 +57,10 @@ export const EmployeUpdate = ({ employeId }) => {
             ci: ci,
             birth: birth,
             image: image,
+            image_change: imageChange,
         }
-        //const resp = await usePostEmploye(userData);
-        console.log(userData);
+        const resp = await usePutEmploye(JSON.stringify(userData),employeId);
+        console.log(userData)
     }
 
 
@@ -68,21 +74,17 @@ export const EmployeUpdate = ({ employeId }) => {
             setBranch(respB);
 
             setFirstName(respEmploye.first_name);
-            setLastName(respEmploye.first_name);
+            setLastName(respEmploye.last_name);
             setUserName(respEmploye.username);
             setEmail(respEmploye.email);
-            setBranchID(respEmploye.branch_user_id);
-            setRolId(respEmploye.rol_id);
             setCi(respEmploye.ci);
             setBirth(respEmploye.birth);
-
-            if(postImage == ''){
-                setImage(respEmploye.image);
-            }else{
-                setImage(postImage);
-            }
-
-
+            setImage(respEmploye.image);
+            setImage(respEmploye.image_change);
+            
+            setBranchID(respEmploye.branch_user_id);
+            setRolId(respEmploye.rol_id);
+            
             respR.forEach(r => {
                 if (r.id == respEmploye.rol_id) {
                     setRoles(r.name);
@@ -148,7 +150,10 @@ export const EmployeUpdate = ({ employeId }) => {
             <div className='Employe-Update-Container'>
 
                 <label htmlFor="" className='Employe-Update-label'>Rol:</label>
-                <select name="selectRol" className="Employe-Update-comboBox">
+                <select name="selectRol" 
+                        className="Employe-Update-comboBox"
+                        onChange={(event) => setRolId(parseInt(event.target.value))}
+                        >
                     <option >{roles}</option>
                     {rol.filter(rl => rl.name != roles).map((rl, i) => (
                         <option value={rl.id} key={i} >{rl.name}</option>
@@ -157,7 +162,10 @@ export const EmployeUpdate = ({ employeId }) => {
                 </select>
 
                 <label htmlFor="" className='Employe-Update-label'>Sucursal:</label>
-                <select name="selectBranch" className="Employe-Update-comboBox">
+                <select name="selectBranch" 
+                        className="Employe-Update-comboBox"
+                        onChange={(event) => setBranchID(parseInt(event.target.value))}
+                        >
                     <option>{branchs}</option>
 
                     {branch.filter(br => br.name_branch != branchs).map((br, i) => (
