@@ -1,6 +1,6 @@
 @import '../../../styles/_vars.css';
 
-.Employe-Create {
+.Employe-Form {
     background: var(--very-light-pink);
     margin-top: 5px;
     height: 90%;
@@ -11,12 +11,7 @@
     align-items: center;
 }
 
-.Employe-Form{
-    display: flex;
-    flex-direction: row;
-}
-
-.Employe-Create-Container {
+.Employe-Update-Container {
     height: 92%;
     width: 30%;
     border-radius: 15px;
@@ -27,7 +22,7 @@
     text-align: start;
 }
 
-.Employe-Create-inputs {
+.Employe-Update-inputs {
     align-self: center;
     border: none;
     border-radius: 15px;
@@ -36,7 +31,7 @@
     background: var(--text-input-fiel);
 }
 
-.Employe-Create-comboBox {
+.Employe-Update-comboBox {
     align-self: center;
     border: none;
     border-radius: 15px;
@@ -45,11 +40,11 @@
     background: var(--text-input-fiel);
 }
 
-.Employe-Create-label {
+.Employe-Update-label {
     margin-left: 18px;
 }
 
-.Employe-Create-UploadPhoto {
+.Employe-Update-UploadPhoto {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -58,14 +53,19 @@
     padding-top: 5%;
 }
 
-.Employe-Create-UploadPhoto div {
+.Employe-Update-UploadPhoto div {
     margin-top: 20px;
     width: 60%;
     display: flex;
     justify-content: space-evenly;
 }
 
-.Employe-Create-UploadPhoto-button {
+.Employe-Update-UploadPhoto-button {
+    padding: 8px;
+    width: 200px;
+}
+
+.button-sent {
     border: none;
     border-radius: 15px;
     color: white;
@@ -75,12 +75,18 @@
     background: var(--hospital-red);
 }
 
-.Employe-Create-UploadPhoto span {
+.Employe-Update-UploadPhoto span {
     font-size: 12px;
     margin-top: 5px;
+    text-align: center;
+    margin-bottom: 25px;
 }
 
-.Employe-Create-Sent {
+.Employe-Update-UploadPhoto img {
+    width: 100px !important;
+}
+
+.Employe-Update-Sent {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -89,7 +95,7 @@
     height: 50%;
 }
 
-.Employe-Create-Sent img {
+.Employe-Update-Sent img {
     width: 120px !important;
     margin-bottom: 10px !important;
 }

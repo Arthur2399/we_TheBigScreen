@@ -1,6 +1,6 @@
 @import '../../../styles/_vars.css';
 
-.Employe-Create {
+.Employe-Form {
     background: var(--very-light-pink);
     margin-top: 5px;
     height: 90%;
@@ -9,11 +9,6 @@
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-}
-
-.Employe-Form{
-    display: flex;
-    flex-direction: row;
 }
 
 .Employe-Create-Container {
@@ -66,6 +61,11 @@
 }
 
 .Employe-Create-UploadPhoto-button {
+    padding: 8px;
+    width: 200px;
+}
+
+.button-sent {
     border: none;
     border-radius: 15px;
     color: white;
@@ -78,7 +78,10 @@
 .Employe-Create-UploadPhoto span {
     font-size: 12px;
     margin-top: 5px;
+    text-align: center;
+    margin-bottom: 25px;
 }
+
 
 .Employe-Create-Sent {
     display: flex;
