@@ -99,24 +99,18 @@
     padding: 0;
 
 }
-
-.Empoye-Create-delete{
-    margin-left: 10px;
-    margin-top: 10px;
-    width: 100px;
-    height: 30px;
-}
-.Empoye-Create-delete span{
-    font-size: 12px;
+.Survey-info-ob{
+   display: flex;
+   width: 100%;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+   text-align: center;
 }
 
-.Empoye-Create-delete button{
-    border: none;
-    background: none;
-    font-weight: bolder;
-    font-family:'Quicksand', sans-serif;
-    color: var(--hospital-red);
-    cursor: pointer;
+.movie-info{
+    width: 85px !important;
+    margin-bottom: 15px;
 }
 
 .Survey-Create-Sent{
@@ -138,16 +132,14 @@
     margin-bottom: 10px !important;
 }
 
-.Movies-button-sent{
+.Survey-button-sent{
     margin-top: 20px;
-    font-weight: bolder;
-    padding: 14px;
     border: none;
-    border-radius: 15px;
-    color: white;
-    padding: 8px;
+    width: 120px;
+    height: 30px;
+    font-size: 15px;
+    border-radius: 12px;
     cursor: pointer;
-    width: auto;
+    color: white;
     background: var(--hospital-red);
 }
-

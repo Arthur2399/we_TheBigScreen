@@ -1,6 +1,6 @@
 import { Modal } from '../../../components';
 import { useModal } from '../../../hooks';
-import { SurveyForm } from '../components';
+import { SurveyCreate } from '../components';
 import surveyControl from '/assets/logos/survey-control.svg';
 import './QuestionManager.css';
 
@@ -13,11 +13,11 @@ export const QuestionManager = () => {
       <h2> ¿Nueva encuesta?</h2>
       <p>Ingresa preguntas que te ayuden a conocer la calidad de tu servicio</p>
       <div>
-        <button className="survey-create-button"> Editar</button>
         <button className="survey-create-button" onClick={openModal}> Crear</button>
         <Modal isOpen={isOpenModal} closeModal={closeModal} title="Crear nueva encuesta" x={"80%"} y= {"580px"}>
-            <SurveyForm/>
+            <SurveyCreate/>
         </Modal>
+        <button className="survey-create-button"> Editar</button>
       </div>
     </div>
     <img src={surveyControl} alt="control-survey" />

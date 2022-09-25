@@ -205,7 +205,7 @@ export const MovieUpdate = ({movieId}) => {
                     <h1> Publicar estreno</h1>
                     <span>Al publicar podrás ver los
                         cambios en tu app</span>
-                    <button className='Movies-button-sent' type='submit'>Publicar</button>
+                    <button className='Movies-button-sent' type='submit'>Actualizar</button>
                 </div>
 
             </div>

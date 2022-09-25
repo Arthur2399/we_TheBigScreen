@@ -1,1 +1,1 @@
-export * from './SurveyForm';
+export * from './SurveyCreate';
