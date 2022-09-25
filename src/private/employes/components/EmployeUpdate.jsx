@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import { Modal, MessageAlert } from '../../../components';
-import { useGetBranchs, useGetEmploye, usePutEmploye, useGetRol } from '../hooks';
 import { useModal } from '../../../hooks';
+import { useGetBranchs, useGetEmploye, usePutEmploye, useGetRol } from '../hooks';
+import { useDeleteEmploye } from '../hooks/useDeleteEmploye';
 import employePhoto from '/assets/logos/employes_photo.svg';
 import employeUpdate from '/assets/logos/employes_create.svg';
 import './EmployeUpdate.css';
-import { useDeleteEmploye } from '../hooks/useDeleteEmploye';
 
 
 export const EmployeUpdate = ({ employeId }) => {
@@ -25,10 +25,9 @@ export const EmployeUpdate = ({ employeId }) => {
     const [ci, setCi] = useState('')
     const [birth, setBirth] = useState('')
     const [image, setImage] = useState('')
-    const [imageChange, setImageChange] = useState(false)
-
     const [branchID, setBranchID] = useState('')
     const [rolID, setRolId] = useState('')
+    const [imageChange, setImageChange] = useState(false)
 
 
     const [postImage, setPostImage] = useState('');

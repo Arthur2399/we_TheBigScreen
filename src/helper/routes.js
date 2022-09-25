@@ -15,12 +15,14 @@ export const API_EMPLOYED_CREATE     = `http://${API_REST}/user/createe`;
 export const API_EMPLOYED_UPDATE     = `http://${API_REST}/user/updatee/`;
 export const API_EMPLOYED_DELETE     = `http://${API_REST}/user/desactivatee/`;
 
+export const API_CATEGORY            = `http://${API_REST}/movies/categories/list`;
+export const API_ACTORS              = `http://${API_REST}/movies/actors/list`;
+
 export const API_MOVIES_LIST         = `http://${API_REST}/movies/movies/list`;
 export const API_MOVIES_PREMIERE     = `http://${API_REST}/movies/movies/nextPremiere`;
 export const API_MOVIES_BEST         = `http://${API_REST}/movies/movies/best`;
 export const API_MOVIES_CREATE       = `http://${API_REST}/movies/movies/create`;
-export const API_CATEGORY            = `http://${API_REST}/movies/categories/list`;
-export const API_ACTORS              = `http://${API_REST}/movies/actors/list`;
+export const API_MOVIES_UPDATE       = `http://${API_REST}/movies/movies/update/`;
 
 export const API_SURVEY_QUESTIONS    = `http://${API_REST}/survey/template/list`;
 
