@@ -3,7 +3,6 @@ import { Modal } from '../../../components';
 import { useModal } from '../../../hooks';
 import { ActorCreate } from './ActorCreate';
 import { useGetActors, useGetCategories, usePostMovie } from '../hooks';
-
 import movieTag from '/assets/logos/Movie-tag.svg';
 import link from '/assets/icons/link.png';
 import './MovieCreate.css';
@@ -12,12 +11,7 @@ export const MovieCreate = () => {
 
     const [actors, setActors] = useState([]);
     const [categories, setCategories] = useState([]);
-
-
     const [isOpenModal, openModal, closeModal] = useModal(false);
-
-
-
     const [postImage, setPostImage] = useState('');
 
     const handleFileUpload = (foto) => {
@@ -108,6 +102,7 @@ export const MovieCreate = () => {
                     type='file'
                     name='fotoUpload'
                     accept="image/png, .jpeg, .jpg, image/gif"
+                    required={true}
                     onChange={(e) => handleFileUpload(e.target.files[0])}
                 />
             </div>
@@ -129,7 +124,7 @@ export const MovieCreate = () => {
                 />
 
                 <label htmlFor="selectCategory" className='Movies-Create-label'>Categorias:</label>
-                <select name="selectCategory" id="movie-select-category" className="Movies-Create-comboBox" multiple>
+                <select name="selectCategory" id="movie-select-category" className="Movies-Create-comboBox" required={true} multiple>
                     {
                         categories.map((cat, i) => (
                             <option value={cat.id} key={i}>{cat.category_name}</option>
@@ -142,7 +137,7 @@ export const MovieCreate = () => {
             <div className='Movies-Create-Container'>
                 <label htmlFor="" className='Movies-Create-label'>Actores:</label>
                 <div className='Movies-Create-combo-link'>
-                <select name="selectCategory" id="movie-select-actor" className="Movies-Create-comboBox" multiple>
+                <select name="selectCategory" id="movie-select-actor" className="Movies-Create-comboBox" required={true} multiple>
                     {
                         actors.map((act, i) => (
                             <option value={act.id} key={i}>{act.name_actor}</option>
