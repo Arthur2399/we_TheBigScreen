@@ -1,10 +1,11 @@
+import { API_IMAGE } from '../../../helper/routes';
 import './ExchangeCard.css'
 
-export const ExchangeCard = () => {
+export const ExchangeCard = ({id, photo_award,number_award,setAwardId}) => {
     return (
         <div className="exchange-cards animate__animated animate__fadeIn">
-            <img src="https://m.media-amazon.com/images/I/81YyxCDQS+L._AC_SL1500_.jpg" alt="movie" />
-            <p>190 pts</p>
+              <img src={`${API_IMAGE}${photo_award}`} alt="movie" onClick={()=>{openModal(); setAwardId(id)}}/>
+               <p>{number_award} pts.</p>
         </div>
     )
 }

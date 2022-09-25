@@ -9,6 +9,7 @@
     width: 65px;
     border-radius: 8px;
     object-fit: cover;
+    cursor: pointer;
 }
 
 .exchange-cards p {

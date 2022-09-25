@@ -1,13 +1,15 @@
 @import '../../../styles/_vars.css';
 
 .awards-cards {
-    width: 100px;
+    width: 90px;
 }
 
 .awards-cards img {
-    width: 80px;
+    height: 100px;
+    width: 65px;
     border-radius: 8px;
     object-fit: cover;
+    cursor: pointer;
 }
 
 .awards-cards p {

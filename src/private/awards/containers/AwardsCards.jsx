@@ -2,9 +2,9 @@ import { AwardsCard } from '../components';
 import { Modal } from '../../../components/Modal';
 import { useModal } from '../../../hooks';
 import { useGetAwardsList } from '../hooks/useGetAwards';
-import './AwardsCards.css';
 import { useEffect, useState } from 'react';
 import { AwardsUpdate } from '../components/AwardsUpdate';
+import './AwardsCards.css';
 
 export const AwardsCards = () => {
 

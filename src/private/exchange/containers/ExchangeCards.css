@@ -3,6 +3,7 @@
 .exchange-cards-container {
     margin-top: 8px;
     display: grid;
-    grid-template-columns: repeat(auto-fill, 80px);
+    grid-template-columns: auto auto auto;
     place-content: center;
+    margin-left: 15px;
 }
