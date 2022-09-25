@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 export function useModal(initialValue=false) {
+    event.preventDefault();
     const [isOpenModal, setIsOpenModal] = useState(initialValue);
 
     const openModal = () => {

@@ -6,10 +6,15 @@ import { useGetEmploye, usePutEmploye } from '../hooks/usePutEmploye';
 
 import employePhoto from '/assets/logos/employes_photo.svg';
 import employeUpdate from '/assets/logos/employes_create.svg';
+import { Modal } from '../../../components/Modal';
+import { useModal } from '../../../hooks/useModal';
+import { MessageAlert } from '../../../components/messageAlert';
 import './EmployeUpdate.css';
 
 
 export const EmployeUpdate = ({ employeId }) => {
+
+    const [isOpenModal,openModal,closeModal] = useModal(false);
 
     const [rol, setRol] = useState([])
     const [roles, setRoles] = useState('')
@@ -63,6 +68,9 @@ export const EmployeUpdate = ({ employeId }) => {
         console.log(userData)
     }
 
+    const deleteEmploye = async() => {
+            alert('Eliminado')
+    }
 
     useEffect(() => {
         async function fetchData() {
@@ -88,18 +96,15 @@ export const EmployeUpdate = ({ employeId }) => {
             respR.forEach(r => {
                 if (r.id == respEmploye.rol_id) {
                     setRoles(r.name);
-                }
-            });
-
+                }});
             respB.forEach(b => {
                 if (b.id == respEmploye.branch_user_id) {
                     setBranchs(b.name_branch);
-                }
-            });
-
+                }});
         }
         fetchData();
     }, [employeId])
+
 
 
     return (
@@ -183,7 +188,7 @@ export const EmployeUpdate = ({ employeId }) => {
                             className='Employe-Update-UploadPhoto-button'
                             type='file'
                             name='fotoUpload'
-                            accept="image/png, .jpeg, .jpg, image/gif"
+                            accept="image/png, .jpg, image/gif"
                             onChange={(e) => handleFileUpload(e.target.files[0])}
                         />
 
@@ -197,7 +202,14 @@ export const EmployeUpdate = ({ employeId }) => {
                     <img src={employeUpdate} alt="employeUpdate" />
                     <h1> Actualizar empleado</h1>
                     <span>Actualiza los datos de los miembros de tu equipo</span>
-                    <button className='Employe-Update-UploadPhoto-button button-sent' type='submit'>Actualizar empleado</button>
+                    <button className=' button-sent' type='submit'>Actualizar empleado</button>
+
+                    <button className='button-sent' onClick={openModal}>Deshabilitar empleado</button>
+                    <Modal isOpen={isOpenModal} closeModal={closeModal}  title="Deshabilitar empleado" x={"300px"} y={"150px"}>
+                        <MessageAlert funcion={deleteEmploye} messageButton='Eliminar' message='¿Deseas eliminar este empleado?'/>
+                    </Modal>
+
+
                 </div>
             </div>
         </form>
