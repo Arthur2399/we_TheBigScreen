@@ -14,8 +14,7 @@
 }
 
 .user-profile-info-photo img {
-
-    width: 110px;
+    width: 88px;
     border-radius: 10px;
     object-fit: cover;
 }
