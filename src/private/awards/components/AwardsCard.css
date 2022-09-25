@@ -1,23 +1,23 @@
 @import '../../../styles/_vars.css';
 
 .awards-cards {
-    width: 90px;
+    width: 120px;
 }
 
 .awards-cards img {
-    height: 100px;
-    width: 65px;
+    width: 80px;
     border-radius: 8px;
     object-fit: cover;
 }
 
 .awards-cards p {
     width: 62px;
-    font-size: 10px;
+    font-size: 14px;
     margin: 2px 0 5px 0;
     text-overflow: " [..]";
     overflow: hidden;
     white-space: nowrap;
     text-align: center;
     font-weight: bold;
+    margin-left: 15px;
 }

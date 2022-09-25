@@ -1,2 +1,2 @@
 export * from './AwardsCard';
-export * from './AwardsForm';
+export * from './AwardsCreate';
