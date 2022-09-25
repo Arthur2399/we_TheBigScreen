@@ -1,20 +1,16 @@
-import { useState } from 'react';
-import { useGetRol } from '../hooks/useGetRol';
-import { useGetBranchs } from '../hooks/useGetBranchs';
-import { useEffect } from 'react';
-import { useGetEmploye, usePutEmploye } from '../hooks/usePutEmploye';
-
+import { useState, useEffect } from 'react';
+import { Modal, MessageAlert } from '../../../components';
+import { useGetBranchs, useGetEmploye, usePutEmploye, useGetRol } from '../hooks';
+import { useModal } from '../../../hooks';
 import employePhoto from '/assets/logos/employes_photo.svg';
 import employeUpdate from '/assets/logos/employes_create.svg';
-import { Modal } from '../../../components/Modal';
-import { useModal } from '../../../hooks/useModal';
-import { MessageAlert } from '../../../components/messageAlert';
 import './EmployeUpdate.css';
+import { useDeleteEmploye } from '../hooks/useDeleteEmploye';
 
 
 export const EmployeUpdate = ({ employeId }) => {
 
-    const [isOpenModal,openModal,closeModal] = useModal(false);
+    const [isOpenModal, openModal, closeModal] = useModal(false);
 
     const [rol, setRol] = useState([])
     const [roles, setRoles] = useState('')
@@ -30,7 +26,7 @@ export const EmployeUpdate = ({ employeId }) => {
     const [birth, setBirth] = useState('')
     const [image, setImage] = useState('')
     const [imageChange, setImageChange] = useState(false)
-    
+
     const [branchID, setBranchID] = useState('')
     const [rolID, setRolId] = useState('')
 
@@ -64,12 +60,13 @@ export const EmployeUpdate = ({ employeId }) => {
             image: image,
             image_change: imageChange,
         }
-        const resp = await usePutEmploye(JSON.stringify(userData),employeId);
+        const resp = await usePutEmploye(JSON.stringify(userData), employeId);
         console.log(userData)
     }
 
-    const deleteEmploye = async() => {
-            alert('Eliminado')
+    const deleteEmploye = async (event) => {
+        event.preventDefault();
+        const dlt = await useDeleteEmploye(employeId)
     }
 
     useEffect(() => {
@@ -89,18 +86,20 @@ export const EmployeUpdate = ({ employeId }) => {
             setBirth(respEmploye.birth);
             setImage(respEmploye.image);
             setImage(respEmploye.image_change);
-            
+
             setBranchID(respEmploye.branch_user_id);
             setRolId(respEmploye.rol_id);
-            
+
             respR.forEach(r => {
                 if (r.id == respEmploye.rol_id) {
                     setRoles(r.name);
-                }});
+                }
+            });
             respB.forEach(b => {
                 if (b.id == respEmploye.branch_user_id) {
                     setBranchs(b.name_branch);
-                }});
+                }
+            });
         }
         fetchData();
     }, [employeId])
@@ -155,10 +154,10 @@ export const EmployeUpdate = ({ employeId }) => {
             <div className='Employe-Update-Container'>
 
                 <label htmlFor="" className='Employe-Update-label'>Rol:</label>
-                <select name="selectRol" 
-                        className="Employe-Update-comboBox"
-                        onChange={(event) => setRolId(parseInt(event.target.value))}
-                        >
+                <select name="selectRol"
+                    className="Employe-Update-comboBox"
+                    onChange={(event) => setRolId(parseInt(event.target.value))}
+                >
                     <option >{roles}</option>
                     {rol.filter(rl => rl.name != roles).map((rl, i) => (
                         <option value={rl.id} key={i} >{rl.name}</option>
@@ -167,10 +166,10 @@ export const EmployeUpdate = ({ employeId }) => {
                 </select>
 
                 <label htmlFor="" className='Employe-Update-label'>Sucursal:</label>
-                <select name="selectBranch" 
-                        className="Employe-Update-comboBox"
-                        onChange={(event) => setBranchID(parseInt(event.target.value))}
-                        >
+                <select name="selectBranch"
+                    className="Employe-Update-comboBox"
+                    onChange={(event) => setBranchID(parseInt(event.target.value))}
+                >
                     <option>{branchs}</option>
 
                     {branch.filter(br => br.name_branch != branchs).map((br, i) => (
@@ -191,10 +190,8 @@ export const EmployeUpdate = ({ employeId }) => {
                             accept="image/png, .jpg, image/gif"
                             onChange={(e) => handleFileUpload(e.target.files[0])}
                         />
-
                     </div>
                 </div>
-
             </div>
 
             <div className='Employe-Update-Container'>
@@ -202,14 +199,16 @@ export const EmployeUpdate = ({ employeId }) => {
                     <img src={employeUpdate} alt="employeUpdate" />
                     <h1> Actualizar empleado</h1>
                     <span>Actualiza los datos de los miembros de tu equipo</span>
-                    <button className=' button-sent' type='submit'>Actualizar empleado</button>
-
-                    <button className='button-sent' onClick={openModal}>Deshabilitar empleado</button>
-                    <Modal isOpen={isOpenModal} closeModal={closeModal}  title="Deshabilitar empleado" x={"300px"} y={"150px"}>
-                        <MessageAlert funcion={deleteEmploye} messageButton='Eliminar' message='¿Deseas eliminar este empleado?'/>
-                    </Modal>
-
-
+                    <div className='optiones-Update-employe'>
+                        <button className='button-sent'
+                            onClick={openModal}>
+                            Deshabilitar
+                        </button>
+                        <Modal isOpen={isOpenModal} closeModal={closeModal} title="Deshabilitar empleado" x={"300px"} y={"150px"}>
+                            <MessageAlert funcion={deleteEmploye} messageButton='Eliminar' message='¿Deseas eliminar este empleado?' />
+                        </Modal>
+                        <button className=' button-sent' type='submit'>Actualizar</button>
+                    </div>
                 </div>
             </div>
         </form>

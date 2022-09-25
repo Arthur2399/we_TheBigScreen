@@ -105,3 +105,8 @@
     font-weight: bolder;
     padding: 10px;
 }
+.optiones-Update-employe{
+    display: flex;
+    width: 60%;
+     justify-content: space-evenly;
+}

@@ -12,6 +12,7 @@ export const API_EMPLOYED_LIST       = `http://${API_REST}/user/liste`;
 export const API_EMPLOYED_LAST       = `http://${API_REST}/user/lastemployee`;
 export const API_EMPLOYED_CREATE     = `http://${API_REST}/user/createe`;
 export const API_EMPLOYED_UPDATE     = `http://${API_REST}/user/updatee/`;
+export const API_EMPLOYED_DELETE     = `http://${API_REST}/user/desactivatee/`;
 
 export const API_MOVIES_LIST         = `http://${API_REST}/movies/movies/list`;
 export const API_MOVIES_PREMIERE     = `http://${API_REST}/movies/movies/nextPremiere`;
