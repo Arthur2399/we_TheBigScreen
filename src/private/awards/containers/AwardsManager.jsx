@@ -1,6 +1,6 @@
 import { Modal } from '../../../components';
 import { useModal } from '../../../hooks';
-import { AwardsForm } from '../components';
+import { AwardsCreate } from '../components';
 import gift from '/assets/logos/gift.svg';
 import './AwardsManager.css';
 
@@ -14,7 +14,7 @@ export const AwardsManager = () => {
                 <p>Registra la recompensa para tus clientes</p>
                 <button className="awards-create-button" onClick={openModal}> ingresar premio</button>
                 <Modal isOpen={isOpenModal} closeModal={closeModal} title="Crear nuevo premio" x={"80%"} y={"580px"}>
-                    <AwardsForm />
+                    <AwardsCreate />
                 </Modal>
             </div>
             <img src={gift} alt="" />

@@ -10,6 +10,7 @@ export const API_CHANGE_PASS         = `http://${API_REST}/user/changepassword`;
 
 export const API_AWARDS_LIST         = `http://${API_REST}/points/awards/list`;
 export const API_AWARDS_CREATE       = `http://${API_REST}/points/awards/create`;
+export const API_AWARDS_UPDATE       = `http://${API_REST}/points/awards/update/`;
 
 export const API_EMPLOYED            = `http://${API_REST}/user/employee`;
 export const API_EMPLOYED_LIST       = `http://${API_REST}/user/liste`;

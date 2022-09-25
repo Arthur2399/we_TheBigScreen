@@ -4,6 +4,7 @@ import { useModal } from '../../../hooks';
 import { useGetAwardsList } from '../hooks/useGetAwards';
 import './AwardsCards.css';
 import { useEffect, useState } from 'react';
+import { AwardsUpdate } from '../components/AwardsUpdate';
 
 export const AwardsCards = () => {
 
@@ -26,8 +27,9 @@ export const AwardsCards = () => {
                 <AwardsCard key={award.id} {...award} openModal={openModal} setAwardId={setAwardId}/>
             ))}
             <Modal isOpen={isOpenModal} closeModal={closeModal} title="Actualizar premio" x={"80%"} y={"580px"}>
-                {/* Poner el ID como props */}
+                <AwardsUpdate awardId={awardId}/>                            
             </Modal>
+
         </div>
     )
 }

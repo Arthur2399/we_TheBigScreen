@@ -1,10 +1,10 @@
+import { useState } from 'react';
+import { usePostAward } from '../hooks/usePostAwards';
 import information from '/assets/logos/information.svg';
 import gift from '/assets/logos/gift.svg'
 import './AwardsCreate.css';
-import { usePostAward } from '../hooks/usePostAwards';
-import { useState } from 'react';
 
-export const AwardsForm = () => {
+export const AwardsCreate = () => {
 
 
     const [postImage, setPostImage] = useState('');

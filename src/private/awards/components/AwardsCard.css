@@ -1,7 +1,7 @@
 @import '../../../styles/_vars.css';
 
 .awards-cards {
-    width: 120px;
+    width: 100px;
 }
 
 .awards-cards img {
@@ -19,5 +19,5 @@
     white-space: nowrap;
     text-align: center;
     font-weight: bold;
-    margin-left: 15px;
+    margin-left: 10px;
 }
