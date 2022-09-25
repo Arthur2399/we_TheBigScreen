@@ -3,6 +3,7 @@ export const API_IMAGE               = `http://${API_REST}`
 export const API_ROL                 = `http://${API_REST}/user/rol/list`;
 export const API_BRANCHS             = `http://${API_REST}/branch/list`;
 
+
 export const API_LOGIN               = `http://${API_REST}/user/api/token/`;
 export const API_MENU                = `http://${API_REST}/menu/menu`;
 export const API_CHANGE_PASS         = `http://${API_REST}/user/changepassword`;
@@ -17,6 +18,9 @@ export const API_EMPLOYED_DELETE     = `http://${API_REST}/user/desactivatee/`;
 export const API_MOVIES_LIST         = `http://${API_REST}/movies/movies/list`;
 export const API_MOVIES_PREMIERE     = `http://${API_REST}/movies/movies/nextPremiere`;
 export const API_MOVIES_BEST         = `http://${API_REST}/movies/movies/best`;
+export const API_MOVIES_CREATE       = `http://${API_REST}/movies/movies/create`;
+export const API_CATEGORY            = `http://${API_REST}/movies/categories/list`;
+export const API_ACTORS              = `http://${API_REST}/movies/actors/list`;
 
 export const API_SURVEY_QUESTIONS    = `http://${API_REST}/survey/template/list`;
 
