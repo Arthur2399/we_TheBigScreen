@@ -31,6 +31,7 @@ export const ScannerQR = ({setClientData}) => {
                     }
                 }}
                 style={{ width: '100%' }}
+                constraints={ {facingMode: 'environment'} }
             />
         </div>
     )
