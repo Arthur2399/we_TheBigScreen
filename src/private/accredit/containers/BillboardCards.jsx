@@ -6,7 +6,7 @@ import './BillboardCards.css';
 export const BillboardCards = ({ setBillboard }) => {
 
     const [cardsBillboard, setCardsBillboard] = useState([]);
-    const [billboardID, setBillboardID] = useState()
+    const [billboardID, setbillboardID] = useState()
 
     setBillboard(billboardID)
 
@@ -19,16 +19,13 @@ export const BillboardCards = ({ setBillboard }) => {
         fetchData();
     }, [])
 
-
-
     return (
         <div className="Billboard-cards-container">
             {
                 cardsBillboard.map((billboard) => (
-                    <BillboardCard key={billboard.id} {...billboard} />
+                    <BillboardCard key={billboard.id} {...billboard} setbillboardID={setbillboardID}/>
                 ))
             }
-
         </div>
     )
 }

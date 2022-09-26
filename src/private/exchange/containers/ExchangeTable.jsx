@@ -3,6 +3,7 @@ import './ExchangeTable.css';
 
 export const ExchangeTable = ({ award, clientData }) => {
 
+    
     const { awardList, increment, decrement, subTotal, deletes, postPOSAward } = useExchangeTable(award, clientData);
 
     return (
