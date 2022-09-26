@@ -24,7 +24,6 @@ export const ScannerQR = ({ setClientData }) => {
             <QrReader
                 onResult={(result, error) => {
                     if (!!result) {
-                        alert('Cargando...');
                         getUserHash(result?.text)
                     }
                     if (!!error) {

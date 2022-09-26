@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useGetProduct } from "./useGetProduct";
+import { usePostExchange } from "./usePostExchange";
 
 export const useExchangeTable = (award,clientData) => {
 
@@ -40,7 +41,7 @@ export const useExchangeTable = (award,clientData) => {
             }))
     }
 
-    const postPOSAward = () =>{
+    const postPOSAward = async() =>{
         let details = [];
         awardList.forEach(element => {
             const subT = element.number_award * element.cant
@@ -53,15 +54,15 @@ export const useExchangeTable = (award,clientData) => {
         });
         const dataPOS = {
             header:{
-                credits_translation: clientData.id,
+                credits_translation: clientData.creidt_id,
                 total_cost: subTotal,
                 total_credits: clientData.credit,
                 balance: clientData.credit - subTotal,
             },
             detail:details,
         }
-
         console.log(dataPOS);
+        const resp = await usePostExchange(JSON.stringify(dataPOS));
     }
 
     useEffect(() => {

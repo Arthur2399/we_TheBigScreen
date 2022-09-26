@@ -1,6 +1,8 @@
 import './AccreditsPoints.css';
 
-export const AccreditsPoints = () => {
+export const AccreditsPoints = ({billboad, clienData}) => {
+
+    
     return (
         <div className="accredit-points-container">
             <div className="accredit-grid">

@@ -31,5 +31,7 @@ export const API_MOVIES_UPDATE       = `http://${API_REST}/movies/movies/update/
 export const API_SURVEY_QUESTIONS    = `http://${API_REST}/survey/template/list`;
 export const API_SURVEY_CREATE       = `http://${API_REST}/survey/template/list`;
 
+export const API_EXCHANGE_POST       = `http://${API_REST}/points/transaction/prueba`;
+
 export const API_BILLBOARD           = `http://${API_REST}/movies/billboard`;
 export const API_WHATSAPP            = 'https://api.whatsapp.com/send?phone=0997106357&text=¡Hola!%20Necesito%20ayuda%20con%20mi%20con%20contraseña%20de%20The%20Big%20Screen.'
