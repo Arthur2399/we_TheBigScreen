@@ -1,4 +1,4 @@
-export const API_REST                = '127.0.0.1:8087'
+export const API_REST                = '154.12.236.19:83'
 export const API_IMAGE               = `http://${API_REST}`
 export const API_ROL                 = `http://${API_REST}/user/rol/list`;
 export const API_BRANCHS             = `http://${API_REST}/branch/list`;

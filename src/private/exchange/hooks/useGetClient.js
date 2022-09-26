@@ -1,4 +1,4 @@
-import { API_CLIENT_GET } from "../helper/routes";
+import { API_CLIENT_GET } from "../../../helper/routes";
 
 export const useGetClient= async (hash) => {
     const bearer = JSON.parse(localStorage.getItem('jwt'));

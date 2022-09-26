@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { ClientProfile, ScannerQR } from '../../../components';
-import { ExchangeCards, ExchangeTable } from '../containers';
+import { ExchangeCards, ExchangeTable} from '../containers';
+import { ClientProfile, ScannerQR } from '../components';
 import './Exchange.css';
 
 export const Exchange = () => {
