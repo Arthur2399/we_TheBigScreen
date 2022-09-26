@@ -1,6 +1,6 @@
 import { API_BILLBOARD_ID } from "../../../helper/routes";
 
-export const useGetBillID= async (id=1) => {
+export const useGetBillID= async (id) => {
     const bearer = JSON.parse(localStorage.getItem('jwt'));
     const response = await fetch(`${API_BILLBOARD_ID}${id}`, {
         method: "GET",
