@@ -12,7 +12,6 @@ export const usePutAwards= async ( updateData,id) => {
         body: updateData
     };
     const response = await fetch(`${API_AWARDS_UPDATE}${id}`, options)
-    console.log(response.status)
     if(response.status ==400){
         const bad= await response.json(); 
         alert(JSON.stringify(bad));

@@ -13,6 +13,10 @@
     width: 80px;
 }
 
+.QR-style{
+    height: 240px;
+    width: 320px;
+}
 .qr-escanner-info h2 {
     font-size: 15px;
     margin: 0;

@@ -60,7 +60,6 @@ export const EmployeUpdate = ({ employeId }) => {
             image_change: imageChange,
         }
         const resp = await usePutEmploye(JSON.stringify(userData), employeId);
-        console.log(userData)
     }
 
     const deleteEmploye = async (event) => {

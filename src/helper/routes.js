@@ -2,6 +2,7 @@ export const API_REST                = '127.0.0.1:8087'
 export const API_IMAGE               = `http://${API_REST}`
 export const API_ROL                 = `http://${API_REST}/user/rol/list`;
 export const API_BRANCHS             = `http://${API_REST}/branch/list`;
+export const API_CLIENT_GET          = `http://${API_REST}/user/web/user`;
 
 export const API_LOGIN               = `http://${API_REST}/user/api/token/`;
 export const API_MENU                = `http://${API_REST}/menu/menu`;

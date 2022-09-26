@@ -1,8 +1,11 @@
+import { useState } from 'react';
 import { ClientProfile, ScannerQR } from '../../../components';
 import { ExchangeCards, ExchangeTable } from '../containers';
 import './Exchange.css';
 
 export const Exchange = () => {
+    const [clientData, setClientData] = useState({});
+    const [award, setAward] = useState();
     return (
         <section className="Exchange">
             <div className="Exchange-container">
@@ -12,22 +15,22 @@ export const Exchange = () => {
                         <div className="awards">
                             <h2>Lista de premios</h2>
                             <div className="awards-scroll-container">
-                                <ExchangeCards/>
+                                <ExchangeCards setAward={setAward}/>
                             </div>
                         </div>
                         <div className="information-container">
                             <div className="qr-escanner">
                                 <h2>Escanear QR</h2>
-                                <ScannerQR />
+                                <ScannerQR  setClientData={setClientData}/>
                             </div>
                             <div className="user-profile">
                                 <h2>Perfil del usuario</h2>
-                                <ClientProfile />
+                                <ClientProfile clientData={clientData}/>
                             </div>
                         </div>
                         <div className="exchange-points">
                             <h2>Canjear puntos</h2>
-                            <ExchangeTable />
+                            <ExchangeTable award={award} clientData={clientData}/>
                         </div>
                     </div>
                 </div>

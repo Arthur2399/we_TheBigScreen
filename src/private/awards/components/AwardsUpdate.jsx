@@ -9,7 +9,7 @@ import { useGetAwards, usePutAwards } from '../hooks/usePutAwards';
 
 export const AwardsUpdate = ({awardId}) => {
 
-    const [isOpenModal, openModal, closeModal] = useModal(false);
+    //const [isOpenModal, openModal, closeModal] = useModal(false);
     
     //FORMULARIO
     const [name, setName] = useState('');
@@ -39,14 +39,12 @@ export const AwardsUpdate = ({awardId}) => {
             photo_award: image,
             image_change: imageChange,
         }
-        console.log(awarData);
-        const resp = await usePutAwards(JSON.stringify(awarData));
+        const resp = await usePutAwards(JSON.stringify((awarData),awardId));
     }
 
     useEffect(() => {
         async function fetchData() {
             const respAwards = await useGetAwards(awardId);
-
             setName(respAwards.name_award);
             setPoints(respAwards.number_award);
             setImage(respAwards.photo_award);

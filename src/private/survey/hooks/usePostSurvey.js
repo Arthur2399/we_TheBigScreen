@@ -12,7 +12,6 @@ export const usePostSurvey = async (surveydata) => {
         body: surveydata
     };
     const response = await fetch(`${API_SURVEY_CREATE}`, options)
-    console.log(response.status)
     if(response.status ==400){
         const bad= await response.json(); 
         alert(JSON.stringify(bad.email[0]));

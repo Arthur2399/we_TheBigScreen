@@ -56,7 +56,6 @@ export const MovieCreate = () => {
             category_movie_id: categorySelect,
             actor_movie_id: actorSelect,
         }
-        console.log(movieData)
         const resp = await usePostMovie(JSON.stringify(movieData));
     }
 

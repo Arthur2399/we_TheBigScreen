@@ -18,11 +18,11 @@ export const Accredit = () => {
                         <div className="information-container">
                             <div className="qr-escanner">
                                 <h2>Escanear QR</h2>
-                                <ScannerQR />
+                                {/* <ScannerQR /> */}
                             </div>
                             <div className="user-profile">
                                 <h2>Perfil del usuario</h2>
-                                <ClientProfile />
+                                {/* <ClientProfile /> */}
                             </div>
                         </div>
                         <div className="accredit-points">

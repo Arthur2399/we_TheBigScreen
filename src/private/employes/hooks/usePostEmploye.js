@@ -12,7 +12,6 @@ export const usePostEmploye = async (employedata) => {
         body: employedata
     };
     const response = await fetch(`${API_EMPLOYED_CREATE}`, options)
-    console.log(response.status)
     if(response.status ==400){
         const bad= await response.json(); 
         alert(JSON.stringify(bad.email[0]));

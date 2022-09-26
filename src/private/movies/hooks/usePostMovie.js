@@ -12,7 +12,6 @@ export const usePostMovie = async (movieData) => {
         body: movieData
     };
     const response = await fetch(`${API_MOVIES_CREATE}`, options)
-    console.log(response.status)
     if(response.status ==400){
         const bad= await response.json(); 
         alert(JSON.stringify(bad.email[0]));

@@ -4,10 +4,12 @@ import { ExchangeCard } from '../components';
 import { useGetAwardsList } from '../hooks/useGetAwards';
 import './ExchangeCards.css';
 
-export const ExchangeCards = () => {
+export const ExchangeCards = ({setAward}) => {
 
     const [cardsAwards, setCardsAwards] = useState([]);
     const [awardId, setAwardId] = useState()
+     
+    setAward(awardId)
 
 
     useEffect(() => {

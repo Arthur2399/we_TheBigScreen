@@ -14,7 +14,6 @@ const handleSubmit = async (event) => {
         question5: event.target.elements.cinco.value,
     }
     const resp = await usePostSurvey(JSON.stringify(surveyData));
-    //console.log(surveyData)
 }
 
 export const SurveyCreate = () => {

@@ -77,7 +77,6 @@ export const MovieUpdate = ({movieId}) => {
             photo_change: photoChange,
         }
        const resp = await usePutMovie(JSON.stringify(movieData), movieId);
-       console.log(movieData)
     }
 
     useEffect(() => {
