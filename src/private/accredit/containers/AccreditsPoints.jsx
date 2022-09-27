@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { API_IMAGE } from '../../../helper/routes';
 import { useGetBillID } from '../hooks/useGetBillid';
+import { usePostAcredit } from '../hooks/usePostAccredit';
 import './AccreditsPoints.css';
 
 export const AccreditsPoints = ({ billboard, clientData }) => {
@@ -8,6 +9,17 @@ export const AccreditsPoints = ({ billboard, clientData }) => {
     console.log(billboard)
     const [funciones, setFunciones] = useState([])
     const [sala, setSala] = useState()
+
+
+    const postPOSCredits = async (event)=> {
+        event.preventDefault();
+        const dataAcredit ={
+            timetable_ticket_id: parseInt(event.target.elements.selectHour.value),
+            credits_ticket: parseInt(clientData.creidt_id),
+        }
+        //console.log(dataAcredit)
+       const resp = await usePostAcredit(JSON.stringify(dataAcredit))
+    }
 
     useEffect(() => {
         async function fetchData() {
@@ -22,8 +34,10 @@ export const AccreditsPoints = ({ billboard, clientData }) => {
             }
     }, [billboard])
 
+
+
     return (
-        <form className="accredit-points-container">
+        <form onSubmit={postPOSCredits} className="accredit-points-container">
 
 
             <div className="Billboard-cards animate__animated animate__fadeIn">
@@ -39,7 +53,7 @@ export const AccreditsPoints = ({ billboard, clientData }) => {
             }
             <div className="accredit-grid">
                 <span>Función:</span>
-                <select name="select" className="combobox-container">
+                <select name="selectHour" className="combobox-container">
                     {funciones.map((bill, i) => (
                         <option value={bill.id} key={i}>{bill.time}</option>
                     ))}
@@ -54,7 +68,7 @@ export const AccreditsPoints = ({ billboard, clientData }) => {
                 }
 
             </div>
-            <button className="accredit-points-total-button">Acreditar</button>
+            <button type='submit' className="accredit-points-total-button">Acreditar</button>
         </form>
     )
 }
