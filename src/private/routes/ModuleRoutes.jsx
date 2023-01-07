@@ -9,6 +9,7 @@ import { Menu } from '../navbar/containers';
 import { Movies } from '../movies';
 import { Reports } from '../reports';
 import { Surveys } from '../survey';
+import { StartGame } from '../game/pages/StartGame';
 
 export const ModuleRoutes = () => {
   return (
@@ -24,6 +25,7 @@ export const ModuleRoutes = () => {
         <Route path="survey" element={<Surveys />} />
         <Route path="awards" element={<Awards />} />
         <Route path="password-change" element={<ChangePassword />} />
+        <Route path="start-game" element={<StartGame />} />
         <Route path="/*" element={<Navigate to="home"/>} />
       </Routes>
     </>

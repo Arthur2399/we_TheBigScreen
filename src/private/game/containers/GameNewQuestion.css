@@ -1,0 +1,45 @@
+@import '/src/styles/_vars.css';
+
+.new-question-info {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.new-question-info img {
+    width: 100px;
+}
+
+.new-question-options {
+    text-align: center;
+    margin-left: 10px;
+    margin-top: 15px;
+}
+
+.new-question-options div {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.new-question-options h2 {
+    font-size: 15px;
+    margin: 0;
+}
+
+.new-question-options p {
+    font-size: 12px;
+    width: 170px;
+    margin: 0;
+}
+
+.new-question-create-button {
+    background-color: var(--hospital-red);
+    border-radius: 8px;
+    border: none;
+    color: var(--white);
+    width: 130px;
+    cursor: pointer;
+    font-size: var(--sm);
+    font-weight: bold;
+    height: 30px;
+    margin-top: 10px;
+}

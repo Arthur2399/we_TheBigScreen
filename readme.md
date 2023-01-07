@@ -1,0 +1,1 @@
+npm add react-qr-reader --legacy-peer-deps

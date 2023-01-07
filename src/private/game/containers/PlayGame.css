@@ -1,0 +1,36 @@
+@import '/src/styles/_vars.css';
+
+.Play-game {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.Play-game span {
+    align-self: flex-start;
+    margin-left: 12px;
+    margin-top: 10px;
+    font-size: 13px;
+}
+
+.Play-game select {
+    width: 300px;
+    margin-top: 10px;
+    margin-left: 12px;
+    align-self: flex-start;
+    background: rgb(229, 228, 228);
+}
+
+.Play-game button {
+    background-color: var(--hospital-red);
+    border-radius: 8px;
+    border: none;
+    color: var(--white);
+    width: 130px;
+    cursor: pointer;
+    font-size: var(--sm);
+    font-weight: bold;
+    height: 30px;
+    margin-top: 10px;
+}
