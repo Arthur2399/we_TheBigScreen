@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { GameInfo } from '../containers/GameInfo';
 import { GameNewQuestion } from '../containers/GameNewQuestion';
@@ -6,16 +7,18 @@ import './StartGame.css';
 
 export const StartGame = () => {
 
+    const [idRoom, setIdRoom] = useState('')
+
     const navigate = useNavigate();
     const location = useLocation();
 
     const onNavigateRoom = () => {
-        navigate('room')
+        navigate(`room/${idRoom}`)
     }
 
     return (
         <>
-            {location.pathname === "/game/room"
+            {location.pathname.includes('room')
                 ? <Outlet />
                 : <section className="Game">
                     <div className="Game-container">
@@ -32,7 +35,7 @@ export const StartGame = () => {
                                     </div>
                                     <div className="Game-play">
                                         <h1>Jugar trivia</h1>
-                                        <PlayGame onNavigateRoom={onNavigateRoom} />
+                                        <PlayGame onNavigateRoom={onNavigateRoom} setIdRoom={setIdRoom} />
                                     </div>
                                 </div>
 
@@ -52,7 +55,6 @@ export const StartGame = () => {
                     </div>
                 </section>
             }
-
         </>
     )
 }

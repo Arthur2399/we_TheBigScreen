@@ -16,7 +16,7 @@ export const ModuleRoutes = () => {
   const location = useLocation();
   return (
     <>
-      {location.pathname === "/game/room"
+      {location.pathname.includes('room')
         ? <></>
         : <Menu />
       }
@@ -31,7 +31,7 @@ export const ModuleRoutes = () => {
         <Route path="awards" element={<Awards />} />
         <Route path="password-change" element={<ChangePassword />} />
         <Route path="game" element={<StartGame />} >
-          <Route path="room" element={<LobbyGame />} />
+          <Route path="room/:id" element={<LobbyGame />} />
         </Route>
         <Route path="/*" element={<Navigate to="home" />} />
       </Routes>
