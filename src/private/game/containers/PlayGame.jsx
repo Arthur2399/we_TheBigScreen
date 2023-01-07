@@ -1,6 +1,6 @@
 import './PlayGame.css';
 
-export const PlayGame = () => {
+export const PlayGame = ( {onNavigateRoom}) => {
     return (
         <div className='Play-game'>
             <span>Sala de cine:</span>
@@ -9,7 +9,7 @@ export const PlayGame = () => {
                 <option value="value2">Sala 1</option>
                 <option value="value3">Sala 15</option>
             </select>
-            <button >Jugar</button>
+            <button onClick={onNavigateRoom}>Jugar</button>
         </div>
     )
 }

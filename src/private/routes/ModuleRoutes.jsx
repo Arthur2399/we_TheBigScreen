@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import { Accredit } from '../accredit';
 import { Awards } from '../awards';
 import { Branch } from '../branch';
@@ -10,11 +10,16 @@ import { Movies } from '../movies';
 import { Reports } from '../reports';
 import { Surveys } from '../survey';
 import { StartGame } from '../game/pages/StartGame';
+import { LobbyGame } from '../game/pages/LobbyGame';
 
 export const ModuleRoutes = () => {
+  const location = useLocation();
   return (
     <>
-      <Menu />
+      {location.pathname === "/game/room"
+        ? <></>
+        : <Menu />
+      }
       <Routes>
         <Route path="accredit" element={<Accredit />} />
         <Route path="home" element={<Branch />} />
@@ -25,8 +30,10 @@ export const ModuleRoutes = () => {
         <Route path="survey" element={<Surveys />} />
         <Route path="awards" element={<Awards />} />
         <Route path="password-change" element={<ChangePassword />} />
-        <Route path="start-game" element={<StartGame />} />
-        <Route path="/*" element={<Navigate to="home"/>} />
+        <Route path="game" element={<StartGame />} >
+          <Route path="room" element={<LobbyGame />} />
+        </Route>
+        <Route path="/*" element={<Navigate to="home" />} />
       </Routes>
     </>
   )
