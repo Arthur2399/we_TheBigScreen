@@ -1,0 +1,118 @@
+.GameQuestion{
+    font-family: 'Quicksand', sans-serif;
+    margin: 0;
+    width: 100%;
+    height: 100vh;
+    background-size: 300% 300%;
+    background-image: linear-gradient(-45deg,
+            rgba(59, 173, 227, 1) 0%,
+            rgba(87, 111, 230, 1) 25%,
+            rgba(152, 68, 183, 1) 51%,
+            rgba(255, 53, 127, 1) 100%);
+    animation: AnimateBG 20s ease infinite;
+}
+
+@keyframes AnimateBG {
+    0% {
+        background-position: 0% 50%
+    }
+
+    50% {
+        background-position: 100% 50%
+    }
+
+    100% {
+        background-position: 0% 50%
+    }
+}
+
+
+.GameQuestion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#logo {
+    margin-top: 20px;
+    width: 300px;
+}
+
+.GameQuestion-container {
+    margin-top: 20px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    height: 80vh;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.GameQuestion-container h1 {
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-bottom: 70px;
+    font-size: 35px;
+    text-align: center;
+}
+
+.GameQuestion-Answer {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 30px;
+}
+
+.Answer-container {
+    display: flex;
+    align-items: center;
+    background: white;
+    border-radius: 30px;
+    padding: 6px;
+}
+
+.Answer-container span {
+    font-size: 25px;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.Answer-container div {
+    background: #3AB0FF;
+    width: 50px;
+    height: 50px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Answer-container div img {
+    width: 20px;
+}
+
+.GameQuestion-time {
+    position: absolute;
+    background: #53BF9D;
+    width: 200px;
+    height: 200px;
+    right: 0;
+    bottom: -0;
+    border-radius: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 60px;
+    margin-bottom: 20px;
+}
+
+.GameQuestion-time span {
+    font-size: 100px;
+    color: white;
+
+}
