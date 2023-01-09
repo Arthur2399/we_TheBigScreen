@@ -1,31 +1,39 @@
 import { useEffect, useState } from 'react';
-import ReactAudioPlayer from 'react-audio-player';
 import { Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
+import ReactAudioPlayer from 'react-audio-player';
+import { API_IMAGE } from '../../../helper/routes';
 import logotbs from '/assets/logos/tbs_logo.svg'
-import qr from '/assets/logos/qr.svg'
 import apple from '/assets/icons/Apple.svg'
 import google from '/assets/icons/Google.png'
 import sound from '/assets/music/Ticklish.mp3'
 import './LobbyGame.css';
+import { useGetUsers } from '../hooks/useGetUsers';
 
 export const LobbyGame = () => {
 
-    const [timer, setTimer] = useState("03:00")
-    const [animateContainer, setanimateContainer] = useState("animate__tada")
+    const [timer, setTimer] = useState("03:00");
+    const [roomData, setRoomData] = useState({})
+    const [users, setUsers] = useState([])
+    console.log(users)
+    const [animateContainer, setanimateContainer] = useState("animate__tada");
     const location = useLocation();
     const navigate = useNavigate();
     const { id } = useParams();
+
 
     const onNavigateQuestion = () => {
         navigate("question/1");
     }
 
     useEffect(() => {
+        const room = JSON.parse(localStorage.getItem("room"));
+        setRoomData(room)
         function countdown(minutes, seconds) {
             var time = minutes * 60 + seconds;
             var interval = setInterval(function () {
                 if (time == 0) {
                     setTimeout(function () {
+                        //PETICIONS
                         onNavigateQuestion()
                     }, 10);
                     clearInterval(interval);
@@ -40,10 +48,7 @@ export const LobbyGame = () => {
             }, 1000);
         }
         countdown(3, 0);
-    }, [])
 
-
-    useEffect(() => {
         var totalTime = 5;
         const updateClock = () => {
             if (totalTime == 0) {
@@ -59,6 +64,14 @@ export const LobbyGame = () => {
         updateClock();
     }, [])
 
+    useEffect(() => {
+        const fetchData = async () => {
+            const resp = await useGetUsers(roomData.room_number)
+            setUsers(resp.resp);
+        }
+        fetchData();
+    }, [animateContainer])
+
 
 
     return (
@@ -71,16 +84,17 @@ export const LobbyGame = () => {
                         <div className="GameLobby-container-qr">
                             <span>Escanea el codigo QR</span>
                             <div className=" GameLobby-qr-background animate__animated animate__pulse">
-                                <img src={qr} alt="" />
+                                <img src={`${API_IMAGE}${roomData.room_qr}`} alt="qr" />
                             </div>
-                            <h1 className='animate__animated animate__flash'>{timer}</h1>
+                            <h1 className='animate__animated animate__flash'>{roomData.room_number}</h1>
                         </div>
                         <div className={`GameLobby-container-player animate__animated ${animateContainer}`}>
                             <h1>Jugadores</h1>
                             <div className="GameLobby-container-players">
-                                <span>Arthur Chavez</span>
-                                <span>Miguel Pino</span>
-                                <span>Fausto Andino</span>
+                                {users.map((user) => (
+                                    <span key={user.room_player_full}>{user.room_player_full}</span>
+                                ))
+                                }
                             </div>
                         </div>
                     </div>
@@ -99,7 +113,11 @@ export const LobbyGame = () => {
                     /* controls */
                     />
                 </section>
+
             }
+            <div className="GameQuestion-time timeLobby">
+                <span>{timer}</span>
+            </div>
         </>
     )
 }

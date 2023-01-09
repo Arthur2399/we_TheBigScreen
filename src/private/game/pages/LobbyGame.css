@@ -140,3 +140,6 @@
     --animate-duration: 1s;
   }
   
+  .timeLobby span{
+    font-size: 75px !important;
+  }

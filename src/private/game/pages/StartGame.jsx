@@ -18,8 +18,13 @@ export const StartGame = () => {
             "room_room": idRoom,
             "room_branch": 1
         }
-        const resp = await usePostRoom(JSON.stringify(data));
-        navigate(`room/${idRoom}`)
+        const {resp,response} = await usePostRoom(JSON.stringify(data));
+        if(response.status == 201){
+            window.localStorage.setItem("room",JSON.stringify(resp));
+            navigate(`room/${idRoom}`)
+        }else{
+            alert("Hubo un error");
+        }
     }
 
     return (
