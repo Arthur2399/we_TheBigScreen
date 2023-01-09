@@ -4,8 +4,28 @@ import cuadrado from '/assets/icons/cuadrado.png'
 import triangulo from '/assets/icons/triangulo.png'
 import circulo from '/assets/icons/circulo.png'
 import rombo from '/assets/icons/rombo.png'
+import { useEffect, useState } from 'react';
 
 export const QuestionGame = () => {
+
+    const [timer, setTimer] = useState(0);
+
+    useEffect(() => {
+        var totalTime = 20;
+        const updateClock = () => {
+            if (totalTime == 0) {
+                alert("fin del tiempo")
+            } else {
+                totalTime -= 1;
+                setTimeout(updateClock, 1000);
+                setTimer(totalTime);
+            }
+        }
+
+        updateClock();
+    }, [])
+
+
     return (
         <>
             <section className="GameQuestion">
@@ -41,7 +61,7 @@ export const QuestionGame = () => {
                 </div>
             </section>
             <div className="GameQuestion-time">
-                <span id="timer"></span>
+                <span>{timer}</span>
             </div>
         </>
     )
