@@ -1,7 +1,6 @@
-import { useEffect } from 'react';
 import './PlayGame.css';
 
-export const PlayGame = ({ onNavigateRoom, setIdRoom }) => {
+export const PlayGame = ({ onNavigateRoom, setIdRoom}) => {
 
     const salas = [
         {
@@ -17,10 +16,6 @@ export const PlayGame = ({ onNavigateRoom, setIdRoom }) => {
             value: 3
         },
     ]
-
-    useEffect(() => {
-
-    }, [])
 
     return (
         <div className='Play-game'>

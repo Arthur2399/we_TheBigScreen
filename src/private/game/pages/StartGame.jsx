@@ -3,16 +3,22 @@ import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { GameInfo } from '../containers/GameInfo';
 import { GameNewQuestion } from '../containers/GameNewQuestion';
 import { PlayGame } from '../containers/PlayGame';
+import { usePostRoom } from '../hooks/usePostRoom';
 import './StartGame.css';
 
 export const StartGame = () => {
 
-    const [idRoom, setIdRoom] = useState('')
-
     const navigate = useNavigate();
     const location = useLocation();
 
-    const onNavigateRoom = () => {
+    const [idRoom, setIdRoom] = useState('')
+
+    const onNavigateRoom = async () => {
+        const data = {
+            "room_room": idRoom,
+            "room_branch": 1
+        }
+        const resp = await usePostRoom(JSON.stringify(data));
         navigate(`room/${idRoom}`)
     }
 
@@ -35,7 +41,7 @@ export const StartGame = () => {
                                     </div>
                                     <div className="Game-play">
                                         <h1>Jugar trivia</h1>
-                                        <PlayGame onNavigateRoom={onNavigateRoom} setIdRoom={setIdRoom} />
+                                        <PlayGame onNavigateRoom={onNavigateRoom} setIdRoom={setIdRoom} idRoom={idRoom} />
                                     </div>
                                 </div>
 

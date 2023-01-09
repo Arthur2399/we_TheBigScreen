@@ -1,19 +1,17 @@
-export const usePostRoom = async (employedata) => {
+import { API_GAME_ROOM_POST } from "../../../helper/routes";
+
+export const usePostRoom = async (data) => {
     const bearer = JSON.parse(localStorage.getItem('jwt'));
-    
+
     const options = {
         method: 'POST',
         headers: {
-           'Content-Type': 'application/json',
-           Authorization: 'Bearer '+ bearer.sessiontoken,
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + bearer.sessiontoken,
         },
-        body: employedata
+        body: data
     };
-    const response = await fetch(`${API_EMPLOYED_CREATE}`, options)
-    if(response.status ==400){
-        const bad= await response.json(); 
-        alert(JSON.stringify(bad.email[0]));
-    }else{
-      window.location.reload(true);
-    }
+    const response = await fetch(`${API_GAME_ROOM_POST}`, options)
+    const resp = await response.json();
+    return resp
 }
