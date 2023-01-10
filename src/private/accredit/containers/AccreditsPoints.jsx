@@ -6,7 +6,6 @@ import './AccreditsPoints.css';
 
 export const AccreditsPoints = ({ billboard, clientData }) => {
 
-    console.log(billboard)
     const [funciones, setFunciones] = useState([])
     const [sala, setSala] = useState()
 
@@ -17,7 +16,6 @@ export const AccreditsPoints = ({ billboard, clientData }) => {
             timetable_ticket_id: parseInt(event.target.elements.selectHour.value),
             credits_ticket: parseInt(clientData.creidt_id),
         }
-        //console.log(dataAcredit)
        const resp = await usePostAcredit(JSON.stringify(dataAcredit))
     }
 

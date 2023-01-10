@@ -12,6 +12,7 @@ import { Surveys } from '../survey';
 import { StartGame } from '../game/pages/StartGame';
 import { LobbyGame } from '../game/pages/LobbyGame';
 import { QuestionGame } from '../game/pages/QuestionGame';
+import { TopPlayersGame } from '../game/pages/TopPlayersGame';
 
 export const ModuleRoutes = () => {
   const location = useLocation();
@@ -34,6 +35,7 @@ export const ModuleRoutes = () => {
         <Route path="game" element={<StartGame />} >
           <Route path="room/:id" element={<LobbyGame />} >
             <Route path="question/:id" element={<QuestionGame />} />
+            <Route path="topPlayers" element={<TopPlayersGame />} />
           </Route>
         </Route>
         <Route path="/*" element={<Navigate to="home" />} />

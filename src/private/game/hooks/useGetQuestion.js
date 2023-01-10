@@ -1,6 +1,6 @@
-import { API_GAME_ROOM_USERS } from "../../../helper/routes";
+import { API_GAME_ROOM_QUESTIONS } from "../../../helper/routes";
 
-export const useGetUsers = async (roomNumber) => {
+export const useGetQuestions = async (roomNumber) => {
     const bearer = JSON.parse(localStorage.getItem('jwt'));
 
     const options = {
@@ -10,7 +10,7 @@ export const useGetUsers = async (roomNumber) => {
             Authorization: 'Bearer ' + bearer.sessiontoken,
         },
     };
-    const response = await fetch(`${API_GAME_ROOM_USERS}/${roomNumber}`, options)
+    const response = await fetch(`${API_GAME_ROOM_QUESTIONS}${roomNumber}`, options)
     const resp = await response.json();
     return {resp,response}
 }

@@ -9,6 +9,7 @@ import sound from '/assets/music/Ticklish.mp3'
 import { useGetUsers } from '../hooks/useGetUsers';
 import { useMqttGame } from '../hooks/usePostGame';
 import './LobbyGame.css';
+import { useGetQuestions } from '../hooks/useGetQuestion';
 
 export const LobbyGame = () => {
 
@@ -25,12 +26,17 @@ export const LobbyGame = () => {
     }
 
     useEffect(() => {
+        window.localStorage.setItem("roomId", id)
         const room = JSON.parse(localStorage.getItem("room"));
         setRoomData(room)
         const mqttGame = async () => {
             const resp = await useMqttGame("StartGame", room.room_number)
-            console.log(resp);
         }
+        const fetchData = async () => {
+            const respQuestion = await useGetQuestions(room.room_number)
+            window.localStorage.setItem("question",JSON.stringify(respQuestion));
+        }
+        fetchData();
         if (!location.pathname.includes("question")) {
             function countdown(minutes, seconds) {
                 var time = minutes * 60 + seconds;
@@ -51,7 +57,7 @@ export const LobbyGame = () => {
                     time--;
                 }, 1000);
             }
-            countdown(0, 30);
+            countdown(3, 0);
 
             var totalTime = 5;
             const updateClock = () => {
@@ -79,9 +85,10 @@ export const LobbyGame = () => {
         fetchData();
     }, [animateContainer])
 
+
     return (
         <>
-            {location.pathname.includes("question")
+            {location.pathname.includes("question") || location.pathname.includes("topPlayers")
                 ? <Outlet />
                 : <section className="GameLobby">
                     <img id="logo" src={logotbs} alt="" />
@@ -121,7 +128,7 @@ export const LobbyGame = () => {
                 </section>
 
             }
-            {location.pathname.includes("question")
+            {location.pathname.includes("question") || location.pathname.includes("topPlayers")
                 ? <></>
                 : <div className="GameQuestion-time timeLobby">
                     <span>{timer}</span>

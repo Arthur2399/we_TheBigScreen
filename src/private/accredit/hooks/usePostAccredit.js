@@ -14,7 +14,6 @@ export const usePostAcredit = async (acreditdata) => {
     const response = await fetch(`${API_ACCREDIT_POST}`, options)
     if(response.status == 201){
         const bad= await response.json();
-        console.log(bad)
         alert(JSON.stringify(bad));
     }else{
      // window.location.reload(true);

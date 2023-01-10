@@ -13,6 +13,5 @@ export const usePostRoom = async (data) => {
     };
     const response = await fetch(`${API_GAME_ROOM_POST}`, options)
     const resp = await response.json();
-    console.log(response.status)
     return {resp,response}
 }

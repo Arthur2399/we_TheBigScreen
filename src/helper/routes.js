@@ -36,6 +36,7 @@ export const API_ACCREDIT_POST       = `http://${API_REST}/points/ticket/create`
 
 export const API_GAME_ROOM_POST      = `http://${API_REST}/game/room`;
 export const API_GAME_ROOM_USERS     = `http://${API_REST}/game/playerList/`;
+export const API_GAME_ROOM_QUESTIONS = `http://${API_REST}/game/QuestionList/`;
 export const API_GAME_START          = `http://${API_REST}/mqtt/send`;
 
 export const API_BILLBOARD           = `http://${API_REST}/movies/billboard`;

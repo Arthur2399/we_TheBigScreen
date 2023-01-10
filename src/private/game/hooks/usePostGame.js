@@ -1,15 +1,12 @@
 import { API_GAME_START } from "../../../helper/routes";
 
 export const useMqttGame = async (mensaje, room_number) => {
-    console.log(room_number)
     const bearer = JSON.parse(localStorage.getItem('jwt'));
 
     const data = {
         "message": mensaje,
         "topic": room_number,
     }
-
-    console.log(JSON.stringify(data));
 
     const options = {
         method: 'POST',

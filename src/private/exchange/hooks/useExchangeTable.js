@@ -61,7 +61,6 @@ export const useExchangeTable = (award,clientData) => {
             },
             detail:details,
         }
-        console.log(dataPOS);
         const resp = await usePostExchange(JSON.stringify(dataPOS));
     }
 
