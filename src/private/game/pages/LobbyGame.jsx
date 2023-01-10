@@ -6,8 +6,9 @@ import logotbs from '/assets/logos/tbs_logo.svg'
 import apple from '/assets/icons/Apple.svg'
 import google from '/assets/icons/Google.png'
 import sound from '/assets/music/Ticklish.mp3'
-import './LobbyGame.css';
 import { useGetUsers } from '../hooks/useGetUsers';
+import { useMqttGame } from '../hooks/usePostGame';
+import './LobbyGame.css';
 
 export const LobbyGame = () => {
 
@@ -19,21 +20,24 @@ export const LobbyGame = () => {
     const navigate = useNavigate();
     const { id } = useParams();
 
-
     const onNavigateQuestion = () => {
         navigate("question/1");
     }
 
     useEffect(() => {
+        const room = JSON.parse(localStorage.getItem("room"));
+        setRoomData(room)
+        const mqttGame = async () => {
+            const resp = await useMqttGame("StartGame", room.room_number)
+            console.log(resp);
+        }
         if (!location.pathname.includes("question")) {
-            const room = JSON.parse(localStorage.getItem("room"));
-            setRoomData(room)
             function countdown(minutes, seconds) {
                 var time = minutes * 60 + seconds;
                 var interval = setInterval(function () {
                     if (time == 0) {
                         setTimeout(function () {
-                            //PETICIONS
+                            mqttGame();
                             onNavigateQuestion()
                         }, 10);
                         clearInterval(interval);
@@ -47,7 +51,7 @@ export const LobbyGame = () => {
                     time--;
                 }, 1000);
             }
-            countdown(3, 0);
+            countdown(0, 30);
 
             var totalTime = 5;
             const updateClock = () => {
@@ -74,8 +78,6 @@ export const LobbyGame = () => {
         }
         fetchData();
     }, [animateContainer])
-
-
 
     return (
         <>
