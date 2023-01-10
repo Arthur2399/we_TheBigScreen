@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 
 export const QuestionGame = () => {
 
-    const [timer, setTimer] = useState(0);
+    const [timerQuestion, setTimerQuestion] = useState(0);
 
     useEffect(() => {
         var totalTime = 20;
@@ -18,13 +18,11 @@ export const QuestionGame = () => {
             } else {
                 totalTime -= 1;
                 setTimeout(updateClock, 1000);
-                setTimer(totalTime);
+                setTimerQuestion(totalTime);
             }
         }
-
         updateClock();
     }, [])
-
 
     return (
         <>
@@ -61,7 +59,7 @@ export const QuestionGame = () => {
                 </div>
             </section>
             <div className="GameQuestion-time">
-                <span>{timer}</span>
+                <span>{timerQuestion}</span>
             </div>
         </>
     )

@@ -14,7 +14,6 @@ export const LobbyGame = () => {
     const [timer, setTimer] = useState("03:00");
     const [roomData, setRoomData] = useState({})
     const [users, setUsers] = useState([])
-    console.log(users)
     const [animateContainer, setanimateContainer] = useState("animate__tada");
     const location = useLocation();
     const navigate = useNavigate();
@@ -26,48 +25,52 @@ export const LobbyGame = () => {
     }
 
     useEffect(() => {
-        const room = JSON.parse(localStorage.getItem("room"));
-        setRoomData(room)
-        function countdown(minutes, seconds) {
-            var time = minutes * 60 + seconds;
-            var interval = setInterval(function () {
-                if (time == 0) {
-                    setTimeout(function () {
-                        //PETICIONS
-                        onNavigateQuestion()
-                    }, 10);
-                    clearInterval(interval);
-                }
-                var minutes = Math.floor(time / 60);
-                if (minutes < 10) minutes = "0" + minutes;
-                var seconds = time % 60;
-                if (seconds < 10) seconds = "0" + seconds;
-                var text = minutes + ':' + seconds;
-                setTimer(text)
-                time--;
-            }, 1000);
-        }
-        countdown(3, 0);
-
-        var totalTime = 5;
-        const updateClock = () => {
-            if (totalTime == 0) {
-                totalTime = 5
-                setTimeout(updateClock, 1000);
-                setanimateContainer("animate__tada")
-            } else {
-                setanimateContainer("")
-                totalTime -= 1;
-                setTimeout(updateClock, 1000);
+        if (!location.pathname.includes("question")) {
+            const room = JSON.parse(localStorage.getItem("room"));
+            setRoomData(room)
+            function countdown(minutes, seconds) {
+                var time = minutes * 60 + seconds;
+                var interval = setInterval(function () {
+                    if (time == 0) {
+                        setTimeout(function () {
+                            //PETICIONS
+                            onNavigateQuestion()
+                        }, 10);
+                        clearInterval(interval);
+                    }
+                    var minutes = Math.floor(time / 60);
+                    if (minutes < 10) minutes = "0" + minutes;
+                    var seconds = time % 60;
+                    if (seconds < 10) seconds = "0" + seconds;
+                    var text = minutes + ':' + seconds;
+                    setTimer(text)
+                    time--;
+                }, 1000);
             }
+            countdown(3, 0);
+
+            var totalTime = 5;
+            const updateClock = () => {
+                if (totalTime == 0) {
+                    totalTime = 5
+                    setTimeout(updateClock, 1000);
+                    setanimateContainer("animate__tada")
+                } else {
+                    setanimateContainer("")
+                    totalTime -= 1;
+                    setTimeout(updateClock, 1000);
+                }
+            }
+            updateClock();
         }
-        updateClock();
     }, [])
 
     useEffect(() => {
         const fetchData = async () => {
-            const resp = await useGetUsers(roomData.room_number)
-            setUsers(resp.resp);
+            if (!location.pathname.includes("question")) {
+                const resp = await useGetUsers(roomData.room_number)
+                setUsers(resp.resp);
+            }
         }
         fetchData();
     }, [animateContainer])
@@ -112,12 +115,17 @@ export const LobbyGame = () => {
                         autoPlay
                     /* controls */
                     />
+
                 </section>
 
             }
-            <div className="GameQuestion-time timeLobby">
-                <span>{timer}</span>
-            </div>
+            {location.pathname.includes("question")
+                ? <></>
+                : <div className="GameQuestion-time timeLobby">
+                    <span>{timer}</span>
+                </div>
+            }
+
         </>
     )
 }
