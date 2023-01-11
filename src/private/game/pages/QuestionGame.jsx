@@ -13,8 +13,10 @@ export const QuestionGame = () => {
     const [timerQuestion, setTimerQuestion] = useState(0);
     const id = localStorage.getItem("roomId")
 
+    const questionsID = parseInt(localStorage.getItem("questionID"))
     const questions = JSON.parse(localStorage.getItem("question"))
-    const question = questions.resp[0]
+    const question = questions[questionsID]
+    console.log(question)
 
     const navigate = useNavigate();
 
@@ -31,8 +33,9 @@ export const QuestionGame = () => {
         var totalTime = 20;
         const updateClock = () => {
             if (totalTime == 0) {
-                onPlayersTop();
+                window.localStorage.setItem("questionID", questionsID + 1);
                 mqttGame()
+                onPlayersTop();
             } else {
                 totalTime -= 1;
                 setTimeout(updateClock, 1000);
@@ -76,9 +79,11 @@ export const QuestionGame = () => {
                     </div>
                 </div>
             </section>
-            <div className="GameQuestion-time">
-                <span>{timerQuestion}</span>
-            </div>
+            {location.pathname.includes("topPlayers")
+                ? <></>
+                : <div className="GameQuestion-time">
+                    <span>{timerQuestion}</span>
+                </div>}
         </>
     )
 }

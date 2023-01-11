@@ -34,7 +34,8 @@ export const LobbyGame = () => {
         }
         const fetchData = async () => {
             const respQuestion = await useGetQuestions(room.room_number)
-            window.localStorage.setItem("question",JSON.stringify(respQuestion));
+            window.localStorage.setItem("question",JSON.stringify(respQuestion.resp));
+            window.localStorage.setItem("questionID",0);
         }
         fetchData();
         if (!location.pathname.includes("question")) {
@@ -57,7 +58,7 @@ export const LobbyGame = () => {
                     time--;
                 }, 1000);
             }
-            countdown(3, 0);
+            countdown(0, 10);
 
             var totalTime = 5;
             const updateClock = () => {

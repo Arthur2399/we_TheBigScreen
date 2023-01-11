@@ -1,7 +1,62 @@
+import { useState } from 'react'
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useMqttGame } from '../hooks/usePostGame'
 import './TopPlayersGame.css'
 import logotbs from '/assets/logos/tbs_logo.svg'
 
 export const TopPlayersGame = () => {
+
+    const id = localStorage.getItem("roomId")
+    const idQuestion = localStorage.getItem("questionID")
+    const navigate = useNavigate()
+
+    const [topPlayers, setTopPlayers] = useState("5")
+
+    const onNextQuestion = () => {
+        navigate(`/game/room/${id}/question/${idQuestion}`)
+    }
+
+    const onWinnerGame = () => {
+        navigate(`/game/room/${id}/winner`)
+    }
+
+    useEffect(() => {
+        window.localStorage.setItem("roomId", id)
+        const room = JSON.parse(localStorage.getItem("room"));
+        const questions = JSON.parse(localStorage.getItem("question"))
+        const questionsID = parseInt(localStorage.getItem("questionID"))
+
+        const mqttGameNextQuestion = async () => {
+            const resp = await useMqttGame("NextQuestion", room.room_number)
+        }
+
+        const mqttGameEndGame = async () => {
+            const resp = await useMqttGame("EndQuestion", room.room_number)
+        }
+
+        var totalTime = 10;
+        const updateClock = () => {
+            if (totalTime == 0) {
+                if(questions.lenght <= questionsID){
+                    mqttGameNextQuestion()
+                    onNextQuestion();
+                } else{
+                    mqttGameEndGame();
+                    onWinnerGame();
+                }
+            } else {
+                totalTime -= 1;
+                setTimeout(updateClock, 1000);
+                setTopPlayers(totalTime);
+            }
+        }
+        updateClock();
+    }, [])
+
+
+
+
     return (
         <>
             <section className="TopPlayers">
@@ -60,7 +115,7 @@ export const TopPlayersGame = () => {
                     </div>
             </section>
             <div className="TopPlayers-time">
-                <span id="timer"></span>
+                <span>{topPlayers}</span>
             </div>
         </>
     )
