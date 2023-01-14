@@ -65,17 +65,20 @@
     margin-left: 15px;
     margin-bottom: 20px;
 }
+.Winners-moment:nth-child(1){
+    width: 80%;
+}
 .Winners-moment:nth-child(2){
-    width: 50%;
+    width: 70%;
 }
 .Winners-moment:nth-child(3){
     width: 60%;
 }
 .Winners-moment:nth-child(4){
-    width: 70%;
+    width: 50%;
 }
 .Winners-moment:nth-child(5){
-    width: 80%;
+    width: 40%;
 }
 
 .Winners-moment span{

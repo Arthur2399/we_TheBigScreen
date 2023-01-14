@@ -2,6 +2,10 @@ import './GameNewQuestion.css';
 
 import surveyControl from '/assets/logos/survey-control.svg';
 export const GameNewQuestion = () => {
+
+    const onCloseWindow = () => {
+    }
+
     return (
         <div className="new-question-info">
             <div className="new-question-options">
@@ -10,7 +14,7 @@ export const GameNewQuestion = () => {
                     divertido el juego
                 </p>
                 <div>
-                    <button className="new-question-create-button">
+                    <button onClick={onCloseWindow} className="new-question-create-button">
                         Nueva pregunta
                     </button>
                 </div>

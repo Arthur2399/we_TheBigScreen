@@ -34,8 +34,8 @@ export const LobbyGame = () => {
         }
         const fetchData = async () => {
             const respQuestion = await useGetQuestions(room.room_number)
-            window.localStorage.setItem("question",JSON.stringify(respQuestion.resp));
-            window.localStorage.setItem("questionID",0);
+            window.localStorage.setItem("question", JSON.stringify(respQuestion.resp));
+            window.localStorage.setItem("questionID", 0);
         }
         fetchData();
         if (!location.pathname.includes("question")) {
@@ -58,7 +58,7 @@ export const LobbyGame = () => {
                     time--;
                 }, 1000);
             }
-            countdown(0, 10);
+            countdown(0, 30);
 
             var totalTime = 5;
             const updateClock = () => {
@@ -89,7 +89,7 @@ export const LobbyGame = () => {
 
     return (
         <>
-            {location.pathname.includes("question") || location.pathname.includes("topPlayers")
+            {location.pathname.includes("question") || location.pathname.includes("topPlayers") || location.pathname.includes("winner")
                 ? <Outlet />
                 : <section className="GameLobby">
                     <img id="logo" src={logotbs} alt="" />
@@ -123,13 +123,13 @@ export const LobbyGame = () => {
                     <ReactAudioPlayer
                         src={sound}
                         autoPlay
-                    /* controls */
+                    /*controls */
                     />
 
                 </section>
 
             }
-            {location.pathname.includes("question") || location.pathname.includes("topPlayers")
+            {location.pathname.includes("question") || location.pathname.includes("topPlayers") || location.pathname.includes("winner")
                 ? <></>
                 : <div className="GameQuestion-time timeLobby">
                     <span>{timer}</span>

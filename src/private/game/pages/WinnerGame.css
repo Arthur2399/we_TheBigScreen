@@ -1,0 +1,67 @@
+.gameWinner {
+    font-family: 'Quicksand', sans-serif;
+    margin: 0;
+    width: 100%;
+    height: 100vh;
+    background-size: 300% 300%;
+    background-image: linear-gradient(-45deg,
+            rgba(59, 173, 227, 1) 0%,
+            rgba(87, 111, 230, 1) 25%,
+            rgba(152, 68, 183, 1) 51%,
+            rgba(255, 53, 127, 1) 100%);
+    animation: AnimateBG 20s ease infinite;
+}
+
+@keyframes AnimateBG {
+    0% {
+        background-position: 0% 50%
+    }
+
+    50% {
+        background-position: 100% 50%
+    }
+
+    100% {
+        background-position: 0% 50%
+    }
+}
+
+
+.gameWinner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#logo {
+    margin-top: 20px;
+    width: 300px;
+}
+
+.gameWinner-container {
+    margin-top: 20px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    height: 80vh;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+.gameWinner-container img{
+    width: 200px;
+    border-radius: 100px;
+}
+.gameWinner-container h1{
+    color: aliceblue;
+}
+.gameWinner-container h1:nth-child(1){
+    font-size: 38px;
+    color: aliceblue;
+}

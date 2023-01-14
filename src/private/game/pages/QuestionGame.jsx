@@ -16,7 +16,6 @@ export const QuestionGame = () => {
     const questionsID = parseInt(localStorage.getItem("questionID"))
     const questions = JSON.parse(localStorage.getItem("question"))
     const question = questions[questionsID]
-    console.log(question)
 
     const navigate = useNavigate();
 
@@ -30,7 +29,7 @@ export const QuestionGame = () => {
         const mqttGame = async () => {
             const resp = await useMqttGame("EndQuestion", room.room_number)
         }
-        var totalTime = 20;
+        var totalTime = 90;
         const updateClock = () => {
             if (totalTime == 0) {
                 window.localStorage.setItem("questionID", questionsID + 1);
