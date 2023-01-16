@@ -4,12 +4,16 @@ import { useNavigate } from 'react-router-dom'
 import { useMqttGame } from '../hooks/usePostGame'
 import logotbs from '/assets/logos/tbs_logo.svg'
 import './TopPlayersGame.css'
+import { useGetTopPlayers } from '../hooks/useGetTopPlayers'
+import { useGetWinner } from '../hooks/useGetWinner'
 
 export const TopPlayersGame = () => {
 
     const id = localStorage.getItem("roomId")
     const idQuestion = localStorage.getItem("questionID")
     const navigate = useNavigate()
+
+    const [topPlayersGame, setTopPlayersGames] = useState([])
 
     const [topPlayers, setTopPlayers] = useState("5")
 
@@ -35,17 +39,22 @@ export const TopPlayersGame = () => {
             const resp = await useMqttGame("EndGame", room.room_number)
         }
 
+        const getWinner = async () => {
+            const resp = await useGetWinner(room.room_number);
+            window.localStorage.setItem("winner",JSON.stringify(resp.resp));
+        }
+
         var totalTime = 10;
         const updateClock = () => {
             if (totalTime == 0) {
-                console.log(questions.length);
-                console.log(questionsID);
                 if (questionsID < questions.length) {
                     mqttGameNextQuestion()
                     onNextQuestion();
                 } else {
                     mqttGameEndGame();
+                    getWinner();
                     onWinnerGame();
+
                 }
             } else {
                 totalTime -= 1;
@@ -54,9 +63,15 @@ export const TopPlayersGame = () => {
             }
         }
         updateClock();
+
+        const fetchData = async () => {
+            const resp = await useGetTopPlayers(room.room_number);
+            setTopPlayersGames(resp.resp);
+        }
+
+        fetchData();
+
     }, [])
-
-
 
 
     return (
@@ -65,55 +80,20 @@ export const TopPlayersGame = () => {
                 <img id="logo" src={logotbs} alt="logo" />
                 <div className="TopPlayers-container">
 
-                    <div className="Winners-moment">
-                        <div className="Winners-moment-left">
-                            <div>
-                                <span>1</span>
+                    {
+                        topPlayersGame.map((top, index) => (
+                            <div className="Winners-moment">
+                                <div className="Winners-moment-left">
+                                    <div>
+                                        <span>{index + 1}</span>
+                                    </div>
+                                    <span>{top.room_player_full}</span>
+                                </div>
+                                <span>{top.room_player_score} pts.</span>
                             </div>
-                            <span>Arthur Chavez</span>
-                        </div>
-                        <span>500 pts.</span>
-                    </div>
+                        ))
+                    }
 
-                    <div className="Winners-moment">
-                        <div className="Winners-moment-left">
-                            <div>
-                                <span>2</span>
-                            </div>
-                            <span>Miguel Pino</span>
-                        </div>
-                        <span>400 pts.</span>
-                    </div>
-
-                    <div className="Winners-moment">
-                        <div className="Winners-moment-left">
-                            <div>
-                                <span>3</span>
-                            </div>
-                            <span>Fausto Andino</span>
-                        </div>
-                        <span>300 pts.</span>
-                    </div>
-
-                    <div className="Winners-moment">
-                        <div className="Winners-moment-left">
-                            <div>
-                                <span>4</span>
-                            </div>
-                            <span>Steven Garrido</span>
-                        </div>
-                        <span>200 pts.</span>
-                    </div>
-
-                    <div className="Winners-moment">
-                        <div className="Winners-moment-left">
-                            <div>
-                                <span>5</span>
-                            </div>
-                            <span>Marco Perez</span>
-                        </div>
-                        <span>100 pts.</span>
-                    </div>
                 </div>
             </section>
             <div className="TopPlayers-time">
