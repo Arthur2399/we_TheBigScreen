@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useState } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { GameInfo } from '../containers/GameInfo';
@@ -25,6 +26,13 @@ export const StartGame = () => {
         } else {
             alert("Hubo un error");
         }
+
+        useEffect(() => {
+        
+        }, [])
+        
+
+
     }
 
     return (

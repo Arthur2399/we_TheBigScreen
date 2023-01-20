@@ -5,8 +5,8 @@ import { useMqttGame } from '../hooks/usePostGame'
 import logotbs from '/assets/logos/tbs_logo.svg'
 import './TopPlayersGame.css'
 import { useGetTopPlayers } from '../hooks/useGetTopPlayers'
-import { useGetWinner } from '../hooks/useGetWinner'
-
+import ReactAudioPlayer from 'react-audio-player'
+import soundPlayer from '/assets/music/wiiTop.mp3'
 export const TopPlayersGame = () => {
 
     const id = localStorage.getItem("roomId")
@@ -39,10 +39,7 @@ export const TopPlayersGame = () => {
             const resp = await useMqttGame("EndGame", room.room_number)
         }
 
-        const getWinner = async () => {
-            const resp = await useGetWinner(room.room_number);
-            window.localStorage.setItem("winner",JSON.stringify(resp.resp));
-        }
+
 
         var totalTime = 10;
         const updateClock = () => {
@@ -52,7 +49,6 @@ export const TopPlayersGame = () => {
                     onNextQuestion();
                 } else {
                     mqttGameEndGame();
-                    getWinner();
                     onWinnerGame();
 
                 }
@@ -93,7 +89,11 @@ export const TopPlayersGame = () => {
                             </div>
                         ))
                     }
-
+                    <ReactAudioPlayer
+                        src={soundPlayer}
+                        autoPlay
+                    /* controls */
+                    />
                 </div>
             </section>
             <div className="TopPlayers-time">

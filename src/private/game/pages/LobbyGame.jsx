@@ -58,7 +58,7 @@ export const LobbyGame = () => {
                     time--;
                 }, 1000);
             }
-            countdown(0, 30);
+            countdown(3,0);
 
             var totalTime = 5;
             const updateClock = () => {
@@ -123,7 +123,7 @@ export const LobbyGame = () => {
                     <ReactAudioPlayer
                         src={sound}
                         autoPlay
-                    /*controls */
+                    /* controls */
                     />
 
                 </section>

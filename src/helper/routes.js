@@ -40,6 +40,7 @@ export const API_GAME_ROOM_QUESTIONS = `http://${API_REST}/game/QuestionList/`;
 export const API_GAME_START          = `http://${API_REST}/mqtt/send`;
 export const API_GAME_TOP_PLAYERS    = `http://${API_REST}/game/answer/top/`;
 export const API_GAME_WINNER         = `http://${API_REST}/game/anser/winner/`;
+export const API_GAME_ROOM_START     = `http://${API_REST}/movies/movies/update/`;
 
 export const API_BILLBOARD           = `http://${API_REST}/movies/billboard`;
 export const API_BILLBOARD_ID        = `http://${API_REST}/movies/billboard/`;

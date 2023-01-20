@@ -7,6 +7,8 @@ import rombo from '/assets/icons/rombo.png'
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useMqttGame } from '../hooks/usePostGame';
+import ReactAudioPlayer from 'react-audio-player';
+import wiiSound from '/assets/music/wii.mp3'
 
 export const QuestionGame = () => {
 
@@ -77,6 +79,11 @@ export const QuestionGame = () => {
                         </div>
                     </div>
                 </div>
+                <ReactAudioPlayer
+                    src={wiiSound}
+                    autoPlay
+                /* controls */
+                />
             </section>
             {location.pathname.includes("topPlayers")
                 ? <></>

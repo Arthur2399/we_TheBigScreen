@@ -1,3 +1,6 @@
+import { useEffect } from 'react';
+import { useGetUser } from '../../navbar/hooks';
+import { useGetRoomGame } from '../hooks/useGetRoomGame';
 import './PlayGame.css';
 
 export const PlayGame = ({ onNavigateRoom, setIdRoom}) => {
@@ -16,6 +19,18 @@ export const PlayGame = ({ onNavigateRoom, setIdRoom}) => {
             value: 3
         },
     ]
+
+
+    useEffect(() => {
+        const getDataPlayGame = async () => {
+            const respUser = await useGetUser();
+            const respRoom =  await useGetRoomGame('1');
+            console.log(respRoom)
+        }
+
+        getDataPlayGame();
+    }, [])
+    
 
     return (
         <div className='Play-game'>
