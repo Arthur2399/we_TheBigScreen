@@ -16,7 +16,7 @@ export const Branch = () => {
                         </div>
                         <div className="Branch-all-container">
                             <div className="Branch-greater-demand">
-                                <h2>Mes con mayor demanda</h2>
+                                <h2>Meses con mayores calificaciones</h2>
                                 <GreaterDemand/>
                             </div>
                             <div className="Branch-best-film">

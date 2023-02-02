@@ -1,10 +1,9 @@
 import { useMemo } from "react";
 
 
-export const useReportsBranch = () => {
+export const useReportsBranch = (scoreGreaterDemand,labels) => {
 
-    const scores = [5, 6, 1, 3, 2, 6, 5, 4, 9, 8,];
-    const labels = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio"];
+
 
     const options = {
         fill: true,
@@ -26,7 +25,7 @@ export const useReportsBranch = () => {
             datasets: [
                 {
                     label: 'Mis datos',
-                    data: scores,
+                    data: scoreGreaterDemand,
                     tension: 0.3,
                     borderColor: "#21E1E1",
                     pointBackgroundColor: "#21E1E1",
