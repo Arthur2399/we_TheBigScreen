@@ -1,8 +1,20 @@
+import { useState } from 'react';
+import { useEffect } from 'react';
 import { BranchResult, GlobalResult } from '../components';
 import { AnswerReport, Filters, Questions, ReportsInfo } from '../containers';
 import './Reports.css';
 
 export const Reports = () => {
+
+    const [dataFilter, setDataFilter] = useState({})
+
+    useEffect(() => {
+        console.log(dataFilter)
+        // hacer la petecion al Backeen con la data
+    }, [dataFilter])
+
+
+
     return (
         <section className="Reports">
             <div className="Reports-container">
@@ -11,20 +23,19 @@ export const Reports = () => {
                     <div className="Reports-views-container">
                         <div className="Reports-publish-questions">
                             <h2>Resultado Global</h2>
-                            <GlobalResult/>
-                            <br/>
+                            <GlobalResult />
+                            <br />
                             <h2>Resultado en CCI</h2>
-                            <BranchResult/>
+                            <BranchResult />
                         </div>
-
                         <div className="Reports-all-container">
                             <div className="Reports-filter">
                                 <h2>Filtros</h2>
-                                <Filters/>
+                                <Filters setDataFilter={setDataFilter} />
                             </div>
                             <div className="Reports-questions">
                                 <h2>Preguntas</h2>
-                                <Questions/>
+                                <Questions />
                             </div>
                             <div className="Reports-answers-report">
                                 <h2>Alcance de respuestas en CCI</h2>
