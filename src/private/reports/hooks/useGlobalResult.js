@@ -1,8 +1,7 @@
 import { useMemo } from 'react';
 
-export const useGlobalResult = () => {
-
-    const scores = [5, 4, 5, 3,];
+export const useGlobalResult = (dataGlobalResults) => {
+    console.log("dataGlobalResults",dataGlobalResults)
     const labels = ["Pregunta 1", "Pregunta 2", "Pregunta 3", "Pregunta 4"];
 
     const options = {
@@ -25,7 +24,7 @@ export const useGlobalResult = () => {
             datasets: [
                 {
                     label: 'Puntuación:',
-                    data: scores,
+                    data: dataGlobalResults,
                     tension: 0.3,
                     backgroundColor: "#21E1E1",
                 
@@ -33,7 +32,7 @@ export const useGlobalResult = () => {
             ],
             labels,
         };
-    }, []);
+    }, [dataGlobalResults]);
 
     return {
         data,

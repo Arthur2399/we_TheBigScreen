@@ -2,15 +2,25 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { BranchResult, GlobalResult } from '../components';
 import { AnswerReport, Filters, Questions, ReportsInfo } from '../containers';
+import { useGetReportData } from '../hooks/useGetReportData';
 import './Reports.css';
 
 export const Reports = () => {
 
     const [dataFilter, setDataFilter] = useState({})
+    const [respReport, setRespReport] = useState([])
 
     useEffect(() => {
-        console.log(dataFilter)
-        // hacer la petecion al Backeen con la data
+        const fetchData = async () => {
+            const {data,num} = await useGetReportData(JSON.stringify(dataFilter));
+            if (num==200){
+                console.log(data.result.answerTotal)
+                setRespReport(data.result.answerTotal)
+            }else{
+                setRespReport([])
+            }
+        }
+        fetchData();
     }, [dataFilter])
 
 
@@ -23,7 +33,7 @@ export const Reports = () => {
                     <div className="Reports-views-container">
                         <div className="Reports-publish-questions">
                             <h2>Resultado Global</h2>
-                            <GlobalResult />
+                            <GlobalResult dataGlobalResults={respReport}/>
                             <br />
                             <h2>Resultado en CCI</h2>
                             <BranchResult />

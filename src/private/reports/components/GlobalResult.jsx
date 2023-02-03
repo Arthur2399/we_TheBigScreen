@@ -14,8 +14,8 @@ ChartJS.register(
     Filler,
 );
 
-export const GlobalResult = () => {
-    const { data, options } = useGlobalResult();
+export const GlobalResult = ( {dataGlobalResults}) => {
+    const { data, options } = useGlobalResult( dataGlobalResults );
     return (
         <div className="Global-result">
             <Bar data={data} options={options} />

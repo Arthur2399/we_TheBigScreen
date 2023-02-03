@@ -3,6 +3,7 @@ export const API_IMAGE               = `http://${API_REST}`
 export const API_ROL                 = `http://${API_REST}/user/rol/list`;
 export const API_BRANCHS             = `http://${API_REST}/branch/list`;
 export const API_CLIENT_GET          = `http://${API_REST}/user/web/user`;
+export const API_PERIOD              = `http://${API_REST}/survey/template/cbx`;
 
 export const API_LOGIN               = `http://${API_REST}/user/api/token/`;
 export const API_MENU                = `http://${API_REST}/menu/menu`;
@@ -43,6 +44,7 @@ export const API_GAME_WINNER         = `http://${API_REST}/game/anser/winner/`;
 export const API_GAME_ROOM_START     = `http://${API_REST}/movies/movies/update/`;
 
 export const API_REPORT_MONTH        = `http://${API_REST}/reports/reportBranch`;
+export const API_REPORT_BY_FILTER    = `http://${API_REST}/reports/reportBranchTemplate`;
 
 export const API_BILLBOARD           = `http://${API_REST}/movies/billboard`;
 export const API_BILLBOARD_ID        = `http://${API_REST}/movies/billboard/`;
