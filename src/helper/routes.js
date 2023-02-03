@@ -42,6 +42,8 @@ export const API_GAME_TOP_PLAYERS    = `http://${API_REST}/game/answer/top/`;
 export const API_GAME_WINNER         = `http://${API_REST}/game/anser/winner/`;
 export const API_GAME_ROOM_START     = `http://${API_REST}/movies/movies/update/`;
 
+export const API_REPORT_MONTH        = `http://${API_REST}/reports/reportBranch`;
+
 export const API_BILLBOARD           = `http://${API_REST}/movies/billboard`;
 export const API_BILLBOARD_ID        = `http://${API_REST}/movies/billboard/`;
 export const API_WHATSAPP            = 'https://api.whatsapp.com/send?phone=0997106357&text=¡Hola!%20Necesito%20ayuda%20con%20mi%20con%20contraseña%20de%20The%20Big%20Screen.'

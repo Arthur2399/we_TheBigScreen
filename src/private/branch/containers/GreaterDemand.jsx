@@ -18,15 +18,24 @@ ChartJS.register(
 
 export const GreaterDemand = () => {
 
-    const [scoreGreaterDemand, setScoreGreaterDemand] = useState([5,4,5,3,5]);
-    const [labels, setLabels] = useState(["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio"]);
+    const [scoreGreaterDemand, setScoreGreaterDemand] = useState([]);
+    const [labels, setLabels] = useState([]);
+
 
     useEffect(() => {
-        /* const resp = useGetGreaterDemand(); */
-    }, [])
-    
+        const fecthData = async() => {
+            const resp = await useGetGreaterDemand();
+            setLabels(resp[0])
+            setScoreGreaterDemand(resp[1])
+        }
 
+         fecthData();
+    }, [])
+
+    
+    
     const { data, options } = useReportsBranch(scoreGreaterDemand,labels);
+
     return (
         <div className="GreaterDemand-report-container">
             <Line data={data} options={options} />

@@ -1,8 +1,8 @@
-import { API_BRANCHS } from "../../../helper/routes";
+import { API_REPORT_MONTH } from "../../../helper/routes";
 
 export const useGetGreaterDemand= async () => {
     const bearer = JSON.parse(localStorage.getItem('jwt'));
-    const response = await fetch(API_BRANCHS, {
+    const response = await fetch(API_REPORT_MONTH, {
         method: "GET",
         headers: {
             "Content-type": "application/json; charset=UTF-8",
