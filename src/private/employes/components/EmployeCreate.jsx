@@ -5,39 +5,51 @@ import { useState } from 'react';
 import { useGetRol } from '../hooks/useGetRol';
 import { useGetBranchs } from '../hooks/useGetBranchs';
 import { usePostEmploye } from '../hooks/usePostEmploye';
+import { useForm } from '../../../hooks/useForm';
 import './EmployeCreate.css';
 
+const formData = {
+    name: '',
+    lastName: '',
+    ci: '',
+    birthDate: '',
+    email: '',
+    roll: '',
+    branch: '',
+    image: '',
+}
 
 export const EmployeCreate = () => {
 
     const [rol, setRol] = useState([])
-    const [branch, setBranch] = useState([])
-    const [postImage, setPostImage] = useState('');
+    const [branchID, setBranchID] = useState([])
 
+    const {
+        onInputChange,
+        onInputChangeImage,
+        formState,
+        name,
+        lastName,
+        ci,
+        birthDate,
+        email,
+    } = useForm(formData);
 
-    const handleFileUpload = (foto) => {
-        const reader = new FileReader()
-        reader.readAsDataURL(foto);
-        reader.onload = function () {
-            const base64 = reader.result
-            setPostImage(base64);
-        }
-    };
-
-    const handleSubmit = async (event) => {
+    const onCreateEmploye = async (event) => {
         event.preventDefault();
-        const userData = {
-            first_name: event.target.elements.name.value,
-            last_name: event.target.elements.lastName.value,
-            username: event.target.elements.email.value,
-            email: event.target.elements.email.value,
-            branch_user_id: parseInt(event.target.elements.selectBranch.value),
-            rol_id: parseInt(event.target.elements.selectRol.value),
-            ci: event.target.elements.ci.value,
-            birth: event.target.elements.dateBirth.value,
-            image: postImage,
+        const data = {
+            first_name: formState.name,
+            last_name: formState.lastName,
+            username: formState.email,
+            email: formState.email,
+            ci: formState.ci,
+            birth: formState.birthDate,
+            rol_id: formState.roll,
+            branch_user_id: formState.branch,
+            image: formState.image,
         }
-        const resp = await usePostEmploye(JSON.stringify(userData));
+        console.log(data)
+        const resp = await usePostEmploye(JSON.stringify(data));
     }
 
 
@@ -46,7 +58,7 @@ export const EmployeCreate = () => {
             const respR = await useGetRol();
             const respB = await useGetBranchs();
             setRol(respR);
-            setBranch(respB);
+            setBranchID(respB);
         }
         fetchData();
     }, [])
@@ -54,58 +66,75 @@ export const EmployeCreate = () => {
 
     return (
 
-        <form onSubmit={handleSubmit} className="Employe-Form">
+        <form onSubmit={onCreateEmploye} className="Employe-Form">
 
             <div className='Employe-Create-Container'>
-                <label htmlFor="" className='Employe-Create-label'>Nombre:</label>
-                <input type="text"
+                <label className='Employe-Create-label'>Nombre:</label>
+                <input
+                    type="text"
                     className='Employe-Create-inputs'
-                    name='name'
-                    required={true}
+                    name="name"
+                    value={name}
+                    onChange={onInputChange}
                 />
 
-                <label htmlFor="" className='Employe-Create-label' >Apellido:</label>
-                <input type="text"
+                <label className='Employe-Create-label' >Apellido:</label>
+                <input
+                    type="text"
                     className='Employe-Create-inputs'
                     name='lastName'
-                    required={true}
+                    value={lastName}
+                    onChange={onInputChange}
                 />
 
-                <label htmlFor="" className='Employe-Create-label'>CI:</label>
-                <input type="text"
+                <label className='Employe-Create-label'>CI:</label>
+                <input
+                    type="number"
                     className='Employe-Create-inputs'
-                    name='ci'
-                    required={true}
                     maxLength="10"
+                    name='ci'
+                    value={ci}
+                    onChange={onInputChange}
                 />
 
-                <label htmlFor="" className='Employe-Create-label'>Fecha de nacimiento:</label>
-                <input type="date"
+                <label className='Employe-Create-label'>Fecha de nacimiento:</label>
+                <input
+                    type="date"
                     className='Employe-Create-inputs'
-                    name='dateBirth'
-                    required={true}
+                    name='birthDate'
+                    value={birthDate}
+                    onChange={onInputChange}
                 />
 
-                <label htmlFor="" className='Employe-Create-label'>Correo electrónico:</label>
+                <label className='Employe-Create-label'>Correo electrónico:</label>
                 <input type="email"
                     className='Employe-Create-inputs'
                     name='email'
-                    required={true}
+                    value={email}
+                    onChange={onInputChange}
                 />
             </div>
 
             <div className='Employe-Create-Container'>
 
-                <label htmlFor="" className='Employe-Create-label'>Rol:</label>
-                <select name="selectRol" className="Employe-Create-comboBox">
+                <label className='Employe-Create-label'>Rol:</label>
+                <select
+                    className="Employe-Create-comboBox"
+                    name="roll"
+                    onChange={onInputChange}
+                >
                     {rol.map((rl, i) => (
                         <option value={rl.id} key={i} >{rl.name}</option>
                     ))}
                 </select>
 
-                <label htmlFor="" className='Employe-Create-label'>Sucursal:</label>
-                <select name="selectBranch" className="Employe-Create-comboBox">
-                    {branch.map((br, i) => (
+                <label className='Employe-Create-label'>Sucursal:</label>
+                <select
+                    className="Employe-Create-comboBox"
+                    name="branch"
+                    onChange={onInputChange}
+                >
+                    {branchID.map((br, i) => (
                         <option value={br.id} key={i}>{br.name_branch}</option>
                     ))}
                 </select>
@@ -117,14 +146,11 @@ export const EmployeCreate = () => {
                     <input
                         className='Employe-Create-UploadPhoto-button'
                         type='file'
-                        name='fotoUpload'
-                        required={true}
                         accept="image/png, .jpeg, .jpg, image/gif"
-                        onChange={(e) => handleFileUpload(e.target.files[0])}
+                        name='image'
+                        onChange={onInputChangeImage}
                     />
-
                 </div>
-
             </div>
 
             <div className='Employe-Create-Container'>
