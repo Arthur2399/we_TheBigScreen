@@ -52,7 +52,6 @@ export const EmployeCreate = () => {
         const resp = await usePostEmploye(JSON.stringify(data));
     }
 
-
     useEffect(() => {
         async function fetchData() {
             const respR = await useGetRol();
@@ -65,7 +64,6 @@ export const EmployeCreate = () => {
 
 
     return (
-
         <form onSubmit={onCreateEmploye} className="Employe-Form">
 
             <div className='Employe-Create-Container'>
