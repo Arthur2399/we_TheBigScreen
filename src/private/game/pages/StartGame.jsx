@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { GraficoReporte } from '../components/GraficoReporte';
+import { QuestionsList } from '../components/QuestionsList';
 import { GameInfo } from '../containers/GameInfo';
 import { GameNewQuestion } from '../containers/GameNewQuestion';
 import { PlayGame } from '../containers/PlayGame';
@@ -49,7 +51,7 @@ export const StartGame = () => {
                                     <div className="Game-questions">
                                         <h1>Lista de preguntas</h1>
                                         <div className="Game-scroll-container">
-
+                                            <QuestionsList/>
                                         </div>
                                     </div>
                                     <div className="Game-play">
@@ -61,6 +63,7 @@ export const StartGame = () => {
                                 <div className="Game-all-container">
                                     <div className="Game-staditics">
                                         <h1>Alcance de jugadores</h1>
+                                        <GraficoReporte/>
 
                                     </div>
                                     <div className="Game-new-question">
