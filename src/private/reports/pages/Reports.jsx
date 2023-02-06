@@ -10,14 +10,16 @@ export const Reports = () => {
     const [dataFilter, setDataFilter] = useState({})
     const [respReport, setRespReport] = useState([])
 
+
+    console.log(dataFilter)
+
     useEffect(() => {
         const fetchData = async () => {
-            const {data,num} = await useGetReportData(JSON.stringify(dataFilter));
-            if (num==200){
-                console.log(data.result.answerTotal)
+            const { data, num } = await useGetReportData(JSON.stringify(dataFilter));
+            if (num == 200) {
                 setRespReport(data.result.answerTotal)
-            }else{
-                setRespReport([])
+            } else {
+                /* setRespReport([]) */
             }
         }
         fetchData();
@@ -33,7 +35,7 @@ export const Reports = () => {
                     <div className="Reports-views-container">
                         <div className="Reports-publish-questions">
                             <h2>Resultado Global</h2>
-                            <GlobalResult dataGlobalResults={respReport}/>
+                            <GlobalResult/>
                             <br />
                             <h2>Resultado en CCI</h2>
                             <BranchResult />

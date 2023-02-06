@@ -11,31 +11,22 @@ export const Filters = ({ setDataFilter }) => {
     const [selectEncuesta, setselectEncuesta] = useState();
     const [selectScursal, setSelectSucursal] = useState();
 
-    const fetchData = async () => {
-        const resp = await useGetBranchs();
-        setSucursales(resp)
-        const respPeriod = await useGetPeriod();
-        setEncuentasPeriodo(respPeriod)
-    }
     useEffect(() => {
-       
-
+        const fetchData = async () => {
+            const resp = await useGetBranchs();
+            setSucursales(resp)
+            const respPeriod = await useGetPeriod();
+            setEncuentasPeriodo(respPeriod)
+        }
         fetchData();
-
     }, [])
 
     useEffect(() => {
-        if (selectEncuesta===undefined){
-            fetchData();
-            setselectEncuesta(encuentasPeriodo[0].value)
-            console.log(encuentasPeriodo[0].value)
-        }
         const dataForFilter = {
             template_id: selectEncuesta,
             branch_id: selectScursal,
         }
         setDataFilter(dataForFilter)
-        console.log("selectEncuesta",selectEncuesta)
     }, [selectEncuesta, selectScursal])
 
 
@@ -44,7 +35,7 @@ export const Filters = ({ setDataFilter }) => {
     return (
         <div className='filter-grid'>
             <label> Encuesta: </label>
-            <select name="select"  className="combobox-container" onChange={e => setselectEncuesta(e.target.value)} >
+            <select name="select" className="combobox-container" onChange={e => setselectEncuesta(e.target.value)} >
                 {
                     encuentasPeriodo.map((per) => (
                         <option key={per.value} value={per.value}> {per.label}</option>
