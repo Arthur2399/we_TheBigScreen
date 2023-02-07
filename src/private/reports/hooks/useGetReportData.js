@@ -10,7 +10,7 @@ export const useGetReportData= async (datafilter) => {
         },
         body:datafilter,
     });
-    const num= await response.status
-    const data = await response.json();
-    return {data , num};
+    const statusReportData = response.status
+    const reportData = await response.json();
+    return {reportData , statusReportData};
 }

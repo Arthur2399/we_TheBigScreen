@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useEffect } from 'react';
 import { useGetBranchs, useGetPeriod } from '../hooks';
 import './Filters.css';
@@ -8,34 +8,32 @@ export const Filters = ({ setDataFilter }) => {
     const [encuentasPeriodo, setEncuentasPeriodo] = useState([]);
     const [sucursales, setSucursales] = useState([]);
 
-    const [selectEncuesta, setselectEncuesta] = useState();
-    const [selectScursal, setSelectSucursal] = useState();
+    const [selectSurveyDate, setSelectSurveyDate] = useState("");
+    const [selectBranch, setSelectBranch] = useState("");
 
-    useEffect(() => {
-        const fetchData = async () => {
-            const resp = await useGetBranchs();
-            setSucursales(resp)
-            const respPeriod = await useGetPeriod();
-            setEncuentasPeriodo(respPeriod)
+    useMemo(async () => {
+        const { dataGetPeriod, statusGetPeriod } = await useGetPeriod();
+        const { dataBranchs, statusBranchs } = await useGetBranchs();
+        if (statusGetPeriod === 200 && statusBranchs === 200) {
+            setSelectSurveyDate(dataGetPeriod[0].value.toString())
+            setEncuentasPeriodo(dataGetPeriod)
+            setSelectBranch(dataBranchs[0].id.toString())
+            setSucursales(dataBranchs)
         }
-        fetchData();
     }, [])
 
     useEffect(() => {
         const dataForFilter = {
-            template_id: selectEncuesta,
-            branch_id: selectScursal,
+            template_id: selectSurveyDate,
+            branch_id: selectBranch,
         }
         setDataFilter(dataForFilter)
-    }, [selectEncuesta, selectScursal])
-
-
-
+    }, [selectSurveyDate, selectBranch])
 
     return (
         <div className='filter-grid'>
             <label> Encuesta: </label>
-            <select name="select" className="combobox-container" onChange={e => setselectEncuesta(e.target.value)} >
+            <select className="combobox-container" value={selectSurveyDate} onChange={e => setSelectSurveyDate(e.target.value)} >
                 {
                     encuentasPeriodo.map((per) => (
                         <option key={per.value} value={per.value}> {per.label}</option>
@@ -43,8 +41,8 @@ export const Filters = ({ setDataFilter }) => {
 
                 }
             </select>
-            <label> Franquicia: </label>
-            <select name="select" className="combobox-container" onChange={e => setSelectSucursal(e.target.value)}>
+            <label> Surcusal: </label>
+            <select className="combobox-container" value={selectBranch} onChange={e => setSelectBranch(e.target.value)}>
                 {
                     sucursales.map((surcusal) => (
                         <option key={surcusal.id} value={surcusal.id}>{surcusal.name_branch}</option>

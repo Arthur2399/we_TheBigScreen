@@ -1,21 +1,17 @@
 import './Questions.css';
 
-export const Questions = () => {
+export const Questions = ({ questions=[]}) => {
+    /* console.log(questions) */
     return (
         <div>
             <ol>
-                <li>
-                    <span>¿Como estuvo el servicio?</span>
-                </li>
-                <li>
-                    <span>¿Como estuvo la comida?</span>
-                </li>
-                <li>
-                    <span>¿Como estuvo la limpieza?</span>
-                </li>
-                <li>
-                    <span>¿Como estuvo las intalaciones?</span>
-                </li>
+                {
+                    questions.map((ques,i) => (
+                        <li key={i}>
+                            <span>{ques}</span>
+                        </li>
+                    ))
+                }
             </ol>
         </div>
     )

@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { useEffect } from 'react';
+import { useMemo, useState } from 'react';
 import { BranchResult, GlobalResult } from '../components';
 import { AnswerReport, Filters, Questions, ReportsInfo } from '../containers';
 import { useGetReportData } from '../hooks/useGetReportData';
@@ -8,23 +7,16 @@ import './Reports.css';
 export const Reports = () => {
 
     const [dataFilter, setDataFilter] = useState({})
-    const [respReport, setRespReport] = useState([])
+    const [respReport, setRespReport] = useState({})
 
-
-    console.log(dataFilter)
-
-    useEffect(() => {
-        const fetchData = async () => {
-            const { data, num } = await useGetReportData(JSON.stringify(dataFilter));
-            if (num == 200) {
-                setRespReport(data.result.answerTotal)
-            } else {
-                /* setRespReport([]) */
+    useMemo(async () => {
+        if (dataFilter.template_id && dataFilter.branch_id) {
+            const { reportData, statusReportData } = await useGetReportData(JSON.stringify(dataFilter))
+            if (statusReportData === 200) {
+                setRespReport(reportData.result)
             }
         }
-        fetchData();
     }, [dataFilter])
-
 
 
     return (
@@ -35,10 +27,10 @@ export const Reports = () => {
                     <div className="Reports-views-container">
                         <div className="Reports-publish-questions">
                             <h2>Resultado Global</h2>
-                            <GlobalResult/>
+                            <GlobalResult answerTotal={respReport.answerTotal} />
                             <br />
-                            <h2>Resultado en CCI</h2>
-                            <BranchResult />
+                            <h2>Resultado en {respReport.name}</h2>
+                            <BranchResult answerBranch={respReport.answerBranch}/>
                         </div>
                         <div className="Reports-all-container">
                             <div className="Reports-filter">
@@ -47,11 +39,11 @@ export const Reports = () => {
                             </div>
                             <div className="Reports-questions">
                                 <h2>Preguntas</h2>
-                                <Questions />
+                                <Questions questions={respReport.questions} />
                             </div>
                             <div className="Reports-answers-report">
-                                <h2>Alcance de respuestas en CCI</h2>
-                                <AnswerReport />
+                                <h2>Alcance de respuestas en {respReport.name}</h2>
+                                <AnswerReport reach={respReport.reach} />
                             </div>
                         </div>
                     </div>
