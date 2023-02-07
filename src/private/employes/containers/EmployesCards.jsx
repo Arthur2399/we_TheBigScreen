@@ -25,7 +25,7 @@ export const EmployesCards = () => {
                 ))}
 
             <Modal isOpen={isOpenModal} closeModal={closeModal} title="Actualizar empleado" x={"80%"} y={"580px"}>
-                <EmployeUpdate employeId={employeId}/>
+                <EmployeUpdate employeId={employeId} closeModal={closeModal} openModal={openModal}/>
             </Modal>
         </div>
     )

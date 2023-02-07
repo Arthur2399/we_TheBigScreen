@@ -1,16 +1,14 @@
 import { useState, useEffect } from 'react';
-import { Modal, MessageAlert } from '../../../components';
-import { useModal } from '../../../hooks';
 import { useGetBranchs, useGetEmploye, usePutEmploye, useGetRol } from '../hooks';
 import { useDeleteEmploye } from '../hooks/useDeleteEmploye';
 import employePhoto from '/assets/logos/employes_photo.svg';
 import employeUpdate from '/assets/logos/employes_create.svg';
 import './EmployeUpdate.css';
+import Swal from 'sweetalert2';
 
 
-export const EmployeUpdate = ({ employeId }) => {
+export const EmployeUpdate = ({ employeId,closeModal,openModal}) => {
 
-    const [isOpenModal, openModal, closeModal] = useModal(false);
 
     const [rol, setRol] = useState([])
     const [roles, setRoles] = useState('')
@@ -64,7 +62,35 @@ export const EmployeUpdate = ({ employeId }) => {
 
     const deleteEmploye = async (event) => {
         event.preventDefault();
-        const dlt = await useDeleteEmploye(employeId)
+        closeModal()
+        const des_answer= await Swal.fire({
+            title: '¿Seguro que quieres deshabilitarlo?',
+            showCancelButton: true,
+            confirmButtonText: 'Desabilitar',
+          })
+        if(des_answer.isConfirmed){
+            console.log("Verdadero")
+            const response = await useDeleteEmploye(employeId)
+            const resp = await response.json()
+            console.log(resp.Mensaje)
+            if(response.status ==200 ){
+                Swal.fire({
+                    icon:'success',
+                    title:'Correcto',
+                    text: resp.Mensaje
+                })
+            }else{
+                Swal.fire({
+                    icon:'error',
+                    title:'Error',
+                    text:resp.Mensaje
+                })
+            }
+        }else{
+            openModal()
+            console.log("False")
+        }
+
     }
 
     useEffect(() => {
@@ -199,12 +225,9 @@ export const EmployeUpdate = ({ employeId }) => {
                     <span>Actualiza los datos de los miembros de tu equipo</span>
                     <div className='optiones-Update-employe'>
                         <button className='button-sent'
-                            onClick={openModal}>
+                            onClick={deleteEmploye}>
                             Deshabilitar
                         </button>
-                        <Modal isOpen={isOpenModal} closeModal={closeModal} title="Deshabilitar empleado" x={"300px"} y={"150px"}>
-                            <MessageAlert funcion={deleteEmploye} messageButton='Eliminar' message='¿Deseas eliminar este empleado?' />
-                        </Modal>
                         <button className=' button-sent' type='submit'>Actualizar</button>
                     </div>
                 </div>
