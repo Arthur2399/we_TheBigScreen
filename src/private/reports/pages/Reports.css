@@ -84,6 +84,9 @@ h2 {
     height: 30%;
     width: 350px;
     border-radius: 20px;
+    display: block;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .Reports-answers-report {

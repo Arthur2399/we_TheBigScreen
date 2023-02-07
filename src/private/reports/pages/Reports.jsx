@@ -1,5 +1,4 @@
 import { useMemo, useState } from 'react';
-import { useEffect } from 'react';
 import { BranchResult, GlobalResult } from '../components';
 import { AnswerReport, Filters, Questions, ReportsInfo } from '../containers';
 import { useGetReportData } from '../hooks/useGetReportData';
@@ -17,7 +16,6 @@ export const Reports = () => {
                 setRespReport(reportData.result)
             }
         }
-
     }, [dataFilter])
 
 
@@ -29,10 +27,10 @@ export const Reports = () => {
                     <div className="Reports-views-container">
                         <div className="Reports-publish-questions">
                             <h2>Resultado Global</h2>
-                            <GlobalResult />
+                            <GlobalResult answerTotal={respReport.answerTotal} />
                             <br />
-                            <h2>Resultado en CCI</h2>
-                            <BranchResult />
+                            <h2>Resultado en {respReport.name}</h2>
+                            <BranchResult answerBranch={respReport.answerBranch}/>
                         </div>
                         <div className="Reports-all-container">
                             <div className="Reports-filter">
@@ -41,11 +39,11 @@ export const Reports = () => {
                             </div>
                             <div className="Reports-questions">
                                 <h2>Preguntas</h2>
-                                <Questions />
+                                <Questions questions={respReport.questions} />
                             </div>
                             <div className="Reports-answers-report">
-                                <h2>Alcance de respuestas en CCI</h2>
-                                <AnswerReport />
+                                <h2>Alcance de respuestas en {respReport.name}</h2>
+                                <AnswerReport reach={respReport.reach} />
                             </div>
                         </div>
                     </div>
