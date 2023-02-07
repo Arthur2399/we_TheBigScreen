@@ -23,6 +23,7 @@ export const BranchResult = ({answerBranch}) => {
         scales: {
             y: {
                 min: 0,
+                max:5,
             },
         },
         plugins: {
