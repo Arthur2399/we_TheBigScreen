@@ -10,8 +10,9 @@ export const useGetBranchs= async () => {
             "Authorization": 'Bearer '+ bearer.sessiontoken,
         },
     });
-    const data = await response.json();
-    return data;
+    const statusBranchs = response.status
+    const dataBranchs = await response.json();
+    return {dataBranchs, statusBranchs};
 }
 
 export const useGetPeriod= async () => {
@@ -23,6 +24,8 @@ export const useGetPeriod= async () => {
             "Authorization": 'Bearer '+ bearer.sessiontoken,
         },
     });
-    const data = await response.json();
-    return data;
+    const statusGetPeriod = response.status
+    const dataGetPeriod = await response.json();
+
+    return {dataGetPeriod, statusGetPeriod };
 }

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useEffect } from 'react';
 import { BranchResult, GlobalResult } from '../components';
 import { AnswerReport, Filters, Questions, ReportsInfo } from '../containers';
@@ -8,23 +8,17 @@ import './Reports.css';
 export const Reports = () => {
 
     const [dataFilter, setDataFilter] = useState({})
-    const [respReport, setRespReport] = useState([])
+    const [respReport, setRespReport] = useState({})
 
-
-    console.log(dataFilter)
-
-    useEffect(() => {
-        const fetchData = async () => {
-            const { data, num } = await useGetReportData(JSON.stringify(dataFilter));
-            if (num == 200) {
-                setRespReport(data.result.answerTotal)
-            } else {
-                /* setRespReport([]) */
+    useMemo(async () => {
+        if (dataFilter.template_id && dataFilter.branch_id) {
+            const { reportData, statusReportData } = await useGetReportData(JSON.stringify(dataFilter))
+            if (statusReportData === 200) {
+                setRespReport(reportData.result)
             }
         }
-        fetchData();
-    }, [dataFilter])
 
+    }, [dataFilter])
 
 
     return (
@@ -35,7 +29,7 @@ export const Reports = () => {
                     <div className="Reports-views-container">
                         <div className="Reports-publish-questions">
                             <h2>Resultado Global</h2>
-                            <GlobalResult/>
+                            <GlobalResult />
                             <br />
                             <h2>Resultado en CCI</h2>
                             <BranchResult />
