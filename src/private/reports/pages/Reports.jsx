@@ -9,6 +9,8 @@ export const Reports = () => {
     const [dataFilter, setDataFilter] = useState({})
     const [respReport, setRespReport] = useState({})
 
+    console.log(respReport)
+
     useMemo(async () => {
         if (dataFilter.template_id && dataFilter.branch_id) {
             const { reportData, statusReportData } = await useGetReportData(JSON.stringify(dataFilter))
@@ -30,7 +32,7 @@ export const Reports = () => {
                             <GlobalResult answerTotal={respReport.answerTotal} />
                             <br />
                             <h2>Resultado en {respReport.name}</h2>
-                            <BranchResult answerBranch={respReport.answerBranch}/>
+                            <BranchResult answerBranch={respReport.answerBranch} />
                         </div>
                         <div className="Reports-all-container">
                             <div className="Reports-filter">
@@ -43,6 +45,7 @@ export const Reports = () => {
                             </div>
                             <div className="Reports-answers-report">
                                 <h2>Alcance de respuestas en {respReport.name}</h2>
+                                <span> <b>Total de usuarios:</b>  {respReport.userTot}</span>
                                 <AnswerReport reach={respReport.reach} />
                             </div>
                         </div>

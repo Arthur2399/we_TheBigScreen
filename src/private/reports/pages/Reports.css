@@ -72,7 +72,7 @@ h2 {
     padding: 0;
 }
 
-.Reports-filter{
+.Reports-filter {
     background-color: var(--white);
     height: 25%;
     width: 350px;
@@ -94,6 +94,15 @@ h2 {
     height: 40%;
     width: 350px;
     border-radius: 20px;
+}
+
+.Reports-answers-report span {
+    color: rgb(39, 39, 39);
+    position: absolute;
+    font-size: 13px;
+    margin-left: 30px;
+    margin-top: 30px;
+
 }
 
 .manage-questions-info-text {

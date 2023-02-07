@@ -25,6 +25,7 @@ export const GlobalResult = ( {answerTotal} ) => {
         scales: {
             y: {
                 min: 0,
+                max:5,
             },
         },
         plugins: {
