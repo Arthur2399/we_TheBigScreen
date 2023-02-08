@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Modal } from '../../../components/Modal';
 import { useModal } from '../../../hooks';
 import { EmployesCard } from '../components';
@@ -11,12 +11,13 @@ export const EmployesCards = ( {cardsEmployes}) => {
 
     return (
         <div className="cards-container">
-            {cardsEmployes.map((employe)=>(
+            
+             {cardsEmployes.map((employe)=>(
                     <EmployesCard  key={employe.id} {...employe} openModal={openModal} setEmployeId={setEmployeId}/>
                 ))}
-
+       
             <Modal isOpen={isOpenModal} closeModal={closeModal} title="Actualizar empleado" x={"80%"} y={"580px"}>
-                <EmployeUpdate employeId={employeId} closeModal={closeModal} openModal={openModal}/>
+                <EmployeUpdate employeId={employeId}/>
             </Modal>
         </div>
     )

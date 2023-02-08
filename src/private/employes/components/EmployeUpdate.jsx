@@ -1,210 +1,151 @@
-import { useState, useEffect } from 'react';
-import { useGetBranchs, useGetEmploye, usePutEmploye, useGetRol } from '../hooks';
-import { useDeleteEmploye } from '../hooks/useDeleteEmploye';
+import { useMemo, useState } from 'react';
+import { useGetBranchs, useGetEmploye, useGetRol } from '../hooks';
 import employePhoto from '/assets/logos/employes_photo.svg';
 import employeUpdate from '/assets/logos/employes_create.svg';
 import './EmployeUpdate.css';
-import Swal from 'sweetalert2';
+import { useForm } from '../../../hooks/useForm';
 
+export const EmployeUpdate = ({ employeId }) => {
 
-export const EmployeUpdate = ({ employeId,closeModal,openModal}) => {
+    // ComboBox Values
+    const [rollList, setRollList] = useState();
+    const [branchList, setBranchList] = useState()
 
+    //ComboBox Match
 
-    const [rol, setRol] = useState([])
-    const [roles, setRoles] = useState('')
-    const [branch, setBranch] = useState([])
-    const [branchs, setBranchs] = useState('')
+    const [employeData, setemployeData] = useState({})
+    const [formData, setformData] = useState({
+        name: '',
+        lastName: '',
+        ci: '',
+        birthDate: '',
+        email: '',
+        roll: '',
+        branch: '',
+        image: '',
+    })
 
-    //FORMULARIO
-    const [firstName, setFirstName] = useState('')
-    const [lastName, setLastName] = useState('')
-    const [userName, setUserName] = useState('')
-    const [email, setEmail] = useState('')
-    const [ci, setCi] = useState('')
-    const [birth, setBirth] = useState('')
-    const [image, setImage] = useState('')
-    const [branchID, setBranchID] = useState('')
-    const [rolID, setRolId] = useState('')
-    const [imageChange, setImageChange] = useState(false)
+    const {
+        onInputChange,
+        onInputChangeImage,
+        formState,
+        name,
+        lastName,
+        ci,
+        birthDate,
+        email,
+        roll,
+    } = useForm(formData);
 
-
-    const [postImage, setPostImage] = useState('');
-
-    const handleFileUpload = (foto) => {
-        const reader = new FileReader()
-        reader.readAsDataURL(foto);
-        reader.onload = function () {
-            const base64 = reader.result
-            setPostImage(base64);
-            setImage(base64);
-            setImageChange(true);
-        }
-    };
-
-
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-
-        const userData = {
-            first_name: firstName,
-            last_name: lastName,
-            username: userName,
-            email: email,
-            branch_user_id: branchID,
-            rol_id: rolID,
-            ci: ci,
-            birth: birth,
-            image: image,
-            image_change: imageChange,
-        }
-        const resp = await usePutEmploye(JSON.stringify(userData), employeId);
-    }
-
-    const deleteEmploye = async (event) => {
-        event.preventDefault();
-        const des_answer= await Swal.fire({
-            title: '¿Seguro que quieres deshabilitarlo?',
-            showCancelButton: true,
-            confirmButtonText: 'Desabilitar',
-            confirmButtonColor: "#0fd831"
+    useMemo(() => {
+        setformData({
+            name: employeData.first_name || "",
+            lastName: employeData.last_name || "",
+            ci: employeData.ci || "",
+            birthDate: employeData.birth || "",
+            email: employeData.email || "",
+            roll: employeData.rol_id || "",
+            branch: employeData.branch_user_id || "",
+            image: employeData.image || "",
         })
-        if(des_answer.isConfirmed){
-            console.log("Verdadero")
-            const response = await useDeleteEmploye(employeId)
-            const resp = await response.json()
-            console.log(resp.Mensaje)
-            if(response.status ==200 ){
-                closeModal()
-                Swal.fire({
-                    icon:'success',
-                    title:'Correcto',
-                    text: resp.Mensaje,
-                    confirmButtonColor: "#0fd831"
-                })
+    }, [employeData])
 
 
-            }else{
-                Swal.fire({
-                    icon:'error',
-                    title:'Error',
-                    text:resp.Mensaje,
-                    
-                })
-            }
-        }else{
-            openModal()
-            console.log("False")
-        }
-
-    }
-
-    useEffect(() => {
-        async function fetchData() {
-            const respR = await useGetRol();
-            const respB = await useGetBranchs();
+    useMemo(async () => {
+        if (employeId > 0) {
+            const rollResponse = await useGetRol();
+            setRollList(rollResponse);
+            const branchResponse = await useGetBranchs();
+            setBranchList(branchResponse);
             const respEmploye = await useGetEmploye(employeId);
-
-            setRol(respR);
-            setBranch(respB);
-
-            setFirstName(respEmploye.first_name);
-            setLastName(respEmploye.last_name);
-            setUserName(respEmploye.username);
-            setEmail(respEmploye.email);
-            setCi(respEmploye.ci);
-            setBirth(respEmploye.birth);
-            setImage(respEmploye.image);
-            setImage(respEmploye.image_change);
-
-            setBranchID(respEmploye.branch_user_id);
-            setRolId(respEmploye.rol_id);
-
-            respR.forEach(r => {
-                if (r.id == respEmploye.rol_id) {
-                    setRoles(r.name);
-                }
-            });
-            respB.forEach(b => {
-                if (b.id == respEmploye.branch_user_id) {
-                    setBranchs(b.name_branch);
-                }
-            });
+            setemployeData(respEmploye)
         }
-        fetchData();
     }, [employeId])
 
+    const onUpdateEmploye = async (event) => {
+        event.preventDefault()
+    }
+
+    const disableEmploye = async () => {
+
+    }
 
 
     return (
-        <form onSubmit={handleSubmit} className="Employe-Form">
+        <form onSubmit={onUpdateEmploye} className="Employe-Form">
 
             <div className='Employe-Update-Container'>
-                <label htmlFor="" className='Employe-Update-label'>Nombre:</label>
-                <input type="text"
+                <label className='Employe-Update-label'>Nombre:</label>
+                <input
+                    type="text"
                     className='Employe-Update-inputs'
-                    name='name'
-                    value={firstName}
-                    onChange={(event) => setFirstName(event.target.value)}
+                    name="name"
+                    value={name}
+                    onChange={onInputChange}
                 />
 
-                <label htmlFor="" className='Employe-Update-label' >Apellido:</label>
-                <input type="text"
+                <label className='Employe-Update-label' >Apellido:</label>
+                <input
+                    type="text"
                     className='Employe-Update-inputs'
                     name='lastName'
                     value={lastName}
-                    onChange={(event) => setLastName(event.target.value)}
+                    onChange={onInputChange}
                 />
 
-                <label htmlFor="" className='Employe-Update-label'>CI:</label>
-                <input type="text"
+                <label className='Employe-Update-label'>CI:</label>
+                <input
+                    type="text"
                     className='Employe-Update-inputs'
                     name='ci'
                     value={ci}
-                    onChange={(event) => setCi(event.target.value)}
+                    onChange={onInputChange}
                 />
 
-                <label htmlFor="" className='Employe-Update-label'>Fecha de nacimiento:</label>
-                <input type="date"
+                <label className='Employe-Update-label'>Fecha de nacimiento:</label>
+                <input
+                    type="date"
                     className='Employe-Update-inputs'
-                    name='dateBirth'
-                    value={birth}
-                    onChange={(event) => setBirth(event.target.value)}
+                    name='birthDate'
+                    value={birthDate}
+                    onChange={onInputChange}
                 />
 
-                <label htmlFor="" className='Employe-Update-label'>Correo electrónico:</label>
+                <label className='Employe-Update-label'>Correo electrónico:</label>
                 <input type="text"
                     className='Employe-Update-inputs'
                     name='email'
                     value={email}
-                    onChange={(event) => setEmail(event.target.value)}
+                    onChange={onInputChange}
                 />
             </div>
 
             <div className='Employe-Update-Container'>
 
-                <label htmlFor="" className='Employe-Update-label'>Rol:</label>
-                <select name="selectRol"
+                <label className='Employe-Update-label'>Rol:</label>
+                <select
                     className="Employe-Update-comboBox"
-                    onChange={(event) => setRolId(parseInt(event.target.value))}
+                    name="roll"
+                    onChange={onInputChange}
+                    value={roll}
                 >
-                    <option >{roles}</option>
-                    {rol.filter(rl => rl.name != roles).map((rl, i) => (
-                        <option value={rl.id} key={i} >{rl.name}</option>
-                    ))}
+                    {rollList?.map((rol)=>(
+                            <option key={rol.id} value={rol.id}>{rol.name}</option>
+                        ))
+                    }
 
                 </select>
 
-                <label htmlFor="" className='Employe-Update-label'>Sucursal:</label>
+                <label className='Employe-Update-label'>Sucursal:</label>
                 <select name="selectBranch"
                     className="Employe-Update-comboBox"
-                    onChange={(event) => setBranchID(parseInt(event.target.value))}
                 >
-                    <option>{branchs}</option>
+                    {/*                     <option>{branchs}</option>
 
                     {branch.filter(br => br.name_branch != branchs).map((br, i) => (
                         <option value={br.id} key={i}>{br.name_branch}</option>
                     ))}
-
+ */}
                 </select>
 
                 <div className='Employe-Update-UploadPhoto'>
@@ -217,7 +158,6 @@ export const EmployeUpdate = ({ employeId,closeModal,openModal}) => {
                             type='file'
                             name='fotoUpload'
                             accept="image/png, .jpg, image/gif"
-                            onChange={(e) => handleFileUpload(e.target.files[0])}
                         />
                     </div>
                 </div>
@@ -230,7 +170,7 @@ export const EmployeUpdate = ({ employeId,closeModal,openModal}) => {
                     <span>Actualiza los datos de los miembros de tu equipo</span>
                     <div className='optiones-Update-employe'>
                         <button className='button-sent'
-                            onClick={deleteEmploye}>
+                            onClick={disableEmploye}>
                             Deshabilitar
                         </button>
                         <button className=' button-sent' type='submit'>Actualizar</button>
