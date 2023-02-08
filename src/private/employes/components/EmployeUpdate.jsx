@@ -7,12 +7,8 @@ import { useForm } from '../../../hooks/useForm';
 
 export const EmployeUpdate = ({ employeId }) => {
 
-    // ComboBox Values
     const [rollList, setRollList] = useState();
     const [branchList, setBranchList] = useState()
-
-    //ComboBox Match
-
     const [employeData, setemployeData] = useState({})
     const [formData, setformData] = useState({
         name: '',
