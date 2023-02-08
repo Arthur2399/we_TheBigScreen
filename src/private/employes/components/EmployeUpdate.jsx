@@ -62,19 +62,19 @@ export const EmployeUpdate = ({ employeId,closeModal,openModal}) => {
 
     const deleteEmploye = async (event) => {
         event.preventDefault();
-        closeModal()
         const des_answer= await Swal.fire({
             title: '¿Seguro que quieres deshabilitarlo?',
             showCancelButton: true,
             confirmButtonText: 'Desabilitar',
             confirmButtonColor: "#0fd831"
-          })
+        })
         if(des_answer.isConfirmed){
             console.log("Verdadero")
             const response = await useDeleteEmploye(employeId)
             const resp = await response.json()
             console.log(resp.Mensaje)
             if(response.status ==200 ){
+                closeModal()
                 Swal.fire({
                     icon:'success',
                     title:'Correcto',

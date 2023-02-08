@@ -1,23 +1,7 @@
-import { useEffect } from 'react';
-import { useState } from 'react';
-import { API_IMAGE} from '../../../helper/routes';
-import { useGetEmployesLast } from '../hooks/useGetLastCreated';
+import { API_IMAGE } from '../../../helper/routes';
 import './EmployedLastCreated.css';
 
-
-export const EmployedLastCreated = () => {
-
-    const [empLast, setEmpLast] = useState([])
-
-    useEffect(() => {
-        async function fetchData() {
-            const respEmp = await useGetEmployesLast();
-            setEmpLast(respEmp)
-        }
-        fetchData();
-    }, [])
-
-
+export const EmployedLastCreated = ({ empLast }) => {
     return (
         <div className="employ-last-create-info animate__animated animate__fadeIn">
             <img src={`${API_IMAGE}${empLast.image}`} alt="employe" />

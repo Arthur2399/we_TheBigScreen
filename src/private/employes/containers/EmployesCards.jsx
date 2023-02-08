@@ -1,25 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Modal } from '../../../components/Modal';
 import { useModal } from '../../../hooks';
 import { EmployesCard } from '../components';
 import { EmployeUpdate } from '../components/EmployeUpdate';
-import { useGetEmployesList } from '../hooks/useGetEmployes';
 import './EmployesCards.css';
 
-export const EmployesCards = () => {
-    const [cardsEmployes, setCardsEmployes] = useState([]);
+export const EmployesCards = ( {cardsEmployes}) => {
     const [isOpenModal,openModal,closeModal] = useModal(false);
     const [employeId, setEmployeId] = useState()
 
-    
-
-    useEffect(() => {
-        async function fetchData() {
-            const respEmp = await useGetEmployesList();
-            setCardsEmployes(respEmp)
-        }
-        fetchData();
-    }, [])
     return (
         <div className="cards-container">
             {cardsEmployes.map((employe)=>(

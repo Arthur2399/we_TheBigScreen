@@ -4,9 +4,9 @@ import employe from '/assets/logos/employe.svg';
 import './EmployeCreateInfo.css';
 import { EmployeCreate } from '../components/EmployeCreate';
 
-export const EmployeCreateInfo = () => {
+export const EmployeCreateInfo = ({ setIsReload }) => {
 
-    const [isOpenModal,openModal,closeModal] = useModal(false);
+    const [isOpenModal, openModal, closeModal] = useModal(false);
 
 
     return (
@@ -16,7 +16,7 @@ export const EmployeCreateInfo = () => {
                 <p>Registra un nuevo compañero de trabajo</p>
                 <button className="employ-create-button" onClick={openModal}> Registrar</button>
                 <Modal isOpen={isOpenModal} closeModal={closeModal} title="Crear nuevo empleado" x={"80%"} y={"580px"}>
-                    <EmployeCreate/>
+                    <EmployeCreate closeModal={closeModal} setIsReload={setIsReload} />
                 </Modal>
             </div>
             <img src={employe} alt="empleados" />
