@@ -11,6 +11,8 @@ export const EmployesCards = () => {
     const [isOpenModal,openModal,closeModal] = useModal(false);
     const [employeId, setEmployeId] = useState()
 
+    
+
     useEffect(() => {
         async function fetchData() {
             const respEmp = await useGetEmployesList();

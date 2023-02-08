@@ -67,6 +67,7 @@ export const EmployeUpdate = ({ employeId,closeModal,openModal}) => {
             title: '¿Seguro que quieres deshabilitarlo?',
             showCancelButton: true,
             confirmButtonText: 'Desabilitar',
+            confirmButtonColor: "#0fd831"
           })
         if(des_answer.isConfirmed){
             console.log("Verdadero")
@@ -77,13 +78,17 @@ export const EmployeUpdate = ({ employeId,closeModal,openModal}) => {
                 Swal.fire({
                     icon:'success',
                     title:'Correcto',
-                    text: resp.Mensaje
+                    text: resp.Mensaje,
+                    confirmButtonColor: "#0fd831"
                 })
+
+
             }else{
                 Swal.fire({
                     icon:'error',
                     title:'Error',
-                    text:resp.Mensaje
+                    text:resp.Mensaje,
+                    
                 })
             }
         }else{
