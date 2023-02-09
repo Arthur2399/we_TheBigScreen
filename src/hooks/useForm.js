@@ -42,6 +42,7 @@ export const useForm = (initialForm = {}, formValidations = {}) => {
             var trans = base64.slice(point + 7)
             setFormState({
                 ...formState,
+                image_change:true,
                 [name]: trans
             });
         }

@@ -1,12 +1,11 @@
+import { useState } from 'react';
+import { useEffect } from 'react';
+import { useForm } from '../../../hooks/useForm';
+import { useGetRol, useGetBranchs, usePostEmploye } from '../hooks';
 import employePhoto from '/assets/logos/employes_photo.svg';
 import employeCreate from '/assets/logos/employes_create.svg';
-import { useEffect } from 'react';
-import { useState } from 'react';
-import { useGetRol } from '../hooks/useGetRol';
-import { useGetBranchs } from '../hooks/useGetBranchs';
-import { usePostEmploye } from '../hooks/usePostEmploye';
-import { useForm } from '../../../hooks/useForm';
 import './EmployeCreate.css';
+import Swal from 'sweetalert2';
 
 const formData = {
     name: '',
@@ -19,7 +18,7 @@ const formData = {
     image: '',
 }
 
-export const EmployeCreate = () => {
+export const EmployeCreate = ({closeModal, setIsReload, isReload}) => {
 
     const [rol, setRol] = useState([])
     const [branchID, setBranchID] = useState([])
@@ -48,8 +47,36 @@ export const EmployeCreate = () => {
             branch_user_id: formState.branch,
             image: formState.image,
         }
-        console.log(data)
-        const resp = await usePostEmploye(JSON.stringify(data));
+
+        const des_answer = await Swal.fire({
+            title: '¿Seguro que deseas crear un nuevo empleado?',
+            showCancelButton: true,
+            confirmButtonText: 'Crear',
+            confirmButtonColor: "#FD5D5D"
+        })
+
+        if (des_answer.isConfirmed) {
+            const { resp, response } = await usePostEmploye(JSON.stringify(data));
+            if (response.status == 201) {
+                closeModal();
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Empleado creado',
+                    text: resp.Mensaje,
+                    confirmButtonColor: "#FD5D5D"
+                })
+
+                setIsReload(isReload+1);
+            } else {
+                const fisrtKey = Object.keys(resp)[0]
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: resp[fisrtKey],
+                    confirmButtonColor: "#FD5D5D"
+                })
+            }
+        }
     }
 
     useEffect(() => {
@@ -74,6 +101,7 @@ export const EmployeCreate = () => {
                     name="name"
                     value={name}
                     onChange={onInputChange}
+                    required
                 />
 
                 <label className='Employe-Create-label' >Apellido:</label>
@@ -83,6 +111,7 @@ export const EmployeCreate = () => {
                     name='lastName'
                     value={lastName}
                     onChange={onInputChange}
+                    required
                 />
 
                 <label className='Employe-Create-label'>CI:</label>
@@ -93,6 +122,7 @@ export const EmployeCreate = () => {
                     name='ci'
                     value={ci}
                     onChange={onInputChange}
+                    required
                 />
 
                 <label className='Employe-Create-label'>Fecha de nacimiento:</label>
@@ -102,6 +132,7 @@ export const EmployeCreate = () => {
                     name='birthDate'
                     value={birthDate}
                     onChange={onInputChange}
+                    required
                 />
 
                 <label className='Employe-Create-label'>Correo electrónico:</label>
@@ -110,6 +141,7 @@ export const EmployeCreate = () => {
                     name='email'
                     value={email}
                     onChange={onInputChange}
+                    required
                 />
             </div>
 
@@ -120,7 +152,9 @@ export const EmployeCreate = () => {
                     className="Employe-Create-comboBox"
                     name="roll"
                     onChange={onInputChange}
+                    required
                 >
+                    <option value="">Seleccione uno</option>
                     {rol.map((rl, i) => (
                         <option value={rl.id} key={i} >{rl.name}</option>
                     ))}
@@ -131,7 +165,9 @@ export const EmployeCreate = () => {
                     className="Employe-Create-comboBox"
                     name="branch"
                     onChange={onInputChange}
+                    required
                 >
+                    <option value="">Seleccione uno</option>
                     {branchID.map((br, i) => (
                         <option value={br.id} key={i}>{br.name_branch}</option>
                     ))}
@@ -147,6 +183,7 @@ export const EmployeCreate = () => {
                         accept="image/png, .jpeg, .jpg, image/gif"
                         name='image'
                         onChange={onInputChangeImage}
+                        required
                     />
                 </div>
             </div>

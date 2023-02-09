@@ -56,7 +56,7 @@ export const Login = () => {
             type="submit"
           >Ingresar
           </button>
-          <Link to="/password-recovery">Olvidé mi contraseña</Link>
+          <Link to="/auth/password-recovery">Olvidé mi contraseña</Link>
         </form>
 
       </div>

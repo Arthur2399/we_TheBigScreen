@@ -25,7 +25,6 @@ export const PlayGame = ({ onNavigateRoom, setIdRoom}) => {
         const getDataPlayGame = async () => {
             const respUser = await useGetUser();
             const respRoom =  await useGetRoomGame('1');
-            console.log(respRoom)
         }
 
         getDataPlayGame();

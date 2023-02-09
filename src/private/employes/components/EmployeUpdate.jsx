@@ -1,209 +1,234 @@
-import { useState, useEffect } from 'react';
-import { useGetBranchs, useGetEmploye, usePutEmploye, useGetRol } from '../hooks';
-import { useDeleteEmploye } from '../hooks/useDeleteEmploye';
+import { useMemo, useState } from 'react';
+import { useForm } from '../../../hooks/useForm';
+import { useDeleteEmploye, useGetBranchs, useGetEmploye, useGetRol, usePutEmploye } from '../hooks';
 import employePhoto from '/assets/logos/employes_photo.svg';
 import employeUpdate from '/assets/logos/employes_create.svg';
-import './EmployeUpdate.css';
 import Swal from 'sweetalert2';
+import './EmployeUpdate.css';
+
+export const EmployeUpdate = ({ employeId, closeModal, setIsReload, isReload, isOpen }) => {
+
+    const [rollList, setRollList] = useState();
+    const [branchList, setBranchList] = useState()
+    const [employeData, setemployeData] = useState({})
+    const [formData, setformData] = useState({
+        first_name: '',
+        last_name: '',
+        ci: '',
+        birth: '',
+        username: '',
+        email: '',
+        rol_id: '',
+        branch_user_id: '',
+        image: '',
+        is_active:"",
+    })
+
+    const {
+        onInputChange,
+        onInputChangeImage,
+        formState,
+        first_name,
+        last_name,
+        ci,
+        birth,
+        email,
+        rol_id,
+        branch_user_id,
+        is_active,
+    } = useForm(formData);
+
+    useMemo(() => {
+        setformData({
+            first_name: employeData.first_name || "",
+            last_name: employeData.last_name || "",
+            ci: employeData.ci || "",
+            birth: employeData.birth || "",
+            username: employeData.username || "",
+            email: employeData.email || "",
+            rol_id: employeData.rol_id || "",
+            branch_user_id: employeData.branch_user_id || "",
+            image_change: employeData.image_change || false,
+            is_active:employeData.is_active,
+            image: "",
+        })
+    }, [employeData])
 
 
-export const EmployeUpdate = ({ employeId,closeModal,openModal}) => {
-
-
-    const [rol, setRol] = useState([])
-    const [roles, setRoles] = useState('')
-    const [branch, setBranch] = useState([])
-    const [branchs, setBranchs] = useState('')
-
-    //FORMULARIO
-    const [firstName, setFirstName] = useState('')
-    const [lastName, setLastName] = useState('')
-    const [userName, setUserName] = useState('')
-    const [email, setEmail] = useState('')
-    const [ci, setCi] = useState('')
-    const [birth, setBirth] = useState('')
-    const [image, setImage] = useState('')
-    const [branchID, setBranchID] = useState('')
-    const [rolID, setRolId] = useState('')
-    const [imageChange, setImageChange] = useState(false)
-
-
-    const [postImage, setPostImage] = useState('');
-
-    const handleFileUpload = (foto) => {
-        const reader = new FileReader()
-        reader.readAsDataURL(foto);
-        reader.onload = function () {
-            const base64 = reader.result
-            setPostImage(base64);
-            setImage(base64);
-            setImageChange(true);
+    useMemo(async () => {
+        if (employeId > 0) {
+            const rollResponse = await useGetRol();
+            setRollList(rollResponse);
+            const branchResponse = await useGetBranchs();
+            setBranchList(branchResponse);
+            const respEmploye = await useGetEmploye(employeId);
+            setemployeData(respEmploye)
         }
-    };
+    }, [employeId, isOpen])
 
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-
-        const userData = {
-            first_name: firstName,
-            last_name: lastName,
-            username: userName,
-            email: email,
-            branch_user_id: branchID,
-            rol_id: rolID,
-            ci: ci,
-            birth: birth,
-            image: image,
-            image_change: imageChange,
-        }
-        const resp = await usePutEmploye(JSON.stringify(userData), employeId);
-    }
-
-    const deleteEmploye = async (event) => {
-        event.preventDefault();
-        closeModal()
-        const des_answer= await Swal.fire({
-            title: '¿Seguro que quieres deshabilitarlo?',
+    const UpdateEmployee = async () => {
+        const des_answer = await Swal.fire({
+            title: '¿Seguro que deseas actualizar este empleado?',
             showCancelButton: true,
-            confirmButtonText: 'Desabilitar',
-            confirmButtonColor: "#0fd831"
-          })
-        if(des_answer.isConfirmed){
-            console.log("Verdadero")
-            const response = await useDeleteEmploye(employeId)
-            const resp = await response.json()
-            console.log(resp.Mensaje)
-            if(response.status ==200 ){
+            confirmButtonText: 'Actualizar',
+            confirmButtonColor: "#FD5D5D"
+        })
+
+        if (des_answer.isConfirmed) {
+            const { resp, response } = await usePutEmploye(JSON.stringify(formState), employeId);
+            if (response.status == 200) {
+                closeModal();
                 Swal.fire({
-                    icon:'success',
-                    title:'Correcto',
+                    icon: 'success',
+                    title: 'Empleado actualizado',
                     text: resp.Mensaje,
-                    confirmButtonColor: "#0fd831"
+                    confirmButtonColor: "#FD5D5D"
                 })
-
-
-            }else{
+                setIsReload(isReload + 1);
+            } else {
+                const fisrtKey = Object.keys(resp)[0]
                 Swal.fire({
-                    icon:'error',
-                    title:'Error',
-                    text:resp.Mensaje,
-                    
+                    icon: 'error',
+                    title: 'Error',
+                    text: resp[fisrtKey],
+                    confirmButtonColor: "#FD5D5D"
                 })
             }
-        }else{
-            openModal()
-            console.log("False")
         }
-
     }
 
-    useEffect(() => {
-        async function fetchData() {
-            const respR = await useGetRol();
-            const respB = await useGetBranchs();
-            const respEmploye = await useGetEmploye(employeId);
 
-            setRol(respR);
-            setBranch(respB);
-
-            setFirstName(respEmploye.first_name);
-            setLastName(respEmploye.last_name);
-            setUserName(respEmploye.username);
-            setEmail(respEmploye.email);
-            setCi(respEmploye.ci);
-            setBirth(respEmploye.birth);
-            setImage(respEmploye.image);
-            setImage(respEmploye.image_change);
-
-            setBranchID(respEmploye.branch_user_id);
-            setRolId(respEmploye.rol_id);
-
-            respR.forEach(r => {
-                if (r.id == respEmploye.rol_id) {
-                    setRoles(r.name);
-                }
-            });
-            respB.forEach(b => {
-                if (b.id == respEmploye.branch_user_id) {
-                    setBranchs(b.name_branch);
-                }
-            });
+    const disableEmploye = async () => {
+        let des=""
+        if (employeData.is_active){
+            des="Deshabilitar"
+        }else{
+            des="Habilitar"
         }
-        fetchData();
-    }, [employeId])
+        const disable = await Swal.fire({
+            title: `¿Seguro que deseas ${des.toLowerCase()} este empleado?`,
+            showCancelButton: true,
+            confirmButtonText: des,
+            confirmButtonColor: "#FD5D5D"
+        })
+
+        if (disable.isConfirmed) {
+            const { response, resp } = await useDeleteEmploye(employeId)
+            if (response.status == 200) {
+
+                closeModal();
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Empleado deshabilitado',
+                    text: resp.Mensaje,
+                    confirmButtonColor: "#FD5D5D"
+                })
+
+                setIsReload(isReload + 1);
+            } else {
+                const fisrtKey = Object.keys(resp)[0]
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: resp[fisrtKey],
+                    confirmButtonColor: "#FD5D5D"
+                })
+            }
+        }
+    }
+
+
+    const onUpdateEmploye = async (event) => {
+        event.preventDefault()
+        if (event.nativeEvent.submitter.id === 'Update') {
+            UpdateEmployee()
+        } else if (event.nativeEvent.submitter.id === 'Disable') {
+            disableEmploye()
+        }
+    }
 
 
 
     return (
-        <form onSubmit={handleSubmit} className="Employe-Form">
+        <form onSubmit={onUpdateEmploye} className="Employe-Form">
 
             <div className='Employe-Update-Container'>
-                <label htmlFor="" className='Employe-Update-label'>Nombre:</label>
-                <input type="text"
+                <label className='Employe-Update-label'>Nombre:</label>
+                <input
+                    type="text"
                     className='Employe-Update-inputs'
-                    name='name'
-                    value={firstName}
-                    onChange={(event) => setFirstName(event.target.value)}
+                    name="first_name"
+                    value={first_name}
+                    onChange={onInputChange}
                 />
 
-                <label htmlFor="" className='Employe-Update-label' >Apellido:</label>
-                <input type="text"
+                <label className='Employe-Update-label' >Apellido:</label>
+                <input
+                    type="text"
                     className='Employe-Update-inputs'
-                    name='lastName'
-                    value={lastName}
-                    onChange={(event) => setLastName(event.target.value)}
+                    name='last_name'
+                    value={last_name}
+                    onChange={onInputChange}
                 />
 
-                <label htmlFor="" className='Employe-Update-label'>CI:</label>
-                <input type="text"
+                <label className='Employe-Update-label'>CI:</label>
+                <input
+                    type="text"
                     className='Employe-Update-inputs'
                     name='ci'
                     value={ci}
-                    onChange={(event) => setCi(event.target.value)}
+                    onChange={onInputChange}
                 />
 
-                <label htmlFor="" className='Employe-Update-label'>Fecha de nacimiento:</label>
-                <input type="date"
+                <label className='Employe-Update-label'>Fecha de nacimiento:</label>
+                <input
+                    type="date"
                     className='Employe-Update-inputs'
-                    name='dateBirth'
+                    name='birth'
                     value={birth}
-                    onChange={(event) => setBirth(event.target.value)}
+                    onChange={onInputChange}
                 />
 
-                <label htmlFor="" className='Employe-Update-label'>Correo electrónico:</label>
+                <label className='Employe-Update-label'>Correo electrónico:</label>
                 <input type="text"
                     className='Employe-Update-inputs'
                     name='email'
                     value={email}
-                    onChange={(event) => setEmail(event.target.value)}
+                    onChange={onInputChange}
                 />
             </div>
 
             <div className='Employe-Update-Container'>
 
-                <label htmlFor="" className='Employe-Update-label'>Rol:</label>
-                <select name="selectRol"
+                <label className='Employe-Update-label'>Rol:</label>
+                <select
                     className="Employe-Update-comboBox"
-                    onChange={(event) => setRolId(parseInt(event.target.value))}
+                    name="rol_id"
+                    onChange={onInputChange}
+                    value={rol_id}
                 >
-                    <option >{roles}</option>
-                    {rol.filter(rl => rl.name != roles).map((rl, i) => (
-                        <option value={rl.id} key={i} >{rl.name}</option>
-                    ))}
+                    <option value="">Seleccione una:</option>
+                    {rollList?.map((rol) => (
+                        <option key={rol.id} value={rol.id}>{rol.name}</option>
+                    ))
+                    }
 
                 </select>
 
-                <label htmlFor="" className='Employe-Update-label'>Sucursal:</label>
-                <select name="selectBranch"
+                <label className='Employe-Update-label'>Sucursal:</label>
+                <select
                     className="Employe-Update-comboBox"
-                    onChange={(event) => setBranchID(parseInt(event.target.value))}
+                    name="branch_user_id"
+                    onChange={onInputChange}
+                    value={branch_user_id}
                 >
-                    <option>{branchs}</option>
-
-                    {branch.filter(br => br.name_branch != branchs).map((br, i) => (
-                        <option value={br.id} key={i}>{br.name_branch}</option>
-                    ))}
+                    <option value="">Seleccione una:</option>
+                    {
+                        branchList?.map((branch) => (
+                            <option key={branch.id} value={branch.id}>{branch.name_branch}</option>
+                        ))
+                    }
 
                 </select>
 
@@ -213,11 +238,11 @@ export const EmployeUpdate = ({ employeId,closeModal,openModal}) => {
                     <span>Sube una foto para que puedas reconocer rapidamente a los miembros de tu equipo</span>
                     <div>
                         <input
-                            className='Employe-Update-UploadPhoto-button'
                             type='file'
-                            name='fotoUpload'
+                            className='Employe-Update-UploadPhoto-button'
                             accept="image/png, .jpg, image/gif"
-                            onChange={(e) => handleFileUpload(e.target.files[0])}
+                            name='image'
+                            onChange={onInputChangeImage}
                         />
                     </div>
                 </div>
@@ -229,11 +254,15 @@ export const EmployeUpdate = ({ employeId,closeModal,openModal}) => {
                     <h1> Actualizar empleado</h1>
                     <span>Actualiza los datos de los miembros de tu equipo</span>
                     <div className='optiones-Update-employe'>
-                        <button className='button-sent'
-                            onClick={deleteEmploye}>
-                            Deshabilitar
+                        <button
+                            className='button-sent'
+                            id={"Disable"}
+                            onClick={disableEmploye}>
+                            {
+                                is_active === true ? "Deshabilitar" : "Habilitar"
+                            }
                         </button>
-                        <button className=' button-sent' type='submit'>Actualizar</button>
+                        <button className=' button-sent' id='Update' type='submit'>Actualizar</button>
                     </div>
                 </div>
             </div>
