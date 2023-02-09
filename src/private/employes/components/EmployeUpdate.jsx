@@ -1,23 +1,25 @@
 import { useMemo, useState } from 'react';
-import { useGetBranchs, useGetEmploye, useGetRol } from '../hooks';
+import { useForm } from '../../../hooks/useForm';
+import { useGetBranchs, useGetEmploye, useGetRol, usePutEmploye } from '../hooks';
 import employePhoto from '/assets/logos/employes_photo.svg';
 import employeUpdate from '/assets/logos/employes_create.svg';
 import './EmployeUpdate.css';
-import { useForm } from '../../../hooks/useForm';
+import Swal from 'sweetalert2';
 
-export const EmployeUpdate = ({ employeId }) => {
+export const EmployeUpdate = ({ employeId, closeModal,setIsReload }) => {
 
     const [rollList, setRollList] = useState();
     const [branchList, setBranchList] = useState()
     const [employeData, setemployeData] = useState({})
     const [formData, setformData] = useState({
-        name: '',
-        lastName: '',
+        first_name: '',
+        last_name: '',
         ci: '',
-        birthDate: '',
+        birth: '',
+        username: '',
         email: '',
-        roll: '',
-        branch: '',
+        rol_id: '',
+        branch_user_id: '',
         image: '',
     })
 
@@ -25,24 +27,29 @@ export const EmployeUpdate = ({ employeId }) => {
         onInputChange,
         onInputChangeImage,
         formState,
-        name,
-        lastName,
+        first_name,
+        last_name,
         ci,
-        birthDate,
+        username,
+        birth,
         email,
-        roll,
+        rol_id,
+        branch_user_id,
+        image,
     } = useForm(formData);
 
     useMemo(() => {
         setformData({
-            name: employeData.first_name || "",
-            lastName: employeData.last_name || "",
+            first_name: employeData.first_name || "",
+            last_name: employeData.last_name || "",
             ci: employeData.ci || "",
-            birthDate: employeData.birth || "",
+            birth: employeData.birth || "",
+            username: employeData.username || "",
             email: employeData.email || "",
-            roll: employeData.rol_id || "",
-            branch: employeData.branch_user_id || "",
-            image: employeData.image || "",
+            rol_id: employeData.rol_id || "",
+            branch_user_id: employeData.branch_user_id || "",
+            image_change: employeData.image_change || false,
+            image: "",
         })
     }, [employeData])
 
@@ -58,8 +65,40 @@ export const EmployeUpdate = ({ employeId }) => {
         }
     }, [employeId])
 
+
     const onUpdateEmploye = async (event) => {
         event.preventDefault()
+        const des_answer = await Swal.fire({
+            title: '¿Seguro que deseas actualizar este empleado?',
+            showCancelButton: true,
+            confirmButtonText: 'Actualizar',
+            confirmButtonColor: "#FD5D5D"
+        })
+
+        if (des_answer.isConfirmed) {
+            const { resp, response } = await usePutEmploye(JSON.stringify(formState), employeId);
+            if (response.status == 200) {
+                closeModal();
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Empleado actualizado',
+                    text: resp.Mensaje,
+                    confirmButtonColor: "#FD5D5D"
+                })
+
+                setIsReload(true);
+            } else {
+                const fisrtKey = Object.keys(resp)[0]
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: resp[fisrtKey],
+                    confirmButtonColor: "#FD5D5D"
+                })
+            }
+        }
+
+
     }
 
     const disableEmploye = async () => {
@@ -75,8 +114,8 @@ export const EmployeUpdate = ({ employeId }) => {
                 <input
                     type="text"
                     className='Employe-Update-inputs'
-                    name="name"
-                    value={name}
+                    name="first_name"
+                    value={first_name}
                     onChange={onInputChange}
                 />
 
@@ -84,8 +123,8 @@ export const EmployeUpdate = ({ employeId }) => {
                 <input
                     type="text"
                     className='Employe-Update-inputs'
-                    name='lastName'
-                    value={lastName}
+                    name='last_name'
+                    value={last_name}
                     onChange={onInputChange}
                 />
 
@@ -102,8 +141,8 @@ export const EmployeUpdate = ({ employeId }) => {
                 <input
                     type="date"
                     className='Employe-Update-inputs'
-                    name='birthDate'
-                    value={birthDate}
+                    name='birth'
+                    value={birth}
                     onChange={onInputChange}
                 />
 
@@ -121,27 +160,30 @@ export const EmployeUpdate = ({ employeId }) => {
                 <label className='Employe-Update-label'>Rol:</label>
                 <select
                     className="Employe-Update-comboBox"
-                    name="roll"
+                    name="rol_id"
                     onChange={onInputChange}
-                    value={roll}
+                    value={rol_id}
                 >
-                    {rollList?.map((rol)=>(
-                            <option key={rol.id} value={rol.id}>{rol.name}</option>
-                        ))
+                    {rollList?.map((rol) => (
+                        <option key={rol.id} value={rol.id}>{rol.name}</option>
+                    ))
                     }
 
                 </select>
 
                 <label className='Employe-Update-label'>Sucursal:</label>
-                <select name="selectBranch"
+                <select
                     className="Employe-Update-comboBox"
+                    name="branch_user_id"
+                    onChange={onInputChange}
+                    value={branch_user_id}
                 >
-                    {/*                     <option>{branchs}</option>
+                    {
+                        branchList?.map((branch) => (
+                            <option key={branch.id} value={branch.id}>{branch.name_branch}</option>
+                        ))
+                    }
 
-                    {branch.filter(br => br.name_branch != branchs).map((br, i) => (
-                        <option value={br.id} key={i}>{br.name_branch}</option>
-                    ))}
- */}
                 </select>
 
                 <div className='Employe-Update-UploadPhoto'>
@@ -150,10 +192,11 @@ export const EmployeUpdate = ({ employeId }) => {
                     <span>Sube una foto para que puedas reconocer rapidamente a los miembros de tu equipo</span>
                     <div>
                         <input
-                            className='Employe-Update-UploadPhoto-button'
                             type='file'
-                            name='fotoUpload'
+                            className='Employe-Update-UploadPhoto-button'
                             accept="image/png, .jpg, image/gif"
+                            name='image'
+                            onChange={onInputChangeImage}
                         />
                     </div>
                 </div>

@@ -26,7 +26,7 @@ export const Employes = () => {
                         <div className="Employes-list">
                             <h2>Lista de empleados</h2>
                             <div className="Employes-scroll-container">
-                                <EmployesCards cardsEmployes={cardsEmployes} />
+                                <EmployesCards cardsEmployes={cardsEmployes} setIsReload={setIsReload}/>
                             </div>
                         </div>
                         <div className="Employes-all-container">

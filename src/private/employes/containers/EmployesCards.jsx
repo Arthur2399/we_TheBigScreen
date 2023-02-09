@@ -5,7 +5,7 @@ import { EmployesCard } from '../components';
 import { EmployeUpdate } from '../components/EmployeUpdate';
 import './EmployesCards.css';
 
-export const EmployesCards = ( {cardsEmployes}) => {
+export const EmployesCards = ( {cardsEmployes,setIsReload}) => {
     const [isOpenModal,openModal,closeModal] = useModal(false);
     const [employeId, setEmployeId] = useState()
 
@@ -17,7 +17,7 @@ export const EmployesCards = ( {cardsEmployes}) => {
                 ))}
        
             <Modal isOpen={isOpenModal} closeModal={closeModal} title="Actualizar empleado" x={"80%"} y={"580px"}>
-                <EmployeUpdate employeId={employeId}/>
+                <EmployeUpdate employeId={employeId} setIsReload={setIsReload} closeModal={closeModal}/>
             </Modal>
         </div>
     )
