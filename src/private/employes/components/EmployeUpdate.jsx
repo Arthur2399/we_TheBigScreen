@@ -5,6 +5,7 @@ import employePhoto from '/assets/logos/employes_photo.svg';
 import employeUpdate from '/assets/logos/employes_create.svg';
 import Swal from 'sweetalert2';
 import './EmployeUpdate.css';
+import BounceLoader from 'react-spinners/BounceLoader';
 
 export const EmployeUpdate = ({ employeId, closeModal, setIsReload, isReload, isOpen }) => {
 
@@ -21,7 +22,7 @@ export const EmployeUpdate = ({ employeId, closeModal, setIsReload, isReload, is
         rol_id: '',
         branch_user_id: '',
         image: '',
-        is_active:"",
+        is_active: "",
     })
 
     const {
@@ -49,7 +50,7 @@ export const EmployeUpdate = ({ employeId, closeModal, setIsReload, isReload, is
             rol_id: employeData.rol_id || "",
             branch_user_id: employeData.branch_user_id || "",
             image_change: employeData.image_change || false,
-            is_active:employeData.is_active,
+            is_active: employeData.is_active,
             image: "",
         })
     }, [employeData])
@@ -100,11 +101,11 @@ export const EmployeUpdate = ({ employeId, closeModal, setIsReload, isReload, is
 
 
     const disableEmploye = async () => {
-        let des=""
-        if (employeData.is_active){
-            des="Deshabilitar"
-        }else{
-            des="Habilitar"
+        let des = ""
+        if (employeData.is_active) {
+            des = "Deshabilitar"
+        } else {
+            des = "Habilitar"
         }
         const disable = await Swal.fire({
             title: `¿Seguro que deseas ${des.toLowerCase()} este empleado?`,
@@ -152,6 +153,13 @@ export const EmployeUpdate = ({ employeId, closeModal, setIsReload, isReload, is
 
     return (
         <form onSubmit={onUpdateEmploye} className="Employe-Form">
+            <BounceLoader
+                color="#36d7b7"
+                cssOverride={{zIndex:2, position:"absolute"}}
+                loading
+                size={100}
+            />
+            
 
             <div className='Employe-Update-Container'>
                 <label className='Employe-Update-label'>Nombre:</label>
