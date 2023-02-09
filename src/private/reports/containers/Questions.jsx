@@ -1,7 +1,6 @@
 import './Questions.css';
 
 export const Questions = ({ questions=[]}) => {
-    /* console.log(questions) */
     return (
         <div>
             <ol>

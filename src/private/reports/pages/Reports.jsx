@@ -9,7 +9,6 @@ export const Reports = () => {
     const [dataFilter, setDataFilter] = useState({})
     const [respReport, setRespReport] = useState({})
 
-    console.log(respReport)
 
     useMemo(async () => {
         if (dataFilter.template_id && dataFilter.branch_id) {

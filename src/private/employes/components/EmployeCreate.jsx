@@ -57,7 +57,6 @@ export const EmployeCreate = ({closeModal, setIsReload}) => {
 
         if (des_answer.isConfirmed) {
             const { resp, response } = await usePostEmploye(JSON.stringify(data));
-            console.log(response, resp)
             if (response.status == 201) {
                 closeModal();
                 Swal.fire({
@@ -70,7 +69,6 @@ export const EmployeCreate = ({closeModal, setIsReload}) => {
                 setIsReload(true);
             } else {
                 const fisrtKey = Object.keys(resp)[0]
-                console.log(fisrtKey)
                 Swal.fire({
                     icon: 'error',
                     title: 'Error',
