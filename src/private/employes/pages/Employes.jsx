@@ -7,7 +7,7 @@ export const Employes = () => {
 
     const [cardsEmployes, setCardsEmployes] = useState([]);
     const [empLast, setEmpLast] = useState([])
-    const [isReload, setIsReload] = useState();
+    const [isReload, setIsReload] = useState(0);
 
     useMemo(async () => {
         const respEmp = await useGetEmployesList();
@@ -26,13 +26,13 @@ export const Employes = () => {
                         <div className="Employes-list">
                             <h2>Lista de empleados</h2>
                             <div className="Employes-scroll-container">
-                                <EmployesCards cardsEmployes={cardsEmployes} setIsReload={setIsReload}/>
+                                <EmployesCards cardsEmployes={cardsEmployes} isReload={isReload} setIsReload={setIsReload}/>
                             </div>
                         </div>
                         <div className="Employes-all-container">
                             <div className="Employ-create">
                                 <h2>Nuevo empleado</h2>
-                                <EmployeCreateInfo setIsReload={setIsReload} />
+                                <EmployeCreateInfo isReload={isReload} setIsReload={setIsReload} />
                             </div>
                             <div className="Employe-last-create">
                                 <h2>Ultimo empleado creado</h2>

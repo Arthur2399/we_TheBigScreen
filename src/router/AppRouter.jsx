@@ -1,6 +1,6 @@
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { ModuleRoutes } from '../private';
-import { Login } from '../public/auth';
+import { Login,PasswordRecovery } from '../public/auth';
 import { PrivateRoute } from './PrivateRoute';
 import { PublicRoute } from './PublicRoute';
 
@@ -8,7 +8,7 @@ export const AppRouter = () => {
     return (
         <>
             <Routes>
-                <Route path="login/*" element={
+                <Route path="login" element={
                     <PublicRoute>
                         <Routes>
                             <Route path="/*" element={<Login />} />

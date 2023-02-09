@@ -18,7 +18,7 @@ const formData = {
     image: '',
 }
 
-export const EmployeCreate = ({closeModal, setIsReload}) => {
+export const EmployeCreate = ({closeModal, setIsReload, isReload}) => {
 
     const [rol, setRol] = useState([])
     const [branchID, setBranchID] = useState([])
@@ -66,7 +66,7 @@ export const EmployeCreate = ({closeModal, setIsReload}) => {
                     confirmButtonColor: "#FD5D5D"
                 })
 
-                setIsReload(true);
+                setIsReload(isReload+1);
             } else {
                 const fisrtKey = Object.keys(resp)[0]
                 Swal.fire({

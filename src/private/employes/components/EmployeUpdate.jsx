@@ -1,12 +1,12 @@
 import { useMemo, useState } from 'react';
 import { useForm } from '../../../hooks/useForm';
-import { useGetBranchs, useGetEmploye, useGetRol, usePutEmploye } from '../hooks';
+import { useDeleteEmploye, useGetBranchs, useGetEmploye, useGetRol, usePutEmploye } from '../hooks';
 import employePhoto from '/assets/logos/employes_photo.svg';
 import employeUpdate from '/assets/logos/employes_create.svg';
-import './EmployeUpdate.css';
 import Swal from 'sweetalert2';
+import './EmployeUpdate.css';
 
-export const EmployeUpdate = ({ employeId, closeModal,setIsReload }) => {
+export const EmployeUpdate = ({ employeId, closeModal, setIsReload, isReload, isOpen }) => {
 
     const [rollList, setRollList] = useState();
     const [branchList, setBranchList] = useState()
@@ -21,6 +21,7 @@ export const EmployeUpdate = ({ employeId, closeModal,setIsReload }) => {
         rol_id: '',
         branch_user_id: '',
         image: '',
+        is_active:"",
     })
 
     const {
@@ -30,12 +31,11 @@ export const EmployeUpdate = ({ employeId, closeModal,setIsReload }) => {
         first_name,
         last_name,
         ci,
-        username,
         birth,
         email,
         rol_id,
         branch_user_id,
-        image,
+        is_active,
     } = useForm(formData);
 
     useMemo(() => {
@@ -49,6 +49,7 @@ export const EmployeUpdate = ({ employeId, closeModal,setIsReload }) => {
             rol_id: employeData.rol_id || "",
             branch_user_id: employeData.branch_user_id || "",
             image_change: employeData.image_change || false,
+            is_active:employeData.is_active,
             image: "",
         })
     }, [employeData])
@@ -63,11 +64,10 @@ export const EmployeUpdate = ({ employeId, closeModal,setIsReload }) => {
             const respEmploye = await useGetEmploye(employeId);
             setemployeData(respEmploye)
         }
-    }, [employeId])
+    }, [employeId, isOpen])
 
 
-    const onUpdateEmploye = async (event) => {
-        event.preventDefault()
+    const UpdateEmployee = async () => {
         const des_answer = await Swal.fire({
             title: '¿Seguro que deseas actualizar este empleado?',
             showCancelButton: true,
@@ -85,8 +85,7 @@ export const EmployeUpdate = ({ employeId, closeModal,setIsReload }) => {
                     text: resp.Mensaje,
                     confirmButtonColor: "#FD5D5D"
                 })
-
-                setIsReload(true);
+                setIsReload(isReload + 1);
             } else {
                 const fisrtKey = Object.keys(resp)[0]
                 Swal.fire({
@@ -97,13 +96,58 @@ export const EmployeUpdate = ({ employeId, closeModal,setIsReload }) => {
                 })
             }
         }
-
-
     }
+
 
     const disableEmploye = async () => {
+        let des=""
+        if (employeData.is_active){
+            des="Deshabilitar"
+        }else{
+            des="Habilitar"
+        }
+        const disable = await Swal.fire({
+            title: `¿Seguro que deseas ${des.toLowerCase()} este empleado?`,
+            showCancelButton: true,
+            confirmButtonText: des,
+            confirmButtonColor: "#FD5D5D"
+        })
 
+        if (disable.isConfirmed) {
+            const { response, resp } = await useDeleteEmploye(employeId)
+            if (response.status == 200) {
+
+                closeModal();
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Empleado deshabilitado',
+                    text: resp.Mensaje,
+                    confirmButtonColor: "#FD5D5D"
+                })
+
+                setIsReload(isReload + 1);
+            } else {
+                const fisrtKey = Object.keys(resp)[0]
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: resp[fisrtKey],
+                    confirmButtonColor: "#FD5D5D"
+                })
+            }
+        }
     }
+
+
+    const onUpdateEmploye = async (event) => {
+        event.preventDefault()
+        if (event.nativeEvent.submitter.id === 'Update') {
+            UpdateEmployee()
+        } else if (event.nativeEvent.submitter.id === 'Disable') {
+            disableEmploye()
+        }
+    }
+
 
 
     return (
@@ -164,6 +208,7 @@ export const EmployeUpdate = ({ employeId, closeModal,setIsReload }) => {
                     onChange={onInputChange}
                     value={rol_id}
                 >
+                    <option value="">Seleccione una:</option>
                     {rollList?.map((rol) => (
                         <option key={rol.id} value={rol.id}>{rol.name}</option>
                     ))
@@ -178,6 +223,7 @@ export const EmployeUpdate = ({ employeId, closeModal,setIsReload }) => {
                     onChange={onInputChange}
                     value={branch_user_id}
                 >
+                    <option value="">Seleccione una:</option>
                     {
                         branchList?.map((branch) => (
                             <option key={branch.id} value={branch.id}>{branch.name_branch}</option>
@@ -208,11 +254,15 @@ export const EmployeUpdate = ({ employeId, closeModal,setIsReload }) => {
                     <h1> Actualizar empleado</h1>
                     <span>Actualiza los datos de los miembros de tu equipo</span>
                     <div className='optiones-Update-employe'>
-                        <button className='button-sent'
+                        <button
+                            className='button-sent'
+                            id={"Disable"}
                             onClick={disableEmploye}>
-                            Deshabilitar
+                            {
+                                is_active === true ? "Deshabilitar" : "Habilitar"
+                            }
                         </button>
-                        <button className=' button-sent' type='submit'>Actualizar</button>
+                        <button className=' button-sent' id='Update' type='submit'>Actualizar</button>
                     </div>
                 </div>
             </div>

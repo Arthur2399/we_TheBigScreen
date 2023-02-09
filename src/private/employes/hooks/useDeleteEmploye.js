@@ -13,5 +13,6 @@ export const useDeleteEmploye = async (id) => {
       };
       
       const response = await fetch(`${API_EMPLOYED_DELETE}${id}`, options)
-      return response
+      const resp = await response.json()
+      return {response, resp}
 }
