@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { EmployeCreateInfo, EmployesCards, EmployedLastCreated, EmployesInfo } from '../containers';
 import { useGetEmployesLast, useGetEmployesList } from '../hooks';
 import './Employes.css';

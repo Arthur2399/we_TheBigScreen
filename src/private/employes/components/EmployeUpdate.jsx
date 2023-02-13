@@ -1,11 +1,11 @@
 import { useMemo, useState } from 'react';
 import { useForm } from '../../../hooks/useForm';
 import { useDeleteEmploye, useGetBranchs, useGetEmploye, useGetRol, usePutEmploye } from '../hooks';
+import { PacmanLoader } from 'react-spinners';
 import employePhoto from '/assets/logos/employes_photo.svg';
 import employeUpdate from '/assets/logos/employes_create.svg';
 import Swal from 'sweetalert2';
 import './EmployeUpdate.css';
-import { PacmanLoader } from 'react-spinners';
 
 export const EmployeUpdate = ({ employeId, closeModal, setIsReload, isReload, isOpen }) => {
 
@@ -163,7 +163,7 @@ export const EmployeUpdate = ({ employeId, closeModal, setIsReload, isReload, is
                             color="#FD5D5D"
                             loading
                             size={25}
-                            className="spinner_loading"
+                            className="Spinner-Modal"
                         />
                         Cargando ...
                     </>

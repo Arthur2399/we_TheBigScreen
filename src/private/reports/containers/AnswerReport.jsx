@@ -17,10 +17,10 @@ export const AnswerReport = ({reach}) => {
             backgroundColor: [
                 '#A5C9CA',
                 '#21E1E1',
-            ]
+            ],
         },
-        ],
-        labels:[
+    ],
+    labels:[
             'Respondieron',
             'No respondieron',
         ]
@@ -33,8 +33,9 @@ export const AnswerReport = ({reach}) => {
                 display:true,
                 position:'left'
             },
-        }
-      }
+        },
+        maintainAspectRatio:false
+    }
     return (
         <div className='Report-container'>
             <Pie data={data} options={options} />

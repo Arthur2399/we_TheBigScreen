@@ -10,3 +10,10 @@ body{
     border-radius: 15px;
 }
 
+.Spinner-Modal{
+    z-index: 2;
+    position: absolute;
+    align-self: center;
+    justify-self: center;
+    margin-top: 17%;
+}
