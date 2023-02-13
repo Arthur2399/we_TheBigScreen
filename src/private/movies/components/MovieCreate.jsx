@@ -1,132 +1,154 @@
-import { useEffect, useState } from 'react';
-import { Modal } from '../../../components';
-import { useModal } from '../../../hooks';
-import { ActorCreate } from './ActorCreate';
-import { useGetActors, useGetCategories, usePostMovie } from '../hooks';
 import movieTag from '/assets/logos/Movie-tag.svg';
 import link from '/assets/icons/link.png';
 import './MovieCreate.css';
+import { useGetActors, useGetCategories, usePostMovie } from '../hooks';
+import { useForm } from '../../../hooks/useForm';
+import { useEffect, useState } from 'react';
+
+
+
+const formData = {
+    actor_movie_id: [],
+    category_movie_id: [],
+    departure_date_movie: '',
+    description_movie: '',
+    duration_movie: '',
+    name_movie: '',
+    photo_movie: '',
+    premiere_date_movie: '',
+}
+
 
 export const MovieCreate = () => {
 
-    const [actors, setActors] = useState([]);
     const [categories, setCategories] = useState([]);
-    const [isOpenModal, openModal, closeModal] = useModal(false);
-    const [postImage, setPostImage] = useState('');
+    const [actors, setActors] = useState([]);
 
-    const handleFileUpload = (foto) => {
-        const reader = new FileReader()
-        reader.readAsDataURL(foto);
-        reader.onload = function () {
-            const base64 = reader.result
-            setPostImage(base64);
-        }
-    };
+    const {
+        onInputChange,
+        onInputChangeImage,
+        onInputChangeMultiselect,
+        formState,
+        actor_movie_id,
+        category_movie_id,
+        departure_date_movie,
+        description_movie,
+        duration_movie,
+        name_movie,
+        photo_movie,
+        premiere_date_movie,
+    } = useForm(formData);
 
-    const handleSubmit = async (event) => {
+    const onCreateMovie = async (event) => {
         event.preventDefault();
-
-        var selectObjectC = document.getElementById("movie-select-category");
-        const categorySelect = [];
-        let c = 0;
-        for (var i = 0; i < selectObjectC.options.length; i++) {
-            if (selectObjectC.options[i].selected == true) {
-                categorySelect[c] = parseInt(selectObjectC.options[i].value);
-                c++
-            }
-        }
-
-        var selectObjectA = document.getElementById("movie-select-actor");
-        const actorSelect = [];
-        let a = 0;
-        for (var i = 0; i < selectObjectA.options.length; i++) {
-            if (selectObjectA.options[i].selected == true) {
-                actorSelect[a] = parseInt(selectObjectA.options[i].value);
-                a++
-            }
-        }
-
-        const movieData = {
-            name_movie: event.target.elements.movieName.value,
-            description_movie: event.target.elements.sipnopsis.value,
-            duration_movie: event.target.elements.duration.value,
-            premiere_date_movie: event.target.elements.datePremiere.value,
-            departure_date_movie: event.target.elements.dateExit.value,
-            photo_movie: postImage,
-            category_movie_id: categorySelect,
-            actor_movie_id: actorSelect,
-        }
-        const resp = await usePostMovie(JSON.stringify(movieData));
+        /*         const { resp, response } = await usePostMovie()
+                console.log(resp, response) */
+        console.log(formState)
     }
 
     useEffect(() => {
         async function fetchData() {
-            const respC = await useGetCategories();
-            const respA = await useGetActors();
-            setCategories(respC);
-            setActors(respA);
+            const respCategories = await useGetCategories();
+            const respActors = await useGetActors();
+            setActors(respActors);
+            setCategories(respCategories)
         }
         fetchData();
     }, [])
 
 
+    const filterOptions = () => {
+        let input = document.getElementById("searchInput");
+        let filter = input.value.toUpperCase();
+        let select = document.getElementById("actor_movie_id");
+        let options = select.options;
+
+        for (let i = 0; i < options.length; i++) {
+            let option = options[i];
+            if (option.text.toUpperCase().indexOf(filter) > -1) {
+                option.style.display = "";
+            } else {
+                option.style.display = "none";
+            }
+        }
+    }
+
+
     return (
-        <form onSubmit={handleSubmit} className='Movies-Create'>
+        <form onSubmit={onCreateMovie} className='Movies-Create'>
 
             <div className='Movies-Create-Container'>
-                <label htmlFor="movieName" className='Movies-Create-label'>Nombre:</label>
-                <input type="text"
+                <label className='Movies-Create-label'>Nombre:</label>
+                <input
+                    type="text"
                     className='Movies-Create-inputs'
-                    name='movieName'
-                    required={true}
+                    name="name_movie"
+                    value={name_movie}
+                    onChange={onInputChange}
+
                 />
 
-                <label htmlFor="sipnopsis" className='Movies-Create-label'>Sipnosis:</label>
-                <textarea className='Movies-Create-inputs-TextArea'
-                    name="sipnopsis"
+                <label className='Movies-Create-label'>Sipnosis:</label>
+                <textarea
+                    className='Movies-Create-inputs-TextArea'
                     cols="30"
                     rows="10"
-                    required={true}
+                    name="description_movie"
+                    value={description_movie}
+                    onChange={onInputChange}
+
                 />
 
-                <label htmlFor="duration" className='Movies-Create-label' >Duración:</label>
-                <input type="time"
+                <label className='Movies-Create-label' >Duración:</label>
+                <input
+                    type="time"
                     className='Movies-Create-inputs'
-                    name='duration'
-                    required={true}
+                    name='duration_movie'
+                    value={duration_movie}
+                    onChange={onInputChange}
                 />
 
-                <label htmlFor="fotoUpload" className='Movies-Create-label'>Portada:</label>
-                <input className='Movie-button-portada'
+                <label className='Movies-Create-label'>Portada:</label>
+                <input
+                    className='Movie-button-portada'
                     type='file'
-                    name='fotoUpload'
                     accept="image/png, .jpeg, .jpg, image/gif"
-                    required={true}
-                    onChange={(e) => handleFileUpload(e.target.files[0])}
+                    name='photo_movie'
+                    onChange={onInputChangeImage}
                 />
             </div>
 
             <div className='Movies-Create-Container'>
-                <label htmlFor="datePremiere" className='Movies-Create-label'>Fecha de estreno:</label>
-                <input type="date"
+                <label className='Movies-Create-label'>Fecha de estreno:</label>
+                <input
+                    type="date"
                     className='Movies-Create-inputs'
-                    name='datePremiere'
-                    required={true}
+                    name='premiere_date_movie'
+                    value={premiere_date_movie}
+                    onChange={onInputChange}
+                />
+
+                <label className='Movies-Create-label'>Fecha de salida:</label>
+                <input
+                    type="date"
+                    className='Movies-Create-inputs'
+                    name='departure_date_movie'
+                    value={departure_date_movie}
+                    onChange={onInputChange}
 
                 />
 
-                <label htmlFor="dateExit" className='Movies-Create-label'>Fecha de salida:</label>
-                <input type="date"
-                    className='Movies-Create-inputs'
-                    name='dateExit'
-                    required={true}
-                />
-
-                <label htmlFor="selectCategory" className='Movies-Create-label'>Categorias:</label>
-                <select name="selectCategory" id="movie-select-category" className="Movies-Create-comboBox" required={true} multiple>
+                <label className='Movies-Create-label'>Categorias:</label>
+                <select
+                    className="Movies-Create-comboBox"
+                    multiple
+                    name="category_movie_id"
+                    value={category_movie_id}
+                    onChange={onInputChangeMultiselect}
+                >
                     {
-                        categories.map((cat, i) => (
-                            <option value={cat.id} key={i}>{cat.category_name}</option>
+                        categories.map((category) => (
+                            <option key={category.id} value={category.id}>{category.category_name}</option>
                         ))
                     }
                 </select>
@@ -134,19 +156,33 @@ export const MovieCreate = () => {
             </div>
 
             <div className='Movies-Create-Container'>
-                <label htmlFor="" className='Movies-Create-label'>Actores:</label>
+                <label className='Movies-Create-label'>Actores:</label>
+                <input
+                    type="text"
+                    className='Movies-Create-inputs search'
+                    placeholder='Buscar un actor...'
+                    id="searchInput"
+                    onKeyUp={filterOptions}
+                />
                 <div className='Movies-Create-combo-link'>
-                <select name="selectCategory" id="movie-select-actor" className="Movies-Create-comboBox" required={true} multiple>
-                    {
-                        actors.map((act, i) => (
-                            <option value={act.id} key={i}>{act.name_actor}</option>
-                        ))
-                    }
-                </select>
-                    <button onClick={openModal}><img src={link} alt="link" className='actor-link' /></button>
-                    <Modal isOpen={isOpenModal} closeModal={closeModal} title="Crear nuevo actor" x={"19%"} y={"310px"}>
+                    <select
+                        className="Movies-Create-comboBox"
+                        multiple
+                        id='actor_movie_id'
+                        name="actor_movie_id"
+                        value={actor_movie_id}
+                        onChange={onInputChangeMultiselect}
+                    >
+                        {
+                            actors.map((actor) => (
+                                <option key={actor.id} value={actor.id}>{actor.name_actor}</option>
+                            ))
+                        }
+                    </select>
+                    <button ><img src={link} alt="link" className='actor-link' /></button>
+{/*                     <Modal isOpen={isOpenModal} closeModal={closeModal} title="Crear nuevo actor" x={"19%"} y={"310px"}>
                         <ActorCreate />
-                    </Modal>
+                    </Modal> */}
                 </div>
 
                 <div className='Movies-Create-Sent'>

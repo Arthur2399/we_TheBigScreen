@@ -1,5 +1,4 @@
-export * from './useGetActors';
-export * from './useGetCategories';
+export * from './useGetComboBox';
 export * from './useGetMovies';
 export * from './useGetPremiere';
 export * from './usePostMovie';

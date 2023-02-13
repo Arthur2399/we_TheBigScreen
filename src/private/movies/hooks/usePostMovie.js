@@ -11,11 +11,10 @@ export const usePostMovie = async (movieData) => {
         },
         body: movieData
     };
-    const response = await fetch(`${API_MOVIES_CREATE}`, options)
-    if(response.status ==400){
-        const bad= await response.json(); 
-        alert(JSON.stringify(bad.email[0]));
-    }else{
-      window.location.reload(true);
+    const response = await fetch(`${API_MOVIES_CREATE}`, options);
+    const resp = await response.json();
+    return {
+        resp,
+        response
     }
 }
