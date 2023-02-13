@@ -8,6 +8,7 @@ export const API_PERIOD              = `http://${API_REST}/survey/template/cbx`;
 export const API_LOGIN               = `http://${API_REST}/user/api/token/`;
 export const API_MENU                = `http://${API_REST}/menu/menu`;
 export const API_CHANGE_PASS         = `http://${API_REST}/user/changepassword`;
+export const API_RECOVERY_PASS       = `http://${API_REST}/mail/Changepassword`;
 
 export const API_AWARDS_LIST         = `http://${API_REST}/points/awards/list`;
 export const API_AWARDS_CREATE       = `http://${API_REST}/points/awards/create`;
