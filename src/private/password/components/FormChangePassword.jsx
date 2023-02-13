@@ -1,50 +1,76 @@
-import { useContext } from 'react';
-import {usePostPassword } from'../hooks/usePostPassword.js';
+import { useContext, useState } from 'react';
+import { usePostPassword } from '../hooks/usePostPassword.js';
 import { AuthContext } from '../../../public/auth/context/AuthContext';
-
-
+import Swal from 'sweetalert2';
 
 export const FormChangePassword = () => {
-  const { logout } = useContext( AuthContext );
- 
+  const { logout } = useContext(AuthContext);
+
+  const [currentPassword, setCurrentPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [repeatPassword, setrepeatPassword] = useState("")  
+
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-  
+
     const passwordData = {
-      password: event.target.elements.currentPassword.value,
-      new_password: event.target.elements.newPassword.value,
-      confirm_password: event.target.elements.repeatPassword.value,
+      password: currentPassword,
+      new_password: newPassword,
+      confirm_password: repeatPassword,
     }
-    const resp = await usePostPassword((JSON.stringify(passwordData)))
+
+
+    console.log(passwordData)
+    const {resp,response} = await usePostPassword(JSON.stringify(passwordData));
+    console.log(resp,response)
+    if(response.status == 200){
+      Swal.fire({
+        icon: 'success',
+        title: 'Contraseña cambiada',
+        text: resp.Mensaje,
+        confirmButtonColor: "#FD5D5D"
+    })
     logout();
-    navigate('/login', {
-        replace: true
-    });
+    }else{
+      const fisrtKey = Object.keys(resp)[0]
+      Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: resp[fisrtKey],
+          confirmButtonColor: "#FD5D5D"
+      })
+    }
   }
- 
+
   return (
-    <form  onSubmit={handleSubmit} className="form">
+    <form onSubmit={handleSubmit} className="form">
       <label className="label">Contraseña actual</label>
-      <input type="password" 
-             name="currentPassword"
-             placeholder="*********" 
-             className="input input-password" 
-             autoComplete="current-password"
-             />   
+      <input
+        type="password"
+        className="input input-password"
+        placeholder="*********"
+        autoComplete="current-password"
+        value={currentPassword}
+        onChange={e => setCurrentPassword(e.target.value)}
+      />
       <label className="label">Nueva Contraseña</label>
-      <input type="password" 
-             placeholder="*********" 
-             className="input input-password" 
-             name="newPassword"
-             autoComplete="new-password"
-             />
+      <input 
+        type="password"
+        placeholder="*********"
+        className="input input-password"
+        autoComplete="new-password"
+        value={newPassword}
+        onChange={e=> setNewPassword(e.target.value)}
+      />
       <label className="label">Repetir la contraseña</label>
-      <input type="password" 
-             placeholder="*********" 
-             className="input input-password" 
-             name="repeatPassword"
-             autoComplete="new-password"
-             />
+      <input type="password"
+        placeholder="*********"
+        className="input input-password"
+        autoComplete="new-password"
+        value={repeatPassword}
+        onChange={e=>setrepeatPassword(e.target.value)}
+      />
       <button
         value="Confirmar"
         type="submit"
