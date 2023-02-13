@@ -11,8 +11,8 @@ export const useGetEmploye = async (id) => {
             "Authorization": 'Bearer ' + bearer.sessiontoken,
         },
     });
-    const data = await response.json();
-    return data;
+    const resp = await response.json();
+    return {response,resp};
 }
 
 export const usePutEmploye = async (updateData, id) => {
