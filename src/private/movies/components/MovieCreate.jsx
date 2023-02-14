@@ -5,8 +5,10 @@ import Swal from 'sweetalert2';
 import movieTag from '/assets/logos/Movie-tag.svg';
 import link from '/assets/icons/link.png';
 import './MovieCreate.css';
+import { usePostActor } from '../hooks/usePostActor';
 
 const formData = {
+    //MovieCreate 
     actor_movie_id: [],
     category_movie_id: [],
     departure_date_movie: '',
@@ -15,6 +17,9 @@ const formData = {
     name_movie: '',
     photo_movie: '',
     premiere_date_movie: '',
+    //Actor Create
+    name_actor: '',
+    photo_actor: '',
 }
 
 export const MovieCreate = ({ setIsReload, isReload, closeModal }) => {
@@ -34,8 +39,8 @@ export const MovieCreate = ({ setIsReload, isReload, closeModal }) => {
         description_movie,
         duration_movie,
         name_movie,
-        photo_movie,
         premiere_date_movie,
+        name_actor,
     } = useForm(formData);
 
     const onCreateMovie = async (event) => {
@@ -79,6 +84,32 @@ export const MovieCreate = ({ setIsReload, isReload, closeModal }) => {
         }
     }
 
+    const onCreateActor = async () => {
+        const data = {
+            name_actor: formState.name_actor,
+            photo_actor: formState.photo_actor,
+        }
+        const { resp, response } = await usePostActor(JSON.stringify(data))
+        if (response.status == 201) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Actor creado',
+                text: resp.Mensaje,
+                confirmButtonColor: "#FD5D5D"
+            })
+            setNewActor(!newActor)
+        } else {
+            const fisrtKey = Object.keys(resp)[0]
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: resp[fisrtKey],
+                confirmButtonColor: "#FD5D5D"
+            })
+        }
+    }
+
+    /* CONVERTIR EN HOOK */
     const filterOptions = () => {
         let input = document.getElementById("searchInput");
         let filter = input.value.toUpperCase();
@@ -106,7 +137,7 @@ export const MovieCreate = ({ setIsReload, isReload, closeModal }) => {
             setCategories(respCategories)
         }
         fetchData();
-    }, [])
+    }, [newActor])
 
     return (
         <form onSubmit={onCreateMovie} className='Movies-Create'>
@@ -172,13 +203,10 @@ export const MovieCreate = ({ setIsReload, isReload, closeModal }) => {
                     value={category_movie_id}
                     onChange={onInputChangeMultiselect}
                 >
-                    {
-                        categories.map((category) => (
-                            <option key={category.id} value={category.id}>{category.category_name}</option>
-                        ))
-                    }
+                    {categories.map((category) => (
+                        <option key={category.id} value={category.id}>{category.category_name}</option>
+                    ))}
                 </select>
-
             </div>
 
             <div className='Movies-Create-Container'>
@@ -201,11 +229,9 @@ export const MovieCreate = ({ setIsReload, isReload, closeModal }) => {
                     value={actor_movie_id}
                     onChange={onInputChangeMultiselect}
                 >
-                    {
-                        actors.map((actor) => (
-                            <option key={actor.id} value={actor.id}>{actor.name_actor}</option>
-                        ))
-                    }
+                    {actors.map((actor) => (
+                        <option key={actor.id} value={actor.id}>{actor.name_actor}</option>
+                    ))}
                 </select>
 
                 {newActor === false
@@ -220,16 +246,24 @@ export const MovieCreate = ({ setIsReload, isReload, closeModal }) => {
                     : <div className='Actor-Create animate__animated animate__fadeIn'>
                         <h4>Crear nuevo actor</h4>
                         <label className='Actor-Create-label'>Nombre:</label>
-                        <input type="text" className='Actor-Create-inputs' />
+                        <input
+                            type="text"
+                            className='Actor-Create-inputs'
+                            name='name_actor'
+                            value={name_actor}
+                            onChange={onInputChange}
+                        />
                         <label className='Actor-Create-label'>Foto:</label>
                         <input
                             className='Actor-Create-inputs-photo'
                             type='file'
                             accept="image/png, .jpeg, .jpg, image/gif"
+                            name='photo_actor'
+                            onChange={onInputChangeImage}
                         />
                         <div className='Actor-Create-Conatainer'>
                             <button className='Actor-Create-button Actor-summit' onClick={onChangeNewActor} type='button'>Volver</button>
-                            <button className='Actor-Create-button Actor-summit' type='button'>Crear actor</button>
+                            <button className='Actor-Create-button Actor-summit' onClick={onCreateActor} type='button'>Añadir</button>
                         </div>
                     </div>
                 }
