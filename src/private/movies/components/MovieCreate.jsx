@@ -21,6 +21,7 @@ export const MovieCreate = ({ setIsReload, isReload, closeModal }) => {
 
     const [categories, setCategories] = useState([]);
     const [actors, setActors] = useState([]);
+    const [newActor, setNewActor] = useState(false);
 
     const {
         onInputChange,
@@ -39,7 +40,6 @@ export const MovieCreate = ({ setIsReload, isReload, closeModal }) => {
 
     const onCreateMovie = async (event) => {
         event.preventDefault();
-
         const data = {
             actor_movie_id: formState.actor_movie_id,
             category_movie_id: formState.category_movie_id,
@@ -50,14 +50,12 @@ export const MovieCreate = ({ setIsReload, isReload, closeModal }) => {
             photo_movie: formState.photo_movie,
             premiere_date_movie: formState.premiere_date_movie,
         }
-
         const des_answer = await Swal.fire({
             title: '¿Seguro que deseas crear una nueva película?',
             showCancelButton: true,
             confirmButtonText: 'Crear',
             confirmButtonColor: "#FD5D5D"
         })
-
         if (des_answer.isConfirmed) {
             const { resp, response } = await usePostMovie(JSON.stringify(data));
             if (response.status == 201) {
@@ -68,7 +66,6 @@ export const MovieCreate = ({ setIsReload, isReload, closeModal }) => {
                     text: resp.Mensaje,
                     confirmButtonColor: "#FD5D5D"
                 })
-
                 setIsReload(isReload + 1);
             } else {
                 const fisrtKey = Object.keys(resp)[0]
@@ -81,17 +78,6 @@ export const MovieCreate = ({ setIsReload, isReload, closeModal }) => {
             }
         }
     }
-
-    useEffect(() => {
-        async function fetchData() {
-            const respCategories = await useGetCategories();
-            const respActors = await useGetActors();
-            setActors(respActors);
-            setCategories(respCategories)
-        }
-        fetchData();
-    }, [])
-
 
     const filterOptions = () => {
         let input = document.getElementById("searchInput");
@@ -108,10 +94,22 @@ export const MovieCreate = ({ setIsReload, isReload, closeModal }) => {
         }
     }
 
+    const onChangeNewActor = () => {
+        setNewActor(!newActor);
+    }
+
+    useEffect(() => {
+        async function fetchData() {
+            const respCategories = await useGetCategories();
+            const respActors = await useGetActors();
+            setActors(respActors);
+            setCategories(respCategories)
+        }
+        fetchData();
+    }, [])
 
     return (
         <form onSubmit={onCreateMovie} className='Movies-Create'>
-
             <div className='Movies-Create-Container'>
                 <label className='Movies-Create-label'>Nombre:</label>
                 <input
@@ -120,9 +118,7 @@ export const MovieCreate = ({ setIsReload, isReload, closeModal }) => {
                     name="name_movie"
                     value={name_movie}
                     onChange={onInputChange}
-
                 />
-
                 <label className='Movies-Create-label'>Sipnosis:</label>
                 <textarea
                     className='Movies-Create-inputs-TextArea'
@@ -133,7 +129,6 @@ export const MovieCreate = ({ setIsReload, isReload, closeModal }) => {
                     onChange={onInputChange}
 
                 />
-
                 <label className='Movies-Create-label' >Duración:</label>
                 <input
                     type="time"
@@ -142,7 +137,6 @@ export const MovieCreate = ({ setIsReload, isReload, closeModal }) => {
                     value={duration_movie}
                     onChange={onInputChange}
                 />
-
                 <label className='Movies-Create-label'>Portada:</label>
                 <input
                     className='Movie-button-portada'
@@ -152,7 +146,6 @@ export const MovieCreate = ({ setIsReload, isReload, closeModal }) => {
                     onChange={onInputChangeImage}
                 />
             </div>
-
             <div className='Movies-Create-Container'>
                 <label className='Movies-Create-label'>Fecha de estreno:</label>
                 <input
@@ -162,7 +155,6 @@ export const MovieCreate = ({ setIsReload, isReload, closeModal }) => {
                     value={premiere_date_movie}
                     onChange={onInputChange}
                 />
-
                 <label className='Movies-Create-label'>Fecha de salida:</label>
                 <input
                     type="date"
@@ -172,7 +164,6 @@ export const MovieCreate = ({ setIsReload, isReload, closeModal }) => {
                     onChange={onInputChange}
 
                 />
-
                 <label className='Movies-Create-label'>Categorias:</label>
                 <select
                     className="Movies-Create-comboBox"
@@ -200,7 +191,7 @@ export const MovieCreate = ({ setIsReload, isReload, closeModal }) => {
                         id="searchInput"
                         onKeyUp={filterOptions}
                     />
-                    <button ><img src={link} alt="link" className='actor-link' /></button>
+                    <button onClick={onChangeNewActor} type='button' title='Crear actor'><img src={link} alt="link" className='actor-link' /></button>
                 </div>
                 <select
                     className="Movies-Create-comboBox"
@@ -216,18 +207,32 @@ export const MovieCreate = ({ setIsReload, isReload, closeModal }) => {
                         ))
                     }
                 </select>
-                {/* <Modal isOpen={isOpenModal} closeModal={closeModal} title="Crear nuevo actor" x={"19%"} y={"310px"}>
-                        <ActorCreate />
-                    </Modal> */}
 
-                <div className='Movies-Create-Sent'>
-                    <img src={movieTag} alt="employeCreate" />
-                    <h1> Publicar estreno</h1>
-                    <span>Al publicar podrás ver los
-                        cambios en tu app</span>
-                    <button className='Movies-button-sent' type='submit'>Publicar</button>
-                </div>
+                {newActor === false
+                    ? <div className='Movies-Create-Sent animate__animated animate__fadeIn'>
+                        <img src={movieTag} alt="employeCreate" />
+                        <h1> Publicar estreno</h1>
+                        <span>Al publicar podrás ver los
+                            cambios en tu app</span>
+                        <button className='Movies-button-sent' type='submit'>Publicar</button>
+                    </div>
 
+                    : <div className='Actor-Create animate__animated animate__fadeIn'>
+                        <h4>Crear nuevo actor</h4>
+                        <label className='Actor-Create-label'>Nombre:</label>
+                        <input type="text" className='Actor-Create-inputs' />
+                        <label className='Actor-Create-label'>Foto:</label>
+                        <input
+                            className='Actor-Create-inputs-photo'
+                            type='file'
+                            accept="image/png, .jpeg, .jpg, image/gif"
+                        />
+                        <div className='Actor-Create-Conatainer'>
+                            <button className='Actor-Create-button Actor-summit' onClick={onChangeNewActor} type='button'>Volver</button>
+                            <button className='Actor-Create-button Actor-summit' type='button'>Crear actor</button>
+                        </div>
+                    </div>
+                }
             </div>
         </form>
     )
