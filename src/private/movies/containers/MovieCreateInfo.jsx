@@ -13,7 +13,7 @@ export const MovieCreateInfo = ({ setIsReload, isReload }) => {
         <p>Registra el próximo gran hit de tu cine.</p>
         <button className="Movies-premiere-create-button" onClick={openModal}> ingresar pelicula</button>
         <Modal isOpen={isOpenModal} closeModal={closeModal} title="Crear nueva pelicula" x={"80%"} y={"580px"}>
-          <MovieCreate setIsReload={setIsReload} isReload={isReload} closeModalCreate={closeModal} />
+          <MovieCreate setIsReload={setIsReload} isReload={isReload} closeModal={closeModal} />
         </Modal>
       </div>
       <img src={movie} alt="movie" />
