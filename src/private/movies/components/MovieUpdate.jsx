@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { Modal } from '../../../components';
 import { useModal } from '../../../hooks';
 import { useGetActors, useGetCategories, usePostMovie } from '../hooks';
-import { ActorCreate } from './ActorCreate';
 import movieTag from '/assets/logos/Movie-tag.svg';
 import link from '/assets/icons/link.png';
 import './MovieUpdate.css';
@@ -194,9 +193,9 @@ export const MovieUpdate = ({movieId}) => {
                     ))} */}
                 </select>
                     <button onClick={openModal}><img src={link} alt="link" className='actor-link' /></button>
-                    <Modal isOpen={isOpenModal} closeModal={closeModal} title="Crear nuevo actor" x={"19%"} y={"310px"}>
+{/*                     <Modal isOpen={isOpenModal} closeModal={closeModal} title="Crear nuevo actor" x={"19%"} y={"310px"}>
                         <ActorCreate />
-                    </Modal>
+                    </Modal> */}
                 </div>
 
                 <div className='Movies-Update-Sent'>
