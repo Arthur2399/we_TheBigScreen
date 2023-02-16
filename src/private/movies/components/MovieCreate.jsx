@@ -1,15 +1,14 @@
-import { useGetActors, useGetCategories, usePostMovie } from '../hooks';
-import { useForm } from '../../../hooks/useForm';
 import { useEffect, useState } from 'react';
+import { useForm } from '../../../hooks/useForm';
+import { useGetActors, useGetCategories, usePostMovie } from '../hooks';
+import { useFilterSelect } from '../../../hooks/useFilterSelect';
+import { CreateActor } from './CreateActor';
 import Swal from 'sweetalert2';
 import movieTag from '/assets/logos/Movie-tag.svg';
 import link from '/assets/icons/link.png';
 import './MovieCreate.css';
-import { usePostActor } from '../hooks/usePostActor';
-import { useFilterSelect } from '../../../hooks/useFilterSelect';
 
 const formData = {
-    //MovieCreate 
     actor_movie_id: [],
     category_movie_id: [],
     departure_date_movie: '',
@@ -18,9 +17,6 @@ const formData = {
     name_movie: '',
     photo_movie: '',
     premiere_date_movie: '',
-    //Actor Create
-    name_actor: '',
-    photo_actor: '',
 }
 
 export const MovieCreate = ({ setIsReload, isReload, closeModal }) => {
@@ -41,23 +37,12 @@ export const MovieCreate = ({ setIsReload, isReload, closeModal }) => {
         duration_movie,
         name_movie,
         premiere_date_movie,
-        name_actor,
     } = useForm(formData);
 
     const { filterOptions } = useFilterSelect('searchActor', 'actor_movie_id');
 
     const onCreateMovie = async (event) => {
         event.preventDefault();
-        const data = {
-            actor_movie_id: formState.actor_movie_id,
-            category_movie_id: formState.category_movie_id,
-            departure_date_movie: formState.departure_date_movie,
-            description_movie: formState.description_movie,
-            duration_movie: formState.duration_movie,
-            name_movie: formState.name_movie,
-            photo_movie: formState.photo_movie,
-            premiere_date_movie: formState.premiere_date_movie,
-        }
         const des_answer = await Swal.fire({
             title: '¿Seguro que deseas crear una nueva película?',
             showCancelButton: true,
@@ -65,7 +50,7 @@ export const MovieCreate = ({ setIsReload, isReload, closeModal }) => {
             confirmButtonColor: "#FD5D5D"
         })
         if (des_answer.isConfirmed) {
-            const { resp, response } = await usePostMovie(JSON.stringify(data));
+            const { resp, response } = await usePostMovie(JSON.stringify(formState));
             if (response.status == 201) {
                 closeModal();
                 Swal.fire({
@@ -85,35 +70,6 @@ export const MovieCreate = ({ setIsReload, isReload, closeModal }) => {
                 })
             }
         }
-    }
-
-    const onCreateActor = async () => {
-        const data = {
-            name_actor: formState.name_actor,
-            photo_actor: formState.photo_actor,
-        }
-        const { resp, response } = await usePostActor(JSON.stringify(data))
-        if (response.status == 201) {
-            Swal.fire({
-                icon: 'success',
-                title: 'Actor creado',
-                text: resp.Mensaje,
-                confirmButtonColor: "#FD5D5D"
-            })
-            setNewActor(!newActor)
-        } else {
-            const fisrtKey = Object.keys(resp)[0]
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: resp[fisrtKey],
-                confirmButtonColor: "#FD5D5D"
-            })
-        }
-    }
-
-    const onChangeNewActor = () => {
-        setNewActor(!newActor);
     }
 
     useEffect(() => {
@@ -206,7 +162,7 @@ export const MovieCreate = ({ setIsReload, isReload, closeModal }) => {
                         id="searchActor"
                         onKeyUp={filterOptions}
                     />
-                    <button onClick={onChangeNewActor} type='button' title='Crear actor'><img src={link} alt="link" className='actor-link' /></button>
+                    <button onClick={() => { setNewActor(!newActor) }} type='button' title='Crear actor'><img src={link} alt="link" className='actor-link' /></button>
                 </div>
                 <select
                     className="Movies-Create-comboBox"
@@ -230,29 +186,7 @@ export const MovieCreate = ({ setIsReload, isReload, closeModal }) => {
                         <button className='Movies-button-sent' type='submit'>Publicar</button>
                     </div>
 
-                    : <div className='Actor-Create animate__animated animate__fadeIn'>
-                        <h4>Crear nuevo actor</h4>
-                        <label className='Actor-Create-label'>Nombre:</label>
-                        <input
-                            type="text"
-                            className='Actor-Create-inputs'
-                            name='name_actor'
-                            value={name_actor}
-                            onChange={onInputChange}
-                        />
-                        <label className='Actor-Create-label'>Foto:</label>
-                        <input
-                            className='Actor-Create-inputs-photo'
-                            type='file'
-                            accept="image/png, .jpeg, .jpg, image/gif"
-                            name='photo_actor'
-                            onChange={onInputChangeImage}
-                        />
-                        <div className='Actor-Create-Conatainer'>
-                            <button className='Actor-Create-button Actor-summit' onClick={onChangeNewActor} type='button'>Volver</button>
-                            <button className='Actor-Create-button Actor-summit' onClick={onCreateActor} type='button'>Añadir</button>
-                        </div>
-                    </div>
+                    : <CreateActor newActor={newActor} setNewActor={setNewActor} />
                 }
             </div>
         </form>
