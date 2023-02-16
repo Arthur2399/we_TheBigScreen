@@ -6,6 +6,7 @@ import movieTag from '/assets/logos/Movie-tag.svg';
 import link from '/assets/icons/link.png';
 import './MovieCreate.css';
 import { usePostActor } from '../hooks/usePostActor';
+import { useFilterSelect } from '../../../hooks/useFilterSelect';
 
 const formData = {
     //MovieCreate 
@@ -42,6 +43,8 @@ export const MovieCreate = ({ setIsReload, isReload, closeModal }) => {
         premiere_date_movie,
         name_actor,
     } = useForm(formData);
+
+    const { filterOptions } = useFilterSelect('searchActor', 'actor_movie_id');
 
     const onCreateMovie = async (event) => {
         event.preventDefault();
@@ -106,22 +109,6 @@ export const MovieCreate = ({ setIsReload, isReload, closeModal }) => {
                 text: resp[fisrtKey],
                 confirmButtonColor: "#FD5D5D"
             })
-        }
-    }
-
-    /* CONVERTIR EN HOOK */
-    const filterOptions = () => {
-        let input = document.getElementById("searchInput");
-        let filter = input.value.toUpperCase();
-        let select = document.getElementById("actor_movie_id");
-        let options = select.options;
-        for (let i = 0; i < options.length; i++) {
-            let option = options[i];
-            if (option.text.toUpperCase().indexOf(filter) > -1) {
-                option.style.display = "";
-            } else {
-                option.style.display = "none";
-            }
         }
     }
 
@@ -216,7 +203,7 @@ export const MovieCreate = ({ setIsReload, isReload, closeModal }) => {
                         type="text"
                         className='Movies-Create-inputs search'
                         placeholder='Buscar un actor...'
-                        id="searchInput"
+                        id="searchActor"
                         onKeyUp={filterOptions}
                     />
                     <button onClick={onChangeNewActor} type='button' title='Crear actor'><img src={link} alt="link" className='actor-link' /></button>
