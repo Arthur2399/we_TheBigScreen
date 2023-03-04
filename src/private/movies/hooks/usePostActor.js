@@ -1,6 +1,6 @@
-import { API_MOVIES_CREATE } from "../../../helper/routes";
+import { API_ACTORS } from "../../../helper/routes";
 
-export const usePostMovie = async (movieData) => {
+export const usePostActor = async (data) => {
     const bearer = JSON.parse(localStorage.getItem('jwt'));
     
     const options = {
@@ -9,9 +9,9 @@ export const usePostMovie = async (movieData) => {
            'Content-Type': 'application/json',
            Authorization: 'Bearer '+ bearer.sessiontoken,
         },
-        body: movieData
+        body: data
     };
-    const response = await fetch(`${API_MOVIES_CREATE}`, options);
+    const response = await fetch(`${API_ACTORS}`, options);
     const resp = await response.json();
     return {
         resp,

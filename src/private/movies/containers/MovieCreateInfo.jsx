@@ -4,7 +4,7 @@ import { MovieCreate } from '../components';
 import movie from '/assets/logos/movie.svg';
 import './MovieCreateInfo.css';
 
-export const MovieCreateInfo = () => {
+export const MovieCreateInfo = ({ setIsReload, isReload }) => {
   const [isOpenModal, openModal, closeModal] = useModal(false);
   return (
     <div className="Movies-premiere-container">
@@ -13,7 +13,7 @@ export const MovieCreateInfo = () => {
         <p>Registra el próximo gran hit de tu cine.</p>
         <button className="Movies-premiere-create-button" onClick={openModal}> ingresar pelicula</button>
         <Modal isOpen={isOpenModal} closeModal={closeModal} title="Crear nueva pelicula" x={"80%"} y={"580px"}>
-          <MovieCreate />
+          <MovieCreate setIsReload={setIsReload} isReload={isReload} closeModal={closeModal} />
         </Modal>
       </div>
       <img src={movie} alt="movie" />

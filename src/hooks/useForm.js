@@ -32,6 +32,17 @@ export const useForm = (initialForm = {}, formValidations = {}) => {
         });
     }
 
+    const onInputChangeMultiselect = (e) => {
+        const options = [...e.target.selectedOptions];
+        const values = options.map(option => option.value);
+        
+        const { name } = e.target;
+        setFormState({
+            ...formState,
+            [name]: values
+        });
+    }
+
     const onInputChangeImage = ({ target }) => {
         const { name, files } = target;
         const reader = new FileReader()
@@ -70,6 +81,7 @@ export const useForm = (initialForm = {}, formValidations = {}) => {
         formState,
         onInputChange,
         onInputChangeImage,
+        onInputChangeMultiselect,
         onResetForm,
         ...formValidation,
         isFormValid
