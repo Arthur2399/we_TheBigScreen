@@ -24,7 +24,7 @@ export const ModuleRoutes = () => {
         : <Menu />
       }
       <Routes>
-        <Route path="accredit" element={<></>} />
+        <Route path="billboard" element={<></>} />
         <Route path="home" element={<Branch />} />
         <Route path="employes" element={<Employes />} />
         <Route path="reports" element={<Reports />} />
