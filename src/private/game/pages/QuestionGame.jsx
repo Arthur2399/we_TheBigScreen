@@ -33,7 +33,7 @@ export const QuestionGame = () => {
         const mqttGame = async () => {
             const resp = await useMqttGame("EndQuestion", room.room_number)
         }
-        var totalTime = 10;
+        var totalTime = 20;
         const updateClock = () => {
             if (totalTime <= 0) {
                 setValidQuestion(true);

@@ -28,13 +28,6 @@ export const StartGame = () => {
         } else {
             alert("Hubo un error");
         }
-
-        useEffect(() => {
-        
-        }, [])
-        
-
-
     }
 
     return (

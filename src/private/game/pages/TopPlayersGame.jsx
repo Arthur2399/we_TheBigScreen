@@ -78,7 +78,7 @@ export const TopPlayersGame = () => {
 
                     {
                         topPlayersGame.map((top, index) => (
-                            <div className="Winners-moment">
+                            <div key={index} className="Winners-moment">
                                 <div className="Winners-moment-left">
                                     <div>
                                         <span>{index + 1}</span>
