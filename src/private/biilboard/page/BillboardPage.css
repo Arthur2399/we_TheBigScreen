@@ -1,0 +1,11 @@
+.billboardPage{
+    display: flex;
+    padding-top: 100px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.billboardPage img{
+    width: 250px;
+}

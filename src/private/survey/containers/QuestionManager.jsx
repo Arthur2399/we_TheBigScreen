@@ -13,11 +13,10 @@ export const QuestionManager = () => {
       <h2> ¿Nueva encuesta?</h2>
       <p>Ingresa preguntas que te ayuden a conocer la calidad de tu servicio</p>
       <div>
-        <button className="survey-create-button" onClick={openModal}> Crear</button>
+        <button className="survey-create-button" onClick={openModal}> Crear encuesta</button>
         <Modal isOpen={isOpenModal} closeModal={closeModal} title="Crear nueva encuesta" x={"80%"} y= {"580px"}>
             <SurveyCreate/>
         </Modal>
-        <button className="survey-create-button"> Editar</button>
       </div>
     </div>
     <img src={surveyControl} alt="control-survey" />

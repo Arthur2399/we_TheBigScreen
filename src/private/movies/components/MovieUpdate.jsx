@@ -9,6 +9,7 @@ import link from '/assets/icons/link.png';
 import './MovieCreate.css';
 
 const formData = {
+    
     //MovieCreate 
     actor_movie_id: [],
     category_movie_id: [],
@@ -18,6 +19,7 @@ const formData = {
     name_movie: '',
     photo_movie: '',
     premiere_date_movie: '',
+
     //Actor Create
     name_actor: '',
     photo_actor: '',

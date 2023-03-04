@@ -14,6 +14,7 @@ import { LobbyGame } from '../game/pages/LobbyGame';
 import { QuestionGame } from '../game/pages/QuestionGame';
 import { TopPlayersGame } from '../game/pages/TopPlayersGame';
 import { WinnerGame } from '../game/pages/WinnerGame';
+import { BillboardPage } from '../biilboard/page/BillboardPage';
 
 export const ModuleRoutes = () => {
   const location = useLocation();
@@ -24,7 +25,7 @@ export const ModuleRoutes = () => {
         : <Menu />
       }
       <Routes>
-        <Route path="billboard" element={<></>} />
+        <Route path="billboard" element={<BillboardPage/>} />
         <Route path="home" element={<Branch />} />
         <Route path="employes" element={<Employes />} />
         <Route path="reports" element={<Reports />} />
