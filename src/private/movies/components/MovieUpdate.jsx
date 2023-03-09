@@ -1,14 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useForm } from '../../../hooks/useForm';
 import { usePostActor } from '../hooks/usePostActor';
 import { useFilterSelect } from '../../../hooks/useFilterSelect';
 import { useGetActors, useGetCategories, usePostMovie } from '../hooks';
-import movieTag from '/assets/logos/Movie-tag.svg';
 import Swal from 'sweetalert2';
+import movieTag from '/assets/logos/Movie-tag.svg';
 import link from '/assets/icons/link.png';
 import './MovieCreate.css';
+import { useGetMovie, usePutMovie } from '../hooks/usePutMovie';
 
-const formData = {
+/* const formData = {
     //MovieCreate 
     actor_movie_id: [],
     category_movie_id: [],
@@ -21,13 +22,29 @@ const formData = {
     //Actor Create
     name_actor: '',
     photo_actor: '',
-}
+} */
 
-export const MovieUpdate = ({ setIsReload, isReload, closeModal }) => {
+export const MovieUpdate = ({ movieId, closeModal, setIsReload, isReload, isOpen }) => {
 
+    const [isLoading, setIsLoading] = useState(true);
     const [categories, setCategories] = useState([]);
     const [actors, setActors] = useState([]);
     const [newActor, setNewActor] = useState(false);
+    const [movieData, setMovieData] = useState({})
+    const [formData, setformData] = useState({
+        //MovieCreate 
+        actor_movie_id: [],
+        category_movie_id: [],
+        departure_date_movie: '',
+        description_movie: '',
+        duration_movie: '',
+        name_movie: '',
+        photo_movie: '',
+        premiere_date_movie: '',
+        //Actor Create
+        name_actor: '',
+        photo_actor: '',
+    })
 
     const {
         onInputChange,
@@ -44,9 +61,41 @@ export const MovieUpdate = ({ setIsReload, isReload, closeModal }) => {
         name_actor,
     } = useForm(formData);
 
+
+
+    useMemo(() => {
+        setformData({
+            actor_movie_id: movieData.actor_movie || "",
+            category_movie_id: movieData.category_movie || "",
+            departure_date_movie: movieData.departure_date_movie || "",
+            description_movie: movieData.description_movie || "",
+            duration_movie: movieData.duration_movie || "",
+            name_movie: movieData.name_movie || "",
+            photo_movie: movieData.photo_movie || "",
+            premiere_date_movie: movieData.premiere_date_movie || "",
+            image_change: movieData.image_change || false,
+        })
+    }, [movieData])
+
+    useMemo(async() => {
+        if (movieId>0) {
+            const respCategories = await useGetCategories();
+            setCategories(respCategories)
+            const respActors = await useGetActors();
+            setActors(respActors);
+            const {response, resp} = await useGetMovie(movieId)
+            {
+                if(response.status == 200 ){
+                    setMovieData(resp)
+                    setIsLoading(false)
+                }
+            }
+        }
+    }, [movieId, isOpen])
+
     const { filterOptions } = useFilterSelect('searchActorUpdate', 'actor_movie_id_update');
 
-    const onCreateMovie = async (event) => {
+    const onUpdateMovie = async (event) => {
         event.preventDefault();
         const data = {
             actor_movie_id: formState.actor_movie_id,
@@ -57,20 +106,22 @@ export const MovieUpdate = ({ setIsReload, isReload, closeModal }) => {
             name_movie: formState.name_movie,
             photo_movie: formState.photo_movie,
             premiere_date_movie: formState.premiere_date_movie,
+            image_change: movieData.image_change,
+
         }
         const des_answer = await Swal.fire({
-            title: '¿Seguro que deseas crear una nueva película?',
+            title: '¿Seguro que actualizar esta película?',
             showCancelButton: true,
-            confirmButtonText: 'Crear',
+            confirmButtonText: 'Actualizar',
             confirmButtonColor: "#FD5D5D"
         })
         if (des_answer.isConfirmed) {
-            const { resp, response } = await usePostMovie(JSON.stringify(data));
-            if (response.status == 201) {
+            const { resp, response } = await usePutMovie(JSON.stringify(data));
+            if (response.status == 200) {
                 closeModal();
                 Swal.fire({
                     icon: 'success',
-                    title: 'Película creada',
+                    title: 'Película actualizada correctamente',
                     text: resp.Mensaje,
                     confirmButtonColor: "#FD5D5D"
                 })
@@ -116,18 +167,10 @@ export const MovieUpdate = ({ setIsReload, isReload, closeModal }) => {
         setNewActor(!newActor);
     }
 
-    useEffect(() => {
-        async function fetchData() {
-            const respCategories = await useGetCategories();
-            const respActors = await useGetActors();
-            setActors(respActors);
-            setCategories(respCategories)
-        }
-        fetchData();
-    }, [newActor])
+
 
     return (
-        <form onSubmit={onCreateMovie} className='Movies-Create'>
+        <form onSubmit={onUpdateMovie} className='Movies-Create'>
             <div className='Movies-Create-Container'>
                 <label className='Movies-Create-label'>Nombre:</label>
                 <input
