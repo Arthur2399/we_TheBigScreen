@@ -72,9 +72,6 @@ export const EmployeUpdate = ({ employeId, closeModal, setIsReload, isReload, is
         }
     }, [employeId, isOpen])
 
-    console.log(formState)
-
-
     const UpdateEmployee = async () => {
         const des_answer = await Swal.fire({
             title: '¿Seguro que deseas actualizar este empleado?',
@@ -84,7 +81,7 @@ export const EmployeUpdate = ({ employeId, closeModal, setIsReload, isReload, is
         })
 
         if (des_answer.isConfirmed) {
-            const { resp, response } = await usePutEmploye(JSON.stringify({...formState, username:formState.email}), employeId);
+            const { resp, response } = await usePutEmploye(JSON.stringify({ ...formState, username: formState.email }), employeId);
             if (response.status == 200) {
                 closeModal();
                 Swal.fire({
