@@ -9,21 +9,6 @@ import link from '/assets/icons/link.png';
 import './MovieCreate.css';
 import { useGetMovie, usePutMovie } from '../hooks/usePutMovie';
 
-/* const formData = {
-    //MovieCreate 
-    actor_movie_id: [],
-    category_movie_id: [],
-    departure_date_movie: '',
-    description_movie: '',
-    duration_movie: '',
-    name_movie: '',
-    photo_movie: '',
-    premiere_date_movie: '',
-    //Actor Create
-    name_actor: '',
-    photo_actor: '',
-} */
-
 export const MovieUpdate = ({ movieId, closeModal, setIsReload, isReload, isOpen }) => {
 
     const [isLoading, setIsLoading] = useState(true);
@@ -102,7 +87,7 @@ export const MovieUpdate = ({ movieId, closeModal, setIsReload, isReload, isOpen
             departure_date_movie: formState.departure_date_movie,
             description_movie: formState.description_movie,
             duration_movie: formState.duration_movie,
-            image_change: movieData.image_change,
+            image_change: form.image_change,
             name_movie: formState.name_movie,
             photo_movie: formState.photo_movie,
             premiere_date_movie: formState.premiere_date_movie,
