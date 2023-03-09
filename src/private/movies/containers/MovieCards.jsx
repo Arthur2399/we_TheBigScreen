@@ -5,7 +5,7 @@ import { useModal } from '../../../hooks';
 import { MovieUpdate } from '../components/MovieUpdate';
 import './MovieCards.css';
 
-export const MovieCards = ({cardsMovies}) => {
+export const MovieCards = ({ cardsMovies, setIsReload, isReload }) => {
   const [isOpenModal, openModal, closeModal] = useModal(false);
   const [movieId, setMovieId] = useState();
 
@@ -17,7 +17,7 @@ export const MovieCards = ({cardsMovies}) => {
         <MovieCard key={movie.id} {...movie} openModal={openModal} setMovieId={setMovieId} />
       ))}
       <Modal isOpen={isOpenModal} closeModal={closeModal} title="Actualizar pelicula" x={"80%"} y={"580px"}>
-        <MovieUpdate movieId={movieId} />
+        <MovieUpdate movieId={movieId} setIsReload={setIsReload} isReload={isReload} closeModal={closeModal} isOpen={isOpenModal} />
       </Modal>
     </div>
   )

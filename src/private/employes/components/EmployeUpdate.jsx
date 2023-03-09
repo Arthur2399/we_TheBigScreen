@@ -18,7 +18,6 @@ export const EmployeUpdate = ({ employeId, closeModal, setIsReload, isReload, is
         last_name: '',
         ci: '',
         birth: '',
-        username: '',
         email: '',
         rol_id: '',
         branch_user_id: '',
@@ -46,7 +45,7 @@ export const EmployeUpdate = ({ employeId, closeModal, setIsReload, isReload, is
             last_name: employeData.last_name || "",
             ci: employeData.ci || "",
             birth: employeData.birth || "",
-            username: employeData.username || "",
+            username: employeData.email || "",
             email: employeData.email || "",
             rol_id: employeData.rol_id || "",
             branch_user_id: employeData.branch_user_id || "",
@@ -73,7 +72,6 @@ export const EmployeUpdate = ({ employeId, closeModal, setIsReload, isReload, is
         }
     }, [employeId, isOpen])
 
-
     const UpdateEmployee = async () => {
         const des_answer = await Swal.fire({
             title: '¿Seguro que deseas actualizar este empleado?',
@@ -83,7 +81,7 @@ export const EmployeUpdate = ({ employeId, closeModal, setIsReload, isReload, is
         })
 
         if (des_answer.isConfirmed) {
-            const { resp, response } = await usePutEmploye(JSON.stringify(formState), employeId);
+            const { resp, response } = await usePutEmploye(JSON.stringify({ ...formState, username: formState.email }), employeId);
             if (response.status == 200) {
                 closeModal();
                 Swal.fire({
