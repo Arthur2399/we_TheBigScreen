@@ -58,7 +58,6 @@ export const MovieUpdate = ({ movieId, closeModal, setIsReload, isReload, isOpen
         duration_movie,
         name_movie,
         premiere_date_movie,
-        name_actor,
     } = useForm(formData);
 
 
@@ -70,22 +69,22 @@ export const MovieUpdate = ({ movieId, closeModal, setIsReload, isReload, isOpen
             departure_date_movie: movieData.departure_date_movie || "",
             description_movie: movieData.description_movie || "",
             duration_movie: movieData.duration_movie || "",
-            name_movie: movieData.name_movie || "",
-            photo_movie: movieData.photo_movie || "",
-            premiere_date_movie: movieData.premiere_date_movie || "",
             image_change: movieData.image_change || false,
+            name_movie: movieData.name_movie || "",
+            photo_movie: "",
+            premiere_date_movie: movieData.premiere_date_movie || "",
         })
     }, [movieData])
 
-    useMemo(async() => {
-        if (movieId>0) {
+    useMemo(async () => {
+        if (movieId > 0) {
             const respCategories = await useGetCategories();
             setCategories(respCategories)
             const respActors = await useGetActors();
             setActors(respActors);
-            const {response, resp} = await useGetMovie(movieId)
+            const { response, resp } = await useGetMovie(movieId)
             {
-                if(response.status == 200 ){
+                if (response.status == 200) {
                     setMovieData(resp)
                     setIsLoading(false)
                 }
@@ -103,10 +102,10 @@ export const MovieUpdate = ({ movieId, closeModal, setIsReload, isReload, isOpen
             departure_date_movie: formState.departure_date_movie,
             description_movie: formState.description_movie,
             duration_movie: formState.duration_movie,
+            image_change: movieData.image_change,
             name_movie: formState.name_movie,
             photo_movie: formState.photo_movie,
             premiere_date_movie: formState.premiere_date_movie,
-            image_change: movieData.image_change,
 
         }
         const des_answer = await Swal.fire({
@@ -116,7 +115,7 @@ export const MovieUpdate = ({ movieId, closeModal, setIsReload, isReload, isOpen
             confirmButtonColor: "#FD5D5D"
         })
         if (des_answer.isConfirmed) {
-            const { resp, response } = await usePutMovie(JSON.stringify(data));
+            const { resp, response } = await usePutMovie(JSON.stringify(data), movieId);
             if (response.status == 200) {
                 closeModal();
                 Swal.fire({
@@ -270,7 +269,7 @@ export const MovieUpdate = ({ movieId, closeModal, setIsReload, isReload, isOpen
                         <h1> Publicar estreno</h1>
                         <span>Al publicar podrás ver los
                             cambios en tu app</span>
-                        <button className='Movies-button-sent' type='submit'>Publicar</button>
+                        <button className='Movies-button-sent' type='submit'>Actualizar</button>
                     </div>
 
                     : <div className='Actor-Create animate__animated animate__fadeIn'>
