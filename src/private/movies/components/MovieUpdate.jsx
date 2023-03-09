@@ -3,11 +3,12 @@ import { useForm } from '../../../hooks/useForm';
 import { usePostActor } from '../hooks/usePostActor';
 import { useFilterSelect } from '../../../hooks/useFilterSelect';
 import { useGetActors, useGetCategories, usePostMovie } from '../hooks';
+import { useGetMovie, usePutMovie } from '../hooks/usePutMovie';
+import { PacmanLoader } from 'react-spinners';
 import Swal from 'sweetalert2';
 import movieTag from '/assets/logos/Movie-tag.svg';
 import link from '/assets/icons/link.png';
 import './MovieCreate.css';
-import { useGetMovie, usePutMovie } from '../hooks/usePutMovie';
 
 export const MovieUpdate = ({ movieId, closeModal, setIsReload, isReload, isOpen }) => {
 
@@ -42,6 +43,7 @@ export const MovieUpdate = ({ movieId, closeModal, setIsReload, isReload, isOpen
         description_movie,
         duration_movie,
         name_movie,
+        photo_movie,
         premiere_date_movie,
     } = useForm(formData);
 
@@ -49,8 +51,8 @@ export const MovieUpdate = ({ movieId, closeModal, setIsReload, isReload, isOpen
 
     useMemo(() => {
         setformData({
-            actor_movie_id: movieData.actor_movie || "",
-            category_movie_id: movieData.category_movie || "",
+            actor_movie_id: movieData.actor_movie || [],
+            category_movie_id: movieData.category_movie || [],
             departure_date_movie: movieData.departure_date_movie || "",
             description_movie: movieData.description_movie || "",
             duration_movie: movieData.duration_movie || "",
@@ -87,7 +89,7 @@ export const MovieUpdate = ({ movieId, closeModal, setIsReload, isReload, isOpen
             departure_date_movie: formState.departure_date_movie,
             description_movie: formState.description_movie,
             duration_movie: formState.duration_movie,
-            image_change: form.image_change,
+            image_change: formState.image_change,
             name_movie: formState.name_movie,
             photo_movie: formState.photo_movie,
             premiere_date_movie: formState.premiere_date_movie,
@@ -151,137 +153,149 @@ export const MovieUpdate = ({ movieId, closeModal, setIsReload, isReload, isOpen
         setNewActor(!newActor);
     }
 
-
-
     return (
-        <form onSubmit={onUpdateMovie} className='Movies-Create'>
-            <div className='Movies-Create-Container'>
-                <label className='Movies-Create-label'>Nombre:</label>
-                <input
-                    type="text"
-                    className='Movies-Create-inputs'
-                    name="name_movie"
-                    value={name_movie}
-                    onChange={onInputChange}
-                />
-                <label className='Movies-Create-label'>Sipnosis:</label>
-                <textarea
-                    className='Movies-Create-inputs-TextArea'
-                    cols="30"
-                    rows="10"
-                    name="description_movie"
-                    value={description_movie}
-                    onChange={onInputChange}
-
-                />
-                <label className='Movies-Create-label' >Duración:</label>
-                <input
-                    type="time"
-                    className='Movies-Create-inputs'
-                    name='duration_movie'
-                    value={duration_movie}
-                    onChange={onInputChange}
-                />
-                <label className='Movies-Create-label'>Portada:</label>
-                <input
-                    className='Movie-button-portada'
-                    type='file'
-                    accept="image/png, .jpeg, .jpg, image/gif"
-                    name='photo_movie'
-                    onChange={onInputChangeImage}
-                />
-            </div>
-            <div className='Movies-Create-Container'>
-                <label className='Movies-Create-label'>Fecha de estreno:</label>
-                <input
-                    type="date"
-                    className='Movies-Create-inputs'
-                    name='premiere_date_movie'
-                    value={premiere_date_movie}
-                    onChange={onInputChange}
-                />
-                <label className='Movies-Create-label'>Fecha de salida:</label>
-                <input
-                    type="date"
-                    className='Movies-Create-inputs'
-                    name='departure_date_movie'
-                    value={departure_date_movie}
-                    onChange={onInputChange}
-
-                />
-                <label className='Movies-Create-label'>Categorias:</label>
-                <select
-                    className="Movies-Create-comboBox"
-                    multiple
-                    name="category_movie_id"
-                    value={category_movie_id}
-                    onChange={onInputChangeMultiselect}
-                >
-                    {categories.map((category) => (
-                        <option key={category.id} value={category.id}>{category.category_name}</option>
-                    ))}
-                </select>
-            </div>
-
-            <div className='Movies-Create-Container'>
-                <label className='Movies-Create-label'>Actores:</label>
-                <div className='Movies-Create-combo-link'>
-                    <input
-                        type="text"
-                        className='Movies-Create-inputs search'
-                        placeholder='Buscar un actor...'
-                        id="searchActorUpdate"
-                        onKeyUp={filterOptions}
-                    />
-                    <button onClick={onChangeNewActor} type='button' title='Crear actor'><img src={link} alt="link" className='actor-link' /></button>
-                </div>
-                <select
-                    className="Movies-Create-comboBox"
-                    multiple
-                    id='actor_movie_id_update'
-                    name="actor_movie_id"
-                    value={actor_movie_id}
-                    onChange={onInputChangeMultiselect}
-                >
-                    {actors.map((actor) => (
-                        <option key={actor.id} value={actor.id}>{actor.name_actor}</option>
-                    ))}
-                </select>
-
-                {newActor === false
-                    ? <div className='Movies-Create-Sent animate__animated animate__fadeIn'>
-                        <img src={movieTag} alt="employeCreate" />
-                        <h1> Publicar estreno</h1>
-                        <span>Al publicar podrás ver los
-                            cambios en tu app</span>
-                        <button className='Movies-button-sent' type='submit'>Actualizar</button>
-                    </div>
-
-                    : <div className='Actor-Create animate__animated animate__fadeIn'>
-                        <h4>Crear nuevo actor</h4>
-                        <label className='Actor-Create-label'>Nombre:</label>
-                        <input
-                            type="text"
-                            className='Actor-Create-inputs'
-                            name='name_actor'
-                            value={name_actor}
-                            onChange={onInputChange}
+        <>
+            {
+                isLoading == true
+                    ? <>
+                        <PacmanLoader
+                            color="#FD5D5D"
+                            loading
+                            size={25}
+                            className="Spinner-Modal"
                         />
-                        <label className='Actor-Create-label'>Foto:</label>
-                        <input
-                            className='Actor-Create-inputs-photo'
-                            type='file'
-                            accept="image/png, .jpeg, .jpg, image/gif"
-                            name='photo_actor'
-                            onChange={onInputChangeImage}
-                        />
-                        <div className='Actor-Create-Conatainer'>
-                            <button className='Actor-Create-button Actor-summit' onClick={onChangeNewActor} type='button'>Volver</button>
-                            <button className='Actor-Create-button Actor-summit' onClick={onCreateActor} type='button'>Añadir</button>
+                        Cargando ...
+                    </>
+                    : <form onSubmit={onUpdateMovie} className='Movies-Create'>
+                        <div className='Movies-Create-Container'>
+                            <label className='Movies-Create-label'>Nombre:</label>
+                            <input
+                                type="text"
+                                className='Movies-Create-inputs'
+                                name="name_movie"
+                                value={name_movie}
+                                onChange={onInputChange}
+                            />
+                            <label className='Movies-Create-label'>Sipnosis:</label>
+                            <textarea
+                                className='Movies-Create-inputs-TextArea'
+                                cols="30"
+                                rows="10"
+                                name="description_movie"
+                                value={description_movie}
+                                onChange={onInputChange}
+
+                            />
+                            <label className='Movies-Create-label' >Duración:</label>
+                            <input
+                                type="time"
+                                className='Movies-Create-inputs'
+                                name='duration_movie'
+                                value={duration_movie}
+                                onChange={onInputChange}
+                            />
+                            <label className='Movies-Create-label'>Portada:</label>
+                            <input
+                                className='Movie-button-portada'
+                                type='file'
+                                accept="image/png, .jpeg, .jpg, image/gif"
+                                name='photo_movie'
+                                onChange={onInputChangeImage}
+                            />
                         </div>
-                    </div>
-                }
-            </div>
-        </form>
+                        <div className='Movies-Create-Container'>
+                            <label className='Movies-Create-label'>Fecha de estreno:</label>
+                            <input
+                                type="date"
+                                className='Movies-Create-inputs'
+                                name='premiere_date_movie'
+                                value={premiere_date_movie}
+                                onChange={onInputChange}
+                            />
+                            <label className='Movies-Create-label'>Fecha de salida:</label>
+                            <input
+                                type="date"
+                                className='Movies-Create-inputs'
+                                name='departure_date_movie'
+                                value={departure_date_movie}
+                                onChange={onInputChange}
+
+                            />
+                            <label className='Movies-Create-label'>Categorias:</label>
+                            <select
+                                className="Movies-Create-comboBox"
+                                multiple
+                                name="category_movie_id"
+                                value={category_movie_id}
+                                onChange={onInputChangeMultiselect}
+                            >
+                                {categories.map((category) => (
+                                    <option key={category.id} value={category.id}>{category.category_name}</option>
+                                ))}
+                            </select>
+                        </div>
+
+                        <div className='Movies-Create-Container'>
+                            <label className='Movies-Create-label'>Actores:</label>
+                            <div className='Movies-Create-combo-link'>
+                                <input
+                                    type="text"
+                                    className='Movies-Create-inputs search'
+                                    placeholder='Buscar un actor...'
+                                    id="searchActorUpdate"
+                                    onKeyUp={filterOptions}
+                                />
+                                <button onClick={onChangeNewActor} type='button' title='Crear actor'><img src={link} alt="link" className='actor-link' /></button>
+                            </div>
+                            <select
+                                className="Movies-Create-comboBox"
+                                multiple
+                                id='actor_movie_id_update'
+                                name="actor_movie_id"
+                                value={actor_movie_id}
+                                onChange={onInputChangeMultiselect}
+                            >
+                                {actors.map((actor) => (
+                                    <option key={actor.id} value={actor.id}>{actor.name_actor}</option>
+                                ))}
+                            </select>
+
+                            {newActor === false
+                                ? <div className='Movies-Create-Sent animate__animated animate__fadeIn'>
+                                    <img src={movieTag} alt="employeCreate" />
+                                    <h1> Publicar estreno</h1>
+                                    <span>Al publicar podrás ver los
+                                        cambios en tu app</span>
+                                    <button className='Movies-button-sent' type='submit'>Actualizar</button>
+                                </div>
+
+                                : <div className='Actor-Create animate__animated animate__fadeIn'>
+                                    <h4>Crear nuevo actor</h4>
+                                    <label className='Actor-Create-label'>Nombre:</label>
+                                    <input
+                                        type="text"
+                                        className='Actor-Create-inputs'
+                                        name='name_actor'
+                                        value={name_actor}
+                                        onChange={onInputChange}
+                                    />
+                                    <label className='Actor-Create-label'>Foto:</label>
+                                    <input
+                                        className='Actor-Create-inputs-photo'
+                                        type='file'
+                                        accept="image/png, .jpeg, .jpg, image/gif"
+                                        name='photo_actor'
+                                        onChange={onInputChangeImage}
+                                    />
+                                    <div className='Actor-Create-Conatainer'>
+                                        <button className='Actor-Create-button Actor-summit' onClick={onChangeNewActor} type='button'>Volver</button>
+                                        <button className='Actor-Create-button Actor-summit' onClick={onCreateActor} type='button'>Añadir</button>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </form>
+            }
+        </>
     )
 }
