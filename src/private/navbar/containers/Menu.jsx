@@ -21,6 +21,7 @@ export const Menu = () => {
             const respMenu = await useGetMenu();
             const resp = await useGetUser();
             window.localStorage.setItem("branchID",resp[0].branch_user_id)
+            window.localStorage.setItem("userData",JSON.stringify(resp))
             setUserData(resp[0]);
             setMenuData(respMenu);
         }
