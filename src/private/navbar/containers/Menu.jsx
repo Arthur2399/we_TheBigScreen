@@ -20,6 +20,7 @@ export const Menu = () => {
         async function fetchData() {
             const respMenu = await useGetMenu();
             const resp = await useGetUser();
+            window.localStorage.setItem("branchID",resp[0].branch_user_id)
             setUserData(resp[0]);
             setMenuData(respMenu);
         }

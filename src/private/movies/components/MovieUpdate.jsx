@@ -10,8 +10,8 @@ import movieTag from '/assets/logos/Movie-tag.svg';
 import link from '/assets/icons/link.png';
 import './MovieCreate.css';
 
-export const MovieUpdate = ({ movieId, closeModal, setIsReload, isReload, isOpen }) => {
 
+export const MovieUpdate = ({ movieId, closeModal, setIsReload, isReload, isOpen }) => {
     const [isLoading, setIsLoading] = useState(true);
     const [categories, setCategories] = useState([]);
     const [actors, setActors] = useState([]);

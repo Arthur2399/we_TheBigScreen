@@ -76,6 +76,10 @@
     padding: 6px;
 }
 
+.valid-question {
+    background: rgb(124, 193, 20);
+}
+
 .Answer-container span {
     font-size: 25px;
     margin-left: 15px;
