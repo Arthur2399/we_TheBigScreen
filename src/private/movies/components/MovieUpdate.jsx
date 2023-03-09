@@ -10,28 +10,7 @@ import movieTag from '/assets/logos/Movie-tag.svg';
 import link from '/assets/icons/link.png';
 import './MovieCreate.css';
 
-<<<<<<< HEAD
-const formData = {
-    
-    //MovieCreate 
-    actor_movie_id: [],
-    category_movie_id: [],
-    departure_date_movie: '',
-    description_movie: '',
-    duration_movie: '',
-    name_movie: '',
-    photo_movie: '',
-    premiere_date_movie: '',
-
-    //Actor Create
-    name_actor: '',
-    photo_actor: '',
-}
-
-export const MovieUpdate = ({ setIsReload, isReload, closeModal }) => {
-=======
 export const MovieUpdate = ({ movieId, closeModal, setIsReload, isReload, isOpen }) => {
->>>>>>> feature/movies
 
     const [isLoading, setIsLoading] = useState(true);
     const [categories, setCategories] = useState([]);
