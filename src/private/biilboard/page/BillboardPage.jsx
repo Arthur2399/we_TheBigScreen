@@ -1,11 +1,52 @@
-import build from '/assets/img/build.png';
+import { useState } from 'react';
+import { useEffect } from 'react';
+import { BillboardsCards } from '../containers';
+import { useGetMoviesList } from '../hooks/useGetBillboard';
 import './BillboardPage.css';
 
 export const BillboardPage = () => {
+
+  const [movieList, setMovieList] = useState([]);
+
+  useEffect(() => {
+    const id = localStorage.getItem('branchID');
+    const fetchGetBillboard = async () => {
+      const { resp, response } = await useGetMoviesList(id);
+      setMovieList(resp);
+    }
+
+    fetchGetBillboard();
+  }, [])
+
+
+
   return (
-    <div className='billboardPage'>
-        <img src={build} alt="construccion" />
-        <h1>Próximamente</h1>
-    </div>
+    <section className="Billboard">
+      <div className="Billboard-container">
+        <h1 className="Billboard-main-title">Cartelera de Quicentro</h1>
+        <div className="Billboard-desing-container">
+          <div className="Billboard-view-container">
+
+            <div className="Billboard-billboard">
+              <h2>Mis películas </h2>
+              <div className="Billboard-billboard-scroll">
+                {/* <MovieCards cardsMovies={cardsMovies} isReload={isReload} setIsReload={setIsReload} /> */}
+                <BillboardsCards movieList={movieList}/>
+
+              </div>
+            </div>
+
+            <div className="Billboard-billboard">
+              <h2>En carteleta </h2>
+              <div className="Billboard-billboard-scroll">
+                {/* <MovieCards cardsMovies={cardsMovies} isReload={isReload} setIsReload={setIsReload} /> */}
+              </div>
+            </div>
+
+          </div>
+          {/* <MoviesInfo /> */}
+        </div>
+      </div>
+    </section>
   )
 }
