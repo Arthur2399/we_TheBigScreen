@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { BillboardsCards } from '../containers';
+import { BillboardCards } from '../containers';
 import { useGetMoviesList } from '../hooks/useGetBillboard';
 import './BillboardPage.css';
 
@@ -31,7 +31,7 @@ export const BillboardPage = () => {
               <h2>Mis películas </h2>
               <div className="Billboard-billboard-scroll">
                 {/* <MovieCards cardsMovies={cardsMovies} isReload={isReload} setIsReload={setIsReload} /> */}
-                <BillboardsCards movieList={movieList}/>
+                <BillboardCards movieList={movieList}/>
 
               </div>
             </div>

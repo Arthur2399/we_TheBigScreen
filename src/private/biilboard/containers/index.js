@@ -1,1 +1,1 @@
-export * from './BillboardsCards'
+export * from './BillboardCards'
