@@ -7,6 +7,8 @@ import './BillboardPage.css';
 export const BillboardPage = () => {
 
   const [movieList, setMovieList] = useState([]);
+  const [isReload, setIsReload] = useState(0);
+
 
   useEffect(() => {
     const id = localStorage.getItem('branchID');
@@ -30,7 +32,7 @@ export const BillboardPage = () => {
             <div className="Billboard-billboard">
               <h2>Mis películas </h2>
               <div className="Billboard-billboard-scroll">
-                <BillboardCards movieList={movieList}/>
+                <BillboardCards movieList={movieList} isReload={isReload} setIsReload={setIsReload} />
               </div>
             </div>
 

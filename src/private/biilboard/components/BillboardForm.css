@@ -1,0 +1,149 @@
+@import '../../../styles/_vars.css';
+
+.Billboard-form {
+    background: var(--very-light-pink);
+    margin-top: 5px;
+    height: 90%;
+    width: 95%;
+    border-radius: 15px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+
+.Billboard-form-Container {
+    height: 92%;
+    width: 30%;
+    border-radius: 15px;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    text-align: start;
+}
+
+.Billboard-form-inputs {
+    align-self: center;
+    border: none;
+    border-radius: 15px;
+    width: 90%;
+    height: 30px;
+    background: var(--text-input-fiel);
+}
+
+.Billboard-form-inputs-TextArea {
+    align-self: center;
+    border: none;
+    border-radius: 15px;
+    width: 90%;
+    background: var(--text-input-fiel);
+}
+
+.Billboard-form-label {
+    margin-left: 18px;
+}
+
+.Billboard-form-UploadPhoto {
+    display: flex;
+    margin-left: 18px;
+}
+
+.Movie-button-portada{
+    margin-left: 20px;
+}
+
+.Billboard-form-Summary {
+    align-self: center;
+    overflow: hidden;
+    border: none;
+    border-radius: 15px;
+    height: 25%;
+    width: 90%;
+    background: var(--text-input-fiel);
+    display: grid;
+    grid-template-columns: auto auto auto;
+
+}
+
+.Billboard-form-combo-link {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.Billboard-form-comboBox {
+    align-self: center;
+    padding: 10px;
+    margin-left: 10px;
+    border: none;
+    border-radius: 5px;
+    width: 84%;
+    height: 120px;
+    margin-top: -20px;
+    background: var(--text-input-fiel);
+}
+
+.Billboard-form-combo-link button {
+    background: none;
+    border: none;
+    margin: 0;
+    cursor: pointer;
+}
+
+.Billboard-form-combo-link img {
+    width: 20px;
+    padding: 0;
+
+}
+
+
+.Empoye-form-delete {
+    margin-left: 10px;
+    margin-top: 10px;
+    width: 100px;
+    height: 30px;
+}
+
+.Empoye-form-delete span {
+    font-size: 12px;
+}
+
+.Empoye-form-delete button {
+    border: none;
+    background: none;
+    font-weight: bolder;
+    font-family: 'Quicksand', sans-serif;
+    color: var(--hospital-red);
+    cursor: pointer;
+}
+
+.Billboard-form-Sent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 50%;
+}
+
+.Billboard-form-Sent span {
+    width: 80%;
+}
+
+.Billboard-form-Sent img {
+    width: 70px !important;
+    margin-bottom: 10px !important;
+}
+
+.Billboard-button-sent {
+    margin-top: 20px;
+    font-weight: bolder;
+    padding: 14px;
+    border: none;
+    border-radius: 15px;
+    color: white;
+    padding: 8px;
+    cursor: pointer;
+    width: auto;
+    background: var(--hospital-red);
+}
