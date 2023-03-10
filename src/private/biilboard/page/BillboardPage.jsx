@@ -30,9 +30,7 @@ export const BillboardPage = () => {
             <div className="Billboard-billboard">
               <h2>Mis películas </h2>
               <div className="Billboard-billboard-scroll">
-                {/* <MovieCards cardsMovies={cardsMovies} isReload={isReload} setIsReload={setIsReload} /> */}
                 <BillboardCards movieList={movieList}/>
-
               </div>
             </div>
 

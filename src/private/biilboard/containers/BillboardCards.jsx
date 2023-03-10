@@ -6,7 +6,6 @@ export const BillboardCards = ({ movieList }) => {
     const [isOpenModal, openModal, closeModal] = useModal(false);
     const [movieId, setMovieId] = useState();
 
-    console.log(movieId)
 
     return (
         <div className="cards-container ">
