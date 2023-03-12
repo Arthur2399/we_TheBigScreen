@@ -48,7 +48,8 @@ export const API_REPORT_MONTH        = `http://${API_REST}/reports/reportBranch`
 export const API_REPORT_BY_FILTER    = `http://${API_REST}/reports/reportBranchTemplate`;
 
 export const API_BILLBOARDS_MOVIES   = `http://${API_REST}/movies/schedules/list/`;
-export const API_BILLBOARDS_FORM     = `http://${API_REST}/movies/timetables/schedule/list`;
+export const API_BILLBOARDS_FORM     = `http://${API_REST}/movies/timetables/create`;
+export const API_BILLBOARDS_LIST     = `http://${API_REST}/movies/timetables/schedule/list`;
 
 
 
