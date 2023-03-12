@@ -24,6 +24,8 @@ export const AuthProvider = ({ children }) => {
 
   const logout = () => {
     localStorage.removeItem('jwt');
+    localStorage.removeItem('branchID');
+    localStorage.removeItem('userData');
     const action = { type: types.logout };
     dispatch(action);
   }

@@ -4,8 +4,8 @@ import { useForm } from '../../../hooks/useForm';
 import { useGetRol, useGetBranchs, usePostEmploye } from '../hooks';
 import employePhoto from '/assets/logos/employes_photo.svg';
 import employeCreate from '/assets/logos/employes_create.svg';
-import './EmployeCreate.css';
 import Swal from 'sweetalert2';
+import './EmployeCreate.css';
 
 const formData = {
     name: '',
