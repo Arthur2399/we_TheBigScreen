@@ -17,3 +17,10 @@ body{
     justify-self: center;
     margin-top: 17%;
 }
+
+.cards-container {
+    margin-top: 8px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 80px);
+    place-content: center;
+}
