@@ -1,22 +1,25 @@
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { BillboardCards } from '../containers';
-import { useGetMoviesList } from '../hooks/useGetBillboard';
+import { BillboardLists } from '../containers/BillboardLists';
+import { useGetBillboardList, useGetMoviesList } from '../hooks/useGetBillboard';
 import './BillboardPage.css';
 
 export const BillboardPage = () => {
 
   const [movieList, setMovieList] = useState([]);
+  const [billboardList, setBillboardList] = useState([])
   const [isReload, setIsReload] = useState(0);
 
 
   useEffect(() => {
     const id = localStorage.getItem('branchID');
     const fetchGetBillboard = async () => {
-      const { resp, response } = await useGetMoviesList(id);
+      const { resp } = await useGetMoviesList(id);
       setMovieList(resp);
+      const { resp: respSum } = await useGetBillboardList(id);
+      setBillboardList(respSum.data);
     }
-
     fetchGetBillboard();
   }, [])
 
@@ -39,7 +42,7 @@ export const BillboardPage = () => {
             <div className="Billboard-billboard">
               <h2>En carteleta </h2>
               <div className="Billboard-billboard-scroll">
-                {/* <MovieCards cardsMovies={cardsMovies} isReload={isReload} setIsReload={setIsReload} /> */}
+                <BillboardLists billboardList={billboardList} />
               </div>
             </div>
 
