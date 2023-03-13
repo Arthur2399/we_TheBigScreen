@@ -38,7 +38,7 @@ export const BillboardForm = ({ movieId, closeModal, setIsReload, isReload, isOp
             const { resp } = await useGetSchedule(JSON.stringify(data))
             setScheduleList(resp)
         }
-    }, [dateSumary, movieId,formState])
+    }, [dateSumary, movieId, formState])
 
     const onCreateSchelude = async (event) => {
         event.preventDefault();
