@@ -16,7 +16,7 @@ export const BillboardList = ({ movie_photo, movie_name, movie_date, billboard }
                 <div className="billboard-hour-room">
                     {
                         billboard.map((bill, i) => (
-                            <div className="billboard-hour-room-container">
+                            <div key={i}className="billboard-hour-room-container">
                                 <span> <b>Hora:</b> {bill.time}</span>
                                 <span> <b>Sala:</b> {bill.room}</span>
                             </div>
