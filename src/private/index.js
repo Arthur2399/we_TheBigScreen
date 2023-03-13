@@ -1,5 +1,6 @@
 export * from './accredit';
 export * from './awards';
+export * from './biilboard';
 export * from './branch';
 export * from './employes';
 export * from './exchange';

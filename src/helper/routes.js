@@ -47,6 +47,14 @@ export const API_GAME_ROOM_START     = `http://${API_REST}/game/cbx_room/`;
 export const API_REPORT_MONTH        = `http://${API_REST}/reports/reportBranch`;
 export const API_REPORT_BY_FILTER    = `http://${API_REST}/reports/reportBranchTemplate`;
 
+export const API_BILLBOARDS_MOVIES   = `http://${API_REST}/movies/schedules/list/`;
+export const API_BILLBOARDS_SUMMARY  = `http://${API_REST}/movies/billboard/`;
+export const API_BILLBOARDS_FORM     = `http://${API_REST}/movies/timetables/create`;
+export const API_BILLBOARDS_LIST     = `http://${API_REST}/movies/timetables/schedule/list`;
+
+
+
+
 export const API_BILLBOARD           = `http://${API_REST}/movies/billboard`;
 export const API_BILLBOARD_ID        = `http://${API_REST}/movies/billboard/`;
 export const API_WHATSAPP            = 'https://api.whatsapp.com/send?phone=0997106357&text=¡Hola!%20Necesito%20ayuda%20con%20mi%20con%20contraseña%20de%20The%20Big%20Screen.'
