@@ -22,7 +22,7 @@ export const BillboardPage = () => {
       setBillboardList(respSum.data);
     }
     fetchGetBillboard();
-  }, [])
+  }, [isReload])
 
 
 

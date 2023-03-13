@@ -1,6 +1,8 @@
 import { useMemo, useState } from 'react';
 import { useForm } from '../../../hooks/useForm';
 import { useGetSchedule, usePostSchedule } from '../hooks/usePostSchedule';
+import billboard from '/assets/icons/billboard.png'
+
 import Swal from 'sweetalert2';
 import './BillboardForm.css';
 
@@ -122,6 +124,11 @@ export const BillboardForm = ({ movieId, closeModal, setIsReload, isReload, isOp
                 </div>
             </div>
             <div className='Billboard-form-Container'>
+                <div className="Billboard-form-Container-desing">
+                    <img src={billboard} alt="popcorn" className='animate__animated animate__bounce' />
+                    <h4>Registro de cartelera</h4>
+                    <p>Registra todos los horarios de tu peliculas aquí, ten en cuenta el periodo de actividad de cada pelicula para que puedas ponerla en cartelera. </p>
+                </div>
             </div>
         </form>
     )
