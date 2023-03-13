@@ -4,7 +4,7 @@
     display: flex;
     align-items: center;
     border: 1px solid rgb(123, 123, 123);
-    border-style:dashed;
+    border-style: dashed;
     border-left: none;
     border-right: none;
     border-top: none;
@@ -12,10 +12,10 @@
 }
 
 .billboard-list img {
-   width: 80px;
-   border-radius: 15px;
-   margin-left: 15px;
-   margin-right: 15px;
+    width: 80px;
+    border-radius: 15px;
+    margin-left: 15px;
+    margin-right: 15px;
 }
 
 .billboard-list-info {
@@ -30,26 +30,26 @@
     margin: 0;
 }
 
-
-
 .billboard-hour-room {
-    display: flex;
-    flex-direction: row;
-    background: red;
-    justify-content: start;
-    align-items: center;
+    display: grid;
+    height: 90px;
+    width: 230px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 70px);
+    grid-row: inherit;
+    overflow-y: scroll;
+    overflow-x: hidden;
 
 }
 
-.billboard-hour-room-container{
+.billboard-hour-room-container {
     display: flex;
+    margin-top: 10px;
     flex-direction: column;
-    margin-right: 5px;
+    margin-right: 2px;
     width: 65px;
-    background: blue;
 }
 
 .billboard-hour-room-container span {
-    font-size: 12px;
+    font-size: 11px;
 }
-
