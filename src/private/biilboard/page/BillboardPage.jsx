@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { BillboardsInfo } from '../components/BillboardsInfo';
 import { BillboardCards } from '../containers';
 import { BillboardLists } from '../containers/BillboardLists';
 import { useGetBillboardList, useGetMoviesList } from '../hooks/useGetBillboard';
@@ -47,7 +48,7 @@ export const BillboardPage = () => {
             </div>
 
           </div>
-          {/* <MoviesInfo /> */}
+          <BillboardsInfo />
         </div>
       </div>
     </section>
