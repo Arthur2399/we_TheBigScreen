@@ -58,7 +58,7 @@ export const LobbyGame = () => {
                     time--;
                 }, 1000);
             }
-            countdown(0, 10);
+            countdown(3, 0);
 
             var totalTime = 5;
             const updateClock = () => {
