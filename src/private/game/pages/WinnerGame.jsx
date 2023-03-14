@@ -24,9 +24,9 @@ export const WinnerGame = () => {
 
 
     return (
-        <section class="gameWinner">
+        <section className="gameWinner">
             <img id="logo" src={tbsLogo} alt="logo" />
-            <div class="gameWinner-container">
+            <div className="gameWinner-container">
                 <h1>¡Felicitaciones ganador!</h1>
                 <div>
                     <img src={`${API_IMAGE}${winner.room_player_image}`} alt="winner" />
