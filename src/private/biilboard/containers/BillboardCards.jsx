@@ -15,7 +15,7 @@ export const BillboardCards = ({ movieList, setIsReload, isReload }) => {
                 <BillboardCard key={movie.id} {...movie} openModal={openModal} setMovieId={setMovieId} />
             ))}
             <Modal isOpen={isOpenModal} closeModal={closeModal} title="Crear cartelera" x={"80%"} y={"580px"}>
-                <BillboardForm movieId={movieId} setIsReload={setIsReload} isReload={isReload} closeModal={closeModal} isOpen={isOpenModal}/>
+                <BillboardForm movieId={movieId} setIsReload={setIsReload} isReload={isReload} closeModal={closeModal} isOpen={isOpenModal} />
             </Modal>
         </div>
     )

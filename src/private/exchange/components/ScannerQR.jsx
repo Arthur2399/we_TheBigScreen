@@ -27,7 +27,6 @@ export const ScannerQR = ({ setClientData }) => {
                         getUserHash(result?.text)
                     }
                     if (!!error) {
-                        console.info(error);
                     }
                 }}
                 style={{ width: '100%' }}
