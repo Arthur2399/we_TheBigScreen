@@ -17,9 +17,10 @@ export const StartGame = () => {
     const [idRoom, setIdRoom] = useState('')
 
     const onNavigateRoom = async () => {
+    const id = localStorage.getItem('branchID');
         const data = {
             "room_room": idRoom,
-            "room_branch": 1
+            "room_branch": id
         }
         const { resp, response } = await usePostRoom(JSON.stringify(data));
         if (response.status == 201) {
