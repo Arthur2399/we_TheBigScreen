@@ -18,7 +18,6 @@ export const StartGame = () => {
 
     const onNavigateRoom = async () => {
         const id = localStorage.getItem('branchID');
-
         const data = {
             "room_room": idRoom,
             "room_branch": id
