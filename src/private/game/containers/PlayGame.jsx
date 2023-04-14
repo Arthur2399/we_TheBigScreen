@@ -1,30 +1,20 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useGetUser } from '../../navbar/hooks';
 import { useGetRoomGame } from '../hooks/useGetRoomGame';
 import './PlayGame.css';
 
+
+const idBranch = window.localStorage.getItem("branchID")
+
 export const PlayGame = ({ onNavigateRoom, setIdRoom}) => {
 
-    const salas = [
-        {
-            label: "Sala 1",
-            value: 1
-        },
-        {
-            label: "Sala 2",
-            value: 2
-        },
-        {
-            label: "Sala 3",
-            value: 3
-        },
-    ]
-
+    const [room, setRoom] = useState([])
 
     useEffect(() => {
         const getDataPlayGame = async () => {
             const respUser = await useGetUser();
-            const respRoom =  await useGetRoomGame('1');
+            const respRoom =  await useGetRoomGame(idBranch);
+            setRoom(respRoom.resp)
         }
 
         getDataPlayGame();
@@ -41,7 +31,7 @@ export const PlayGame = ({ onNavigateRoom, setIdRoom}) => {
             >
                 <option>Seleccione una sala</option>
                 {
-                    salas.map((sala) => (
+                    room.map((sala) => (
                         <option key={sala.value} value={sala.value}>{sala.label}</option>
                     ))
                 }

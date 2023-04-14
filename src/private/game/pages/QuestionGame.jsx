@@ -19,6 +19,8 @@ export const QuestionGame = () => {
     const questions = JSON.parse(localStorage.getItem("question"))
     const question = questions[questionsID]
 
+    const [validQuestion, setValidQuestion] = useState(false);
+
     const navigate = useNavigate();
 
     const onPlayersTop = () => {
@@ -33,10 +35,17 @@ export const QuestionGame = () => {
         }
         var totalTime = 20;
         const updateClock = () => {
-            if (totalTime == 0) {
-                window.localStorage.setItem("questionID", questionsID + 1);
-                mqttGame()
-                onPlayersTop();
+            if (totalTime <= 0) {
+                setValidQuestion(true);
+                if (totalTime == -4) {
+                    window.localStorage.setItem("questionID", questionsID + 1);
+                    mqttGame();
+                    onPlayersTop();
+                } else {
+                    totalTime -= 1;
+                    setTimeout(updateClock, 1000);
+                    setTimerQuestion(totalTime);
+                }
             } else {
                 totalTime -= 1;
                 setTimeout(updateClock, 1000);
@@ -52,32 +61,62 @@ export const QuestionGame = () => {
                 <img id="logo" src={logoTBS} alt="logo" />
                 <div className="GameQuestion-container">
                     <h1>{question.question_question}</h1>
-                    <div className="GameQuestion-Answer">
-                        <div className="Answer-container">
-                            <div>
-                                <img src={cuadrado} alt="cuadrado" />
+
+                    {
+                        validQuestion === false
+                            ? <div className="GameQuestion-Answer">
+                                <div className="Answer-container">
+                                    <div>
+                                        <img src={cuadrado} alt="cuadrado" />
+                                    </div>
+                                    <span>{question.options[0].options_answer}</span>
+                                </div>
+                                <div className="Answer-container">
+                                    <div>
+                                        <img src={circulo} alt="circulo" />
+                                    </div>
+                                    <span>{question.options[1].options_answer}</span>
+                                </div>
+                                <div className="Answer-container">
+                                    <div>
+                                        <img src={rombo} alt="rombo" />
+                                    </div>
+                                    <span>{question.options[2].options_answer}</span>
+                                </div>
+                                <div className="Answer-container">
+                                    <div>
+                                        <img src={triangulo} alt="triangulo" />
+                                    </div>
+                                    <span>{question.options[3].options_answer}</span>
+                                </div>
                             </div>
-                            <span>{question.options[0].options_answer}</span>
-                        </div>
-                        <div className="Answer-container">
-                            <div>
-                                <img src={circulo} alt="circulo" />
+                            : <div className="GameQuestion-Answer">
+                                <div className={question.options[0].options_correct == true ? "Answer-container valid-question" : "Answer-container"}>
+                                    <div>
+                                        <img src={cuadrado} alt="cuadrado" />
+                                    </div>
+                                    <span>{question.options[0].options_answer}</span>
+                                </div>
+                                <div className={question.options[1].options_correct == true ? "Answer-container valid-question" : "Answer-container"}>
+                                    <div>
+                                        <img src={circulo} alt="circulo" />
+                                    </div>
+                                    <span>{question.options[1].options_answer}</span>
+                                </div>
+                                <div className={question.options[2].options_correct == true ? "Answer-container valid-question" : "Answer-container"}>
+                                    <div>
+                                        <img src={rombo} alt="rombo" />
+                                    </div>
+                                    <span>{question.options[2].options_answer}</span>
+                                </div>
+                                <div className={question.options[3].options_correct == true ? "Answer-container valid-question" : "Answer-container"}>
+                                    <div>
+                                        <img src={triangulo} alt="triangulo" />
+                                    </div>
+                                    <span>{question.options[3].options_answer}</span>
+                                </div>
                             </div>
-                            <span>{question.options[1].options_answer}</span>
-                        </div>
-                        <div className="Answer-container">
-                            <div>
-                                <img src={rombo} alt="rombo" />
-                            </div>
-                            <span>{question.options[2].options_answer}</span>
-                        </div>
-                        <div className="Answer-container">
-                            <div>
-                                <img src={triangulo} alt="triangulo" />
-                            </div>
-                            <span>{question.options[3].options_answer}</span>
-                        </div>
-                    </div>
+                    }
                 </div>
                 <ReactAudioPlayer
                     src={wiiSound}
@@ -88,7 +127,7 @@ export const QuestionGame = () => {
             {location.pathname.includes("topPlayers")
                 ? <></>
                 : <div className="GameQuestion-time">
-                    <span>{timerQuestion}</span>
+                    <span>{timerQuestion >= 0 ? timerQuestion : 0}</span>
                 </div>}
         </>
     )

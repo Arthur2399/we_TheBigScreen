@@ -21,9 +21,7 @@ export const FormChangePassword = () => {
     }
 
 
-    console.log(passwordData)
     const {resp,response} = await usePostPassword(JSON.stringify(passwordData));
-    console.log(resp,response)
     if(response.status == 200){
       Swal.fire({
         icon: 'success',

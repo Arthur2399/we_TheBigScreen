@@ -7,7 +7,13 @@ import employeUpdate from '/assets/logos/employes_create.svg';
 import Swal from 'sweetalert2';
 import './EmployeUpdate.css';
 
+
+
 export const EmployeUpdate = ({ employeId, closeModal, setIsReload, isReload, isOpen }) => {
+    const userData = JSON.parse(localStorage.getItem("userData"))
+
+
+    
 
     const [isLoading, setIsLoading] = useState(true);
     const [rollList, setRollList] = useState();
@@ -18,7 +24,6 @@ export const EmployeUpdate = ({ employeId, closeModal, setIsReload, isReload, is
         last_name: '',
         ci: '',
         birth: '',
-        username: '',
         email: '',
         rol_id: '',
         branch_user_id: '',
@@ -46,7 +51,7 @@ export const EmployeUpdate = ({ employeId, closeModal, setIsReload, isReload, is
             last_name: employeData.last_name || "",
             ci: employeData.ci || "",
             birth: employeData.birth || "",
-            username: employeData.username || "",
+            username: employeData.email || "",
             email: employeData.email || "",
             rol_id: employeData.rol_id || "",
             branch_user_id: employeData.branch_user_id || "",
@@ -73,7 +78,6 @@ export const EmployeUpdate = ({ employeId, closeModal, setIsReload, isReload, is
         }
     }, [employeId, isOpen])
 
-
     const UpdateEmployee = async () => {
         const des_answer = await Swal.fire({
             title: '¿Seguro que deseas actualizar este empleado?',
@@ -83,7 +87,7 @@ export const EmployeUpdate = ({ employeId, closeModal, setIsReload, isReload, is
         })
 
         if (des_answer.isConfirmed) {
-            const { resp, response } = await usePutEmploye(JSON.stringify(formState), employeId);
+            const { resp, response } = await usePutEmploye(JSON.stringify({ ...formState, username: formState.email }), employeId);
             if (response.status == 200) {
                 closeModal();
                 Swal.fire({
@@ -269,7 +273,9 @@ export const EmployeUpdate = ({ employeId, closeModal, setIsReload, isReload, is
                                 <h1> Actualizar empleado</h1>
                                 <span>Actualiza los datos de los miembros de tu equipo</span>
                                 <div className='optiones-Update-employe'>
-                                    <button
+                                    { userData[0]?.email == formState.email
+                                    ?<></>
+                                    :<button
                                         className='button-sent'
                                         id={"Disable"}
                                         onClick={disableEmploye}>
@@ -277,6 +283,7 @@ export const EmployeUpdate = ({ employeId, closeModal, setIsReload, isReload, is
                                             is_active === true ? "Deshabilitar" : "Habilitar"
                                         }
                                     </button>
+                                    }
                                     <button className=' button-sent' id='Update' type='submit'>Actualizar</button>
                                 </div>
                             </div>
