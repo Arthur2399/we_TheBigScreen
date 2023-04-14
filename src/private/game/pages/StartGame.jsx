@@ -17,7 +17,7 @@ export const StartGame = () => {
     const [idRoom, setIdRoom] = useState('')
 
     const onNavigateRoom = async () => {
-    const id = localStorage.getItem('branchID');
+        const id = localStorage.getItem('branchID');
         const data = {
             "room_room": idRoom,
             "room_branch": id
@@ -45,7 +45,7 @@ export const StartGame = () => {
                                     <div className="Game-questions">
                                         <h1>Lista de preguntas</h1>
                                         <div className="Game-scroll-container">
-                                            <QuestionsList/>
+                                            <QuestionsList />
                                         </div>
                                     </div>
                                     <div className="Game-play">
@@ -53,12 +53,10 @@ export const StartGame = () => {
                                         <PlayGame onNavigateRoom={onNavigateRoom} setIdRoom={setIdRoom} idRoom={idRoom} />
                                     </div>
                                 </div>
-
                                 <div className="Game-all-container">
                                     <div className="Game-staditics">
                                         <h1>Alcance de jugadores</h1>
-                                        <GraficoReporte/>
-
+                                        <GraficoReporte />
                                     </div>
                                     <div className="Game-new-question">
                                         <h1>Administrar preguntas</h1>
